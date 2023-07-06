@@ -1,0 +1,982 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Test Booth Master</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Test Booth</a></li>
+                                    <li class="breadcrumb-item active">Test Booth Master</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+               <!-- company page start -->
+               <div class="row">
+
+
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>--><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <!-- Nav tabs  start-->
+                                        {% comment %} <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#modelmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">Model Master</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#tplmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">TPL Master</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#activetpl" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">Active TPL</span>
+                                                </a>
+                                            </li>
+                                        </ul> {% endcomment %}
+                                        <!-- Nav tabs end -->
+                                        <!-- Tab panes start-->
+                                        <div class="tab-content p-3 text-muted">
+                                            <!-- tab model master start -->
+                                            <div class="tab-pane active" id="modelmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                {% comment %} <form>
+                                                <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Line Code</label>
+                                                                        <div class="col-sm-9">
+                                                                          <select name="line-code" id="linecode" class="form-control">
+                                                                                <option value="EL1_P1_L1">EL1_P1_L1</option>
+                                                                                <option value="EL1_P1_L2">EL1_P1_L2</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label" >Group</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select name="line-code" id="processcode" class="form-control">
+                                                                                <option value="F3R03_OUT">EG</option>
+                                                                                <option value="F1R02_OUT">EN</option>
+                                                                                <option value="F3R03">EV</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+                                                                <div class="row mb-4">
+                                                                    <label for="skill_required" class="col-sm-3 col-form-label">Model Description</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="skill_required" readonly>
+                                                                    </div>
+                                                                </div>
+                                    
+                                                                <div class="row justify-content-end">
+                                                                    <div class="col-sm-9">
+                                                                        <div>
+                                                                            <button type="submit" class="btn btn-primary w-md">Modify</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- right column end-->
+
+                                                </div>
+                                                </form> {% endcomment %}
+                                                <!-- form end -->
+                                                <!-- table start-->
+                                                {% comment %} <div class="row">
+                                                <div class="col-12">
+                                                <div class="card">
+                                                    
+                                                    <div class="card-body">
+                                                        <table id="datatable-buttons1"class="table table-bordered dt-responsive  nowrap w-100">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Line Code</th>
+                                                                            <th>Group</th>
+                                                                            <th>Model Description</th>
+                                                                        </tr>
+                                                                    </thead>
+
+
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG 37-8.5</td>
+                                                                            <td>EG 37 kW 60Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>2</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-50</td>
+                                                                            <td>EG 11 kW 50Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>3</td>
+                                                                            <td>EL1_P1_L1 Author</td>
+                                                                            <td>EG11-C-50-M</td>
+                                                                            <td>EG 11 kW 50Hz USA VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>4</td>
+                                                                            <td>EL1_P1_L1 Developer</td>
+                                                                            <td>EG11-C-50-U</td>
+                                                                            <td>EG 11 kW 50Hz Rotair VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>5</td>
+                                                                            <td>EL1_P1_L1td>
+                                                                            <td>EG11-C-60</td>
+                                                                            <td>EG 11 kW 50Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>6</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60-M</td>
+                                                                            <td>EG 11 kW 50Hz USA VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>7</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60-U</td>
+                                                                            <td>EG 11 kW 50Hz Rotair VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>8</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60WOM</td>
+                                                                            <td>M</td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                    </div>
+                                                </div>
+                                            </div> {% endcomment %}
+                                            <!-- end col -->
+                                        </div>
+                                    </div>
+                                            <!-- tab model master end-->
+                                            <!-- tab tpl_master start-->
+                                            <div class="tab-pane" id="tplmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6">
+                                                            <div class="mt-4 mt-lg-0">
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="st_operator_code" class="col-sm-4 col-form-label">PMMKEY</label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control" id="pmmkey" name="PMMKEY" readonly="readonly">
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-4 col-form-label">TPL No</label>
+                                                                        <div class="col-sm-8">
+                                                                            <input list="browsers" id="tpl_no" class="form-control" name="Tpl_No">
+                                                                                    <datalist id="browsers">
+                                                                                        {% for i in tpl_code_data %}
+                                                                                        <option>{{i}}</option>>
+                                                                                        {% endfor %}
+
+                                                                                    </datalist>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-4 col-form-label">Test Category</label>
+                                                                        <div class="col-sm-8">
+                                                                            <input list="browserstesttype" name="Test_Category" id="test_type" class="form-control"  onChange=show() >
+                                                                                <datalist id="browserstesttype">
+                                                                                    {% for i in test_category_data %}
+                                                                                    <option>{{i}}</option>
+                                                                                    {% endfor %}
+
+                                                                                </datalist>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="st_operator_code" class="col-sm-4 col-form-label">TEST Category seq</label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control" id="testnameseq" name="Test_Category_Seq" >
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+<!--                                                                        <label for="sub_station_code" class="col-sm-4 col-form-label">TEST </label>-->
+<!--                                                                        <div class="col-sm-8">-->
+<!--                                                                            <input list="testcodes" name="Test_Code" id="test_code" class="form-control"  onChange=show() >-->
+<!--                                                                                    <datalist id="testcodes">-->
+
+<!--                                                                                        {% for j in test_code_data %}-->
+<!--                                                                                        <option >{{j}}</option>>-->
+<!--                                                                                        {% endfor %}-->
+<!--                                                                                    </datalist>-->
+<!--                                                                        </div>-->
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="st_operator_code" class="col-sm-4 col-form-label">Test Code Seq No.</label>
+                                                                        <div class="col-sm-8">
+                                                                            <input type="text" class="form-control" id="seq_no" name="Test_Code_Seq_No" >
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+                                                                    <!-- Fan Motor Current Measurement -->
+                                                                    <div id="fanmotorcurr" style="display:none; " >
+
+                                                                        <div class="row">
+                                                                            <label for="sub_station_code" class="col-sm-5 col-form-label">Fan Motor Current Measurement</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input list="browsersfanmotcur" name="Fan_Motor_Current_Measurement" id="fanmotorcurrent" class="form-control" >
+                                                                                    <datalist id="browsersfanmotcur">
+                                                                                        <option value="Auto Mode">
+                                                                                        <option value="Manual Mode" >
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+    
+                                                                        <div class="row" style="padding-top: 20px;" >
+                                                                            <label for="sub_station_code" class="col-sm-5 col-form-label">Number of Fan's</label>
+                                                                            <div class="col-sm-7">
+                                                                                <input list="browsersnofans" name="Number_of_Fans" id="no_fans" class="form-control" >
+                                                                                    <datalist id="browsersnofans">
+                                                                                        <option value=1>
+                                                                                        <option value=2 >
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- Dryer Data Capturing -->
+
+                                                                    <div id="dryerdatacapture" style="display:none; " >
+                                                                        <div class="row" >
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">Dryer</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersdryer" name="Dryer" id="dryer" class="form-control" >
+                                                                                    <datalist id="browsersdryer">
+                                                                                        <option value="Yes">
+                                                                                        <option value="No" >
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- Belt Driven Model Inputs -->
+
+                                                                    <div id="beltdrivenmodel" style="display:none; " >
+                                                                        <div class="row">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">Belt Driven</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersbeltdriv" name="Belt_Driven" id="beltdriven" class="form-control" >
+                                                                                    <datalist id="browsersbeltdriv">
+                                                                                        <option value="Yes">
+                                                                                        <option value="No" >
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- VFD Model Testing -->
+
+                                                                    <div id="vfdmodel" style="display:none; " >
+
+                                                                        <div class="row">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">VFD Model Testing</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersvfdmodeltest" name="VFD_Model_Testing" id="vfdmodeltesting" class="form-control" >
+                                                                                    <datalist id="browsersvfdmodeltest">
+                                                                                        <option value="50hz Single Pressure">
+                                                                                        <option value="50hz Dual Pressure">
+                                                                                        <option value="50hz Triple Pressure">
+                                                                                        <option value="60hz Single Pressure">
+                                                                                        <option value="60hz Dual Pressure">
+                                                                                        <option value="60hz Triple Pressure">
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+    
+                                                                        <div class="row" style="padding-top: 20px;">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">VFD</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersvfd" name="VFD" id="vfd" class="form-control" >
+                                                                                    <datalist id="browsersvfd">
+                                                                                        <option value="Yes">
+                                                                                        <option value="No" >
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    
+
+                                                                    <!-- SPM Reading color -->
+
+                                                                    <div id="spmredcol" style="display:none; ">
+                                                                        <div class="row" >
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">SPM Reading Color</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersspmredcol" name="SPM_Reading_Color" id="spmredcol" class="form-control" >
+                                                                                    <datalist id="browsersspmredcol">
+                                                                                        <option value="Red">
+                                                                                        <option value="Green" >
+                                                                                        <option value="Yellow">
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+
+                                                                    <!-- Parameters to be defined -->
+
+                                                                    <div id="parametdefine" style="display:none; " >
+                                                                        <div class="row">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">Oil Recommended</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input list="browsersoilrec" name="Oil_Recommended" id="oilrecommend" class="form-control" >
+                                                                                    <datalist id="browsersoilrec">
+                                                                                        <option value="Elgi Airlube">
+                                                                                        <option value="Synthetic" >
+                                                                                        <option value="Synthetic Plus Oil">
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+
+                                                                    <!--Test code TPL No. -->
+
+                                                                    <div id="testtpl" style="display:none;" >
+                                                                        <div class="row" style="padding-top: 20px;" >
+                                                                            <label for="skill_required" class="col-sm-3 col-form-label">Test Code</label>
+                                                                            <div class="col-sm-9">
+<!--                                                                              <input type="text" class="form-control" id="act_test_tpl_no" name="Test_Code" >-->
+                                                                                <input list="act_test_tpl_no" name="Test_Code"  class="form-control"  onChange=show() >
+                                                                                    <datalist id="act_test_tpl_no">
+
+                                                                                        {% for j in test_code_data %}
+                                                                                        <option >{{j}}</option>
+                                                                                        {% endfor %}
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Active Test TPL No. -->
+
+                                                                    <div id="activetpl" style="display:none;">
+                                                                        <div class="row" style="padding-top: 20px;">
+                                                                            <label for="skill_required" class="col-sm-3 col-form-label">Active TPL</label>
+                                                                            <div class="col-sm-9">
+<!--                                                                              <input type="text" class="form-control" id="act_test_tpl_no1" name="Active_Test_TPL_No" >-->
+                                                                                 <input list="act_test_tpl_no1"  class="form-control" name="Active_Test_TPL_No">
+                                                                                    <datalist id="act_test_tpl_no1">
+                                                                                        {% for i in tmtpl_code_data %}
+                                                                                        <option>{{i}}</option>>
+                                                                                        {% endfor %}
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <script>
+                                                                        function displayRadioValue() {
+                                                                          var ele = document.getElementsByName('inlineRadioOptions');
+                                                                          for(i = 0; i<ele.length; i++) 
+                                                                          {
+                                                                            if(ele[i].checked)
+                                                                            {
+                                                                                let val = ele[i].value
+                                                                                console.log(val)
+                                                                                if(val=="option1")
+<!--                                                                                val="Test Code TPL No"-->
+                                                                                if(val=="option2")
+<!--                                                                                val="Active Test TPL No"-->
+                                                                                document.getElementById("act_test_tpl_no");
+                                                                                document.getElementById("act_test_tpl_no1");
+                                                                            }                         
+                                                                            }
+                                                                        }
+                                                                     
+                                                                    </script>
+
+                                                                    <div style="padding-left: 150px; padding-top: 30px;" id="activetestcode"  onclick=tableshow()>
+                                                                        <div class="form-check form-check-inline" >
+                                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Test_Code" onclick= displayRadioValue()>
+                                                                            <label class="form-check-label" for="inlineRadio1" id="testcode">Test Code</label>
+                                                                        </div>
+                                                                        <div class="form-check form-check-inline">
+                                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Active_Test_TPL_No" onclick= displayRadioValue()>
+                                                                            <label class="form-check-label" for="inlineRadio2" id="testcode">Active Test</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row justify-content-end mt-4" style="padding-top: 12px;">
+                                                                        <div class="col-sm-9">
+                                                                            <div>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="Add">Add</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="Edit">Edit</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" value="Delete" onclick="clearInput()">Delete</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!-- right column end-->
+
+
+                                                </div>
+                                                </form>
+                                                <!-- table start-->
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+                                                                <div class="table-responsive"  id="tableappear" style="display: none; " >
+                                                                        <!-- <table class="table table-bordered dt-responsive  nowrap w-100">-->
+                                                                        <table id="datatable-buttons" class="custom_table table table-bordered nonwrap w-100">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th scope="col">TPL_No</th>
+                                                                            <th scope="col">TPL_Description</th>
+                                                                            <th scope="col">Test_Category</th>
+                                                                            <th scope="col">No_of_Tests</th>
+
+                                                                            <th scope="col">Total_Tests</th>
+
+                                                                        </tr>
+                                                                        </thead>
+                                                                        
+                                                                            <tbody>
+
+                                                                                {% for i in activetest_tpl_data%}
+                                                                                    <tr>
+                                                                                        
+                                                                                        <td class="data_pointer">{{i.TPL_No}}</td>
+                                                                                        <td class="data_pointer">{{i.TPL_Description}}</td>
+                                                                                        <td class="data_pointer">{{i.Test_Category}}</td>
+                                                                                        <td class="data_pointer">{{i.No_of_Tests}}</td>
+
+                                                                                        <td class="data_pointer">{{i.Total_Tests}}</td>
+                                                                                    
+                                                                                    </tr>
+                                                                                {% endfor %}
+                                                                            </tbody>
+                                                                        
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- table end -->
+                                            </div>
+                                            <!-- tab tpl_master end-->
+                                            <!-- tab active tpl start -->
+                                            
+                                            <!-- tab active tpl end -->
+                                        </div>
+                                        <!-- tab pan end-->
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                <!-- company page end -->
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#datatable").DataTable(),
+        $('#datatable-buttons1 thead tr')
+
+        var table = $('#datatable-buttons1').DataTable({
+            orderCellsTop: true,
+            fixedHeader: true,
+            lengthChange: !1,
+            buttons: ["copy", "excel", "pdf", "colvis"],
+            initComplete: function () {
+
+                this.api().columns(0).every(function () {
+                    var column = this;
+                    var select = $(' <select class="form-select"><option value=""></option></select>')
+                        // .appendTo(myTable.header())
+                        .appendTo('#datatable-buttons1 thead tr #sort0')
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                })
+
+                this.api().columns(1).every(function () {
+                    var column = this;
+                    var select = $(' <select class="form-select"><option value=""></option></select>')
+                        // .appendTo(myTable.header())
+                        .appendTo('#datatable-buttons1 thead tr #sort1')
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                })
+
+                this.api().columns(2).every(function () {
+                    var column = this;
+                    var select = $(' <select class="form-select"><option value=""></option></select>')
+                        // .appendTo(myTable.header())
+                        .appendTo('#datatable-buttons1 thead tr #sort2')
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                })
+
+            },
+        }).buttons().container().appendTo("#datatable-buttons1_wrapper .col-md-6:eq(0)");
+        $(".dataTables_length select").addClass("form-select form-select-sm")
+    });
+</script>
+<script>
+            $(document).ready(function () {
+                $("#datatable").DataTable(),
+                $('#datatable-buttons2 thead tr')
+
+                var table = $('#datatable-buttons2').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: !1,
+                    buttons: ["copy", "excel", "pdf", "colvis"],
+                    initComplete: function () {
+
+                        this.api().columns(0).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons2 thead tr #sort0')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                        this.api().columns(1).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons2 thead tr #sort1')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                        this.api().columns(2).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons2 thead tr #sort2')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                    },
+                }).buttons().container().appendTo("#datatable-buttons2_wrapper .col-md-6:eq(0)");
+                $(".dataTables_length select").addClass("form-select form-select-sm")
+            });
+        </script>
+<script>
+            $(document).ready(function () {
+                $("#datatable").DataTable(),
+                $('#datatable-buttons3 thead tr')
+
+                var table = $('#datatable-buttons3').DataTable({
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    lengthChange: !1,
+                    buttons: ["copy", "excel", "pdf", "colvis"],
+                    initComplete: function () {
+
+                        this.api().columns(0).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons3 thead tr #sort0')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                        this.api().columns(1).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons3 thead tr #sort1')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                        this.api().columns(2).every(function () {
+                            var column = this;
+                            var select = $(' <select class="form-select"><option value=""></option></select>')
+                                // .appendTo(myTable.header())
+                                .appendTo('#datatable-buttons3 thead tr #sort2')
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        })
+
+                    },
+                }).buttons().container().appendTo("#datatable-buttons3_wrapper .col-md-6:eq(0)");
+                $(".dataTables_length select").addClass("form-select form-select-sm")
+            });
+        </script>
+
+
+ <script>
+        //Update Value TPL Master
+        var table = document.getElementById('datatable-buttons');
+        
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    console.log(table.rows);
+                    document.getElementById("test_code").value = this.cells[1].innerHTML;
+                    document.getElementById("tpl_code").value = this.cells[4].innerHTML;
+                    document.getElementById("seq_no").value = this.cells[3].innerHTML;
+                    document.getElementById("act_test_tpl_no").value=this.cells[4].innerHTML;
+                    $('#addbtn').addClass("disabled");
+            };
+        }
+</script> 
+
+<script>
+
+    for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    if(i==1)
+                        document.getElementById("test_code").value =   document.getElementById("anker1").text
+                    if(i==2)
+                        document.getElementById("test_code").value =   document.getElementById("anker2").text
+                    if(i==3)
+                        document.getElementById("test_code").value =   document.getElementById("anker3").text
+                    document.getElementById("tpl_no").value = this.cells[2].innerHTML;
+                    document.getElementById("seq_no").value = this.cells[3].innerHTML;
+                    document.getElementById("test_type").value=this.cells[4].innerHTML;
+                    document.getElementById("pmmkey").value=this.cells[5].innerHTML;
+                    document.getElementById("testnameseq").value=this.cells[6].innerHTML;
+                    $('#addbtn').addClass("disabled");
+
+                   
+            };
+        } 
+
+</script>
+
+<!-- Dependent dropdowns -->
+
+<script>
+
+    function show(){
+
+        let hide =  document.getElementById("test_type")
+        console.log(hide.value)
+        
+        let val= document.getElementById("fanmotorcurr")
+        let val1= document.getElementById("dryerdatacapture")
+        let val2= document.getElementById("beltdrivenmodel")
+        let val3= document.getElementById("vfdmodel")
+        let val4= document.getElementById("spmredcol")
+        let val5= document.getElementById("parametdefine")
+
+        if(hide.value == "Fan_Motor_Current_Measurement")
+            val.style.display="inline"
+        else
+            val.style.display="none"
+
+        if(hide.value == "Dryer_Data_Capturing")
+            val1.style.display="inline"
+        else
+            val1.style.display="none"
+
+        if(hide.value == "Belt_Driven_Model_Inputs")
+            val2.style.display="inline"
+        else
+            val2.style.display="none"
+
+        if(hide.value == "VFD_Model_Testing")
+            val3.style.display="inline"
+        else
+            val3.style.display="none"
+
+        if(hide.value == "Vibration_Measurement")
+            val4.style.display="inline"
+        else
+            val4.style.display="none"
+
+        if(hide.value == "Parameters_To_Be_Defined")
+            val5.style.display="inline"
+        else
+            val5.style.display="none"
+
+    }
+</script>
+
+<script>
+
+    function tableshow(){
+
+        {% comment %} let hide =  document.getElementById("inlineRadio1")
+        let hideactive =  document.getElementById("inlineRadio2") {% endcomment %}
+
+        let vall = document.getElementById("testtpl")
+        let vall1 = document.getElementById("activetpl")
+        let vall2 = document.getElementById("tableappear")
+
+        if (document.getElementById('inlineRadio1').checked)
+        {
+            
+            vall.style.display="inline"
+          
+        }
+        else{
+            vall.style.display="none"
+        }
+
+        if (document.getElementById('inlineRadio2').checked)
+        {
+           
+            vall1.style.display="inline"
+            vall2.style.display="inline"
+    
+          
+        }
+        else{
+            vall1.style.display="none"
+            vall2.style.display="none"
+            
+        }
+
+       
+       
+
+
+    }
+</script>
+
+</body>
+
+</html>

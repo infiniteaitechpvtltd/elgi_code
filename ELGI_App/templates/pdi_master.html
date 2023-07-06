@@ -1,0 +1,573 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    
+    {% comment %} <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+    rel="stylesheet"
+    /> {% endcomment %}
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+    
+    <style>
+        .scrollme {
+            overflow-x: auto;
+        }
+        hidden-panel {
+            display: none;
+        }
+        .data_pointer
+        {
+            cursor:pointer;
+
+        }
+        td:hover
+        {
+            color:#ee3420;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                {% include 'general/page_title.html' %}
+                <!-- company page start -->
+               <div class="row">
+
+
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>-->
+
+                                    <div class="card-body">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#modelmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">PDI Library</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#tplmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">PDI Master</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content p-3 text-muted">
+                                            <div class="tab-pane active" id="modelmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+
+                                                            <!-- left column strat -->
+                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                <div class="mt-4 mt-lg-0">
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Check List Code</label>
+                                                                            <div class="col-sm-9" >
+                                                                                <input list="browsers" name="cl_code" id="processcode_L" class="form-control">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label" >Check List Typecode</label>
+                                                                            <div class="col-sm-9">
+                                                                                
+                                                                                <input list="processtype" name="cl_type_code" class="form-control" onChange="showHide()" id="processtypeinput">
+                                                                                    <datalist id="processtype">
+
+                                                                                        <option>Check_List</option>
+                                                                                        <option>Image_Capture</option>>
+
+
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Check List Description</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="processdesc" name="cl_description">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Tack Delay</label>
+                                                                            <div class="align-items-center col-sm-9">
+                                                                                <input placeholder='Second' type="text" class="form-control" id="Tack Delay" name="takt_time">
+                                                                            </div>
+                                                                           
+                                                                        </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <!-- left column end -->
+                                                            <!-- right column start -->
+
+                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                <div class="mt-4 mt-lg-0 " style="display:inline-block">
+                                                                    <div id="">
+
+                                                                            <div class="row mb-4">
+                                                                                <label class="col-sm-3 col-form-label">OK Image</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <div class="input-group">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" name="ok_img" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                                        </div>
+                                                                                        <div class="col-sm-9" >
+                                                                                            <label class="col-form-label">D:\Entrib_Documents\ELGI_Project\ELGI_Main\ELGI_App\static\images\IMG</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                            <div class="row mb-4">
+                                                                                <label class="col-sm-3 col-form-label">NOT OK Image</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <div class="input-group">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" name="not_ok_img" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                                        </div>
+                                                                                        <div class="col-sm-9" >
+                                                                                            <label class="col-form-label">D:\Entrib_Documents\ELGI_Project\ELGI_Main\ELGI_App\static\images\IMG</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                
+                                                                            </div>
+                                                                            <div class="row mb-4">
+                                                                                <label class="col-sm-3 col-form-label">Guide Image</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <div class="input-group">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" name="guide_img" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                                        </div>
+                                                                                        <div class="col-sm-9" >
+                                                                                            <label class="col-form-label">D:\Entrib_Documents\ELGI_Project\ELGI_Main\ELGI_App\static\images\IMG</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                                
+                                                                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row justify-content-end">
+                                                                <div class="col-sm-9">
+                                                                    <div>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="L_Add">Add</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="L_Modify">Modify</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="L_Delete">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- right column end-->
+
+
+                                                    </div>
+                                                </form>
+                                                <!-- form end -->
+                                                <!-- table start-->
+                                                <div class="row">
+                                                <div class="col-12">
+                                                <div class="card">
+                                                    
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="datatable-buttons" class="custom_table table table-bordered nonwrap w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>CL_Code</th>
+                                                                        <th>CL_Type_Code</th>
+                                                                        <th>Check_List_description</th>
+                                                                        <th>OK_Photo_Path</th>
+                                                                        <th>NOT_OK_Photo_Path</th>
+                                                                        <th>Check_point_delay</th>
+                                                                        <th>Sample_Image_Capture</th>
+                                                                        <th>Line_Code</th>
+                                                                        <th>Tack_Time</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        {% for i in pdi_library_data%}
+                                                                        <tr>
+                                                                            <td class="data_pointer">{{i.CL_Code}}</td>
+                                                                            <td class="data_pointer">{{i.CL_Type_Code}}</td>
+                                                                            <td class="data_pointer">{{i.Check_List_description}}</td>
+                                                                            <td class="data_pointer">{{i.OK_Photo_Path}}</td>
+                                                                            <td class="data_pointer">{{i.NOT_OK_Photo_Path}}</td>
+                                                                            <td class="data_pointer">{{i.Check_point_delay}}</td>
+                                                                            <td class="data_pointer">{{i.Sample_Image_Capture}}</td>
+                                                                            <td class="data_pointer">{{i.Line_Code}}</td>
+                                                                            <td class="data_pointer">{{i.Tack_Time}}</td>
+
+                                                                        </tr>
+                                                                        {% endfor %}
+            
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                    </div>
+                                            <div class="tab-pane" id="tplmaster" role="tabpanel">
+                                            <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+
+                                                                <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">PMMKEY</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="PMMKEY" name="PMMKEY" readonly="readonly">
+                                                                            </div>
+                                                                </div>
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">TPL No</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select name="tpl_no" id="modelcode" class="form-control">
+                                                                                {% for i in tpl_no_data %}
+                                                                                    <option>{{i}}</option>
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div id="pdicheckcode" class="row mb-4 hidden">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label" >PDI Check List Code</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select name="cl_code_master" id="processcode" class="form-control">
+                                                                                {% for i in cl_code_data %}
+                                                                                <option>{{i}}</option>
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div id="activecodepdi" class="row mb-4 hidden">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label" >Active PDI Code</label>
+                                                                        <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="active_pdi" name="Active_PDI">
+                                                                            </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+                                                                <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Order Number</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="processdesc" name="order_no">
+                                                                            </div>
+                                                                        </div>
+                                                                </div>
+
+                                                                <div>
+
+                                                                </div>
+
+                                                                 <div class="row mb-4" style="padding-top:7px;">
+                                                                        <label class=" col-sm-3 form-check-label-inline" for="flexSwitchCheckChecked">PDI Code</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div class="form-check">
+                                                                                <script>
+                                                                                    function myFunction(){
+
+                                                                                            $( '#pdicheckcode').css({
+                                                                                                'display': 'flex'
+                                                                                            });
+                                                                                            $( '#activecodepdi').css({
+                                                                                                'display': 'none'
+                                                                                            });
+                                                                                            $('#dependenttable').css({
+                                                                                                'display' : 'none'
+                                                                                            });
+                                                                                    }
+                                                                                </script>
+                                                                                <input onclick="myFunction()" class="form-check-input test" type="radio" name="radio_selection" value="pdi_code" id="flexRadioDefault1">
+                                                                            </div>
+                                                                        </div>
+                                                                 </div>
+
+                                                                <div class="row mb-4" >
+                                                                        <label class=" col-sm-3 form-check-label-inline" for="flexSwitchCheckChecked">Active PDI</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div class="form-check">
+                                                                                <script>
+                                                                                    function myFunction2(){
+
+                                                                                            $( '#pdicheckcode').css({
+                                                                                                'display': 'none'
+                                                                                            });
+                                                                                            $( '#activecodepdi').css({
+                                                                                                'display': 'flex'
+                                                                                            });
+                                                                                            $('#dependenttable').css({
+                                                                                                'display' : 'block'
+                                                                                            });
+                                                                                    }
+                                                                                </script>
+                                                                                <input onclick="myFunction2()" class="form-check-input test" type="radio" name="radio_selection" value="active_pdi_code" id="flexRadioDefault2">
+                                                                            </div>
+                                                                        </div>
+                                                                 </div>
+
+
+                                                                {% comment %} <div class="row mb-4">
+                                                                    <label for="skill_required" class="col-sm-3 col-form-label">Sequence No</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="skill_required" name="sequence_no">
+                                                                    </div>
+                                                                </div> {% endcomment %}
+                                                            </div>
+
+
+                                                        </div>
+                                                        <!-- right column end-->
+
+
+                                                    </div>
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-sm-9 mb-3">
+                                                            <div>
+                                                                <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="PM_Add">Add</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="PM_Modify">Modify</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="PM_Delete">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div id="dependenttable" class="table-responsive hidden">
+                                                    <table id="data" class="table table-bordered dt-responsive nowrap w-100 ">
+                                                        <thead>
+                                                            <tr>
+                                                            <th scope="col">PMMKEY</th>
+                                                            <th scope="col">TPL_No</th>
+                                                            <th scope="col">PDI_CL_Code</th>
+                                                            <th scope="col">Order_No</th>
+                                                            <th scope="col">Line_Code</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in pdi_master_data %}
+                                                            <tr>
+                                                                <td>{{i.PMMKEY}}</td>
+                                                                <td><a href="" class="btn btn-link waves-effect" title="click">{{i.TPL_No}}</a></td>
+                                                                <td>{{i.PDI_CL_Code}}</td>
+                                                                <td>{{i.Order_No}}</td>
+                                                                <td>{{i.Line_Code}}</td>
+                                                            </tr>
+                                                        {% endfor %} 
+                                                        </tbody>
+                                                    </table>
+ 
+                                                      <!-- table end -->
+                                                  </div> 
+                        
+                        
+
+
+                                            </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+
+
+                           
+
+                        </div><!-- end row -->
+                <!-- company page end -->
+
+
+            </div>
+            <!--End  container-fluid -->
+            
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+        
+        <script>
+                //Update Value Process Library
+                console.log("abc");
+                var table = document.getElementById('datatable-buttons');
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                         //rIndex = this.rowIndex;
+                         console.log(table.rows);
+                         document.getElementById("processcode_L").value = this.cells[4].innerHTML;
+                         document.getElementById("processdesc").value = this.cells[2].innerHTML;
+                         document.getElementById("cycletime").value=this.cells[7].innerHTML;
+                         document.getElementById("toolidinput").value = this.cells[3].innerHTML;
+                         document.getElementById("torque1").value = this.cells[8].innerHTML;
+                         document.getElementById("boltcountinput").value = this.cells[5].innerHTML;
+                         $('#addbtn').addClass("disabled");
+                    };
+                }
+
+                // Update value Process Master
+
+                var pm_table = document.getElementById('pm_table');
+                for(var i = 1; i < pm_table.rows.length; i++)
+                {
+                    pm_table.rows[i].onclick = function()
+                    {
+                         document.getElementById("processcode").value = this.cells[3].innerHTML;
+                         document.getElementById("operationcode").value = this.cells[2].innerHTML;
+                    };
+                }
+                // for delete row/record
+
+                $(document).on("click", ".delete", function(){
+                    console.log("123abc");
+                    console.log($(this).parent("tr").children("tr"));
+                    $(this).parents("tr").remove();
+                    $(".add-new").removeAttr("disabled");
+                });
+        </script> 
+    
+        <script>
+            document.getElementById('hidden-panel').style="display:none";
+            function showHide() {
+                console.log("HI");
+                let travelhistory = document.getElementById('processtypeinput')
+                console.log("Hello");
+                console.log(travelhistory.value);
+                console.log(document.getElementById('hidden-panel'));
+
+                if (travelhistory.value == "TORQUE") {
+                    document.getElementById('hidden-panel').style.display = 'block'
+                } else {
+                    document.getElementById('hidden-panel').style="display:none";
+                }
+            }
+        </script>
+
+        <script>
+            function clearInput(){
+                var getValue= document.getElementById("processcode");
+                    if (getValue.value !="") {
+                        getValue.value = "";
+                    }
+            }
+        </script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+        {% comment %} <!-- MDB -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
+        ></script> {% endcomment %}
+
+        {% comment %} <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> {% endcomment %}
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="{% static "js/jquery.js" %}"></script>
+        
+       
+        
+        
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+    {% include 'general/title_meta.html' %}
+     <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+       <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+     <!-- dropzone css -->
+        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu_reports.html' %}
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">TPL Details</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="my-2">
+                    <form>
+                        <label for="From">From Date:</label>
+                        <input type="date" id="from" name="fdate">
+
+                        <label for="to">To Date:</label>
+                        <input type="date" id="to" name="tdate">
+
+                        <input type="submit">
+                    </form>
+                </div>
+
+                <div class="row">
+                    <table id="datatable-buttons" class="table table-bordered dt-responsive w-100">
+                        <thead>
+                            <tr>
+                                <th>Model Code</th>
+                                <th>Model Description</th>
+                                <th>TPL Code</th>
+                                <th>TPL Description</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            <tr>
+                                <td>EG 37-8.5-60 </td>
+                                <td>S013373</td>
+                                <td>EG 37kW 60Hz CV Version</td>
+                                <td>EG 37-8.5 400V/50Hz</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>EG 37-8.5-60 </td>
+                                <td>S013373</td>
+                                <td>EG 37kW 60Hz CV Version</td>
+                                <td>EG 37-8.5 400V/50Hz</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+<!-- dropzone js -->
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+</body>
+
+</html>

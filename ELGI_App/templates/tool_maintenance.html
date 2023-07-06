@@ -1,0 +1,355 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+      <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Tool Maintenance</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Tool Master</a></li>
+                                    <li class="breadcrumb-item active">Tool Maintenance</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- tool maintenance page start -->
+                  <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>--><!-- end card header -->
+
+                                    <div class="card-body">
+<!--                                        &lt;!&ndash; Nav tabs start&ndash;&gt;-->
+<!--                                        <ul class="nav nav-pills nav-justified" role="tablist">-->
+<!--                                            <li class="nav-item waves-effect waves-light">-->
+<!--                                                <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab">-->
+<!--                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>-->
+<!--                                                    <span class="d-none d-sm-block">Tab 1</span>-->
+<!--                                                </a>-->
+<!--                                            </li>-->
+<!--                                            <li class="nav-item waves-effect waves-light">-->
+<!--                                                <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab">-->
+<!--                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>-->
+<!--                                                    <span class="d-none d-sm-block">Tab 2</span>-->
+<!--                                                </a>-->
+<!--                                            </li>-->
+<!--                                            <li class="nav-item waves-effect waves-light">-->
+<!--                                                <a class="nav-link" data-bs-toggle="tab" href="#tab3" role="tab">-->
+<!--                                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>-->
+<!--                                                    <span class="d-none d-sm-block">Tab 3</span>-->
+<!--                                                </a>-->
+<!--                                            </li>-->
+
+<!--                                        </ul>-->
+<!--                                        &lt;!&ndash; Nav tabs end&ndash;&gt;-->
+                                        <!-- Tab panes -->
+                                        <div class="tab-content p-3 text-muted">
+                                            <!-- panel 1 start -->
+                                            <div class="tab-pane active" id="tab1" role="tabpanel">
+                                                <!-- panel 1 data start -->
+                                                  <div class="col-xl-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <!-- form start -->
+                                                            <form method="POST">
+                                                            {% csrf_token %}
+                                                            <div class="row">
+                                                                    <!-- left column strat -->
+                                                                    <div class="col-lg-6 ms-lg-auto">
+
+                                                                        <div class="row mb-4">
+                                                                        <label for="skill_required" class="col-sm-3 col-form-label">PMMKEY</label>
+                                                                        <div class="col-sm-9">
+                                                                          <input type="text" class="form-control" id="PMMKEY" name="PMMKEY" readonly="readonly">
+                                                                        </div>
+                                                                    </div>
+
+                                                                        <div class="mt-4 mt-lg-0">
+                                                                            <div class="row mb-4">
+                                                                                <label for="toolid" class="col-sm-3 col-form-label">Tool ID</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <select class="form-select" id="toolid" name="tool_id">
+                                                                                        {% for i in tools_details_data %}
+                                                                                        <option>{{i}}</option>
+                                                                                        {% endfor %}
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-4">
+                                                                                <label for="warningtype" class="col-sm-3 col-form-label">Warning Type</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <select class="form-select" id="warningtype" name="warning_type" onChange="showHide()">
+                                                                                        <option>Select</option>
+                                                                                        <option>BY_Frequency</option>
+                                                                                        <option>BY_Duration</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- left column end -->
+                                                                    <!-- right column start -->
+
+                                                                    <div class="col-lg-6 ms-lg-auto">
+                                                                        <div class="mt-4 mt-lg-0" id="divfreq">
+                                                                            <div class="row mb-4">
+                                                                                <label for="setfrequency" class="col-sm-3 col-form-label">Set Frequency</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="setfrequency" name="set_frequency">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mb-4">
+                                                                                <label for="actualfrequency" class="col-sm-3 col-form-label">Actual Frequency</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="actualfrequency" name="actual_frequency">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="mt-4 mt-lg-0" id="divdate">
+                                                                            <div class="row mb-4">
+                                                                                <label for="actualfrequency" class="col-sm-3 col-form-label">Date</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="date" class="form-control" id="fdate" name="fdate">
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- right column end-->
+                                                                    <div class="row justify-content-end">
+                                                                        <div class="col-sm-9">
+                                                                            <div>
+                                                                                <button type="submit" id="addbtn" class="btn btn-primary w-md"   name="submit" value="Add">Add</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="Modify">Modify</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="Delete">Delete</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                                </form>
+                                                            <!-- form end -->
+                                                            <!-- table start -->
+                                                                   <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="card">
+
+                                                                                <div class="card-body">
+                                                                                    <div class="table-responsive">
+                                                                                        <table id="datatable-buttons" class="table table-bordered dt-responsive w-100">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th>PK_Code</th>
+                                                                                                    <th>Line_Code</th>
+                                                                                                    <th>Tool_ID</th>
+                                                                                                    <th>Warning_Type</th>
+                                                                                                    <th>Set_Frequency</th>
+                                                                                                    <th>Act_Frequency</th>
+                                                                                                    <th>Duration_Date</th>
+                                                                                                    <th>Created_Date</th>
+                                                                                                    <th>Reset_Date</th>
+                                                                                                    <th>Warning_Status</th>
+
+
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                {% for i in tool_maintenance_data%}
+                                                                                                <tr>
+                                                                                                    <td>{{i.PK_Code}}</td>
+                                                                                                    <td>{{i.Line_Code}}</td>
+                                                                                                    <td>{{i.Tool_ID}}</td>
+                                                                                                    <td>{{i.Warning_Type}}</td>
+                                                                                                    <td>{{i.Set_Frequency}}</td>
+                                                                                                    <td>{{i.Act_Frequency}}</td>
+                                                                                                    <td>{{i.Duration_Date}}</td>
+                                                                                                    <td>{{i.Created_Date}}</td>
+                                                                                                    <td>{{i.Reset_Date}}</td>
+                                                                                                    <td>{{i.Warning_Status}}</td>
+                                                                                                </tr>
+                                                                                                {% endfor %}                                                
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- end cardaa -->
+                                                                        </div>
+                                                                        <!-- end col -->
+                                                                    </div>
+                                                            <!-- table end -->
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                <!-- panel 1 data end -->
+                                            </div>
+                                             <!-- panel 1 end -->
+                                             <!-- panel 2 start -->
+                                            <div class="tab-pane" id="tab2" role="tabpanel">
+                                                <!-- panel 2 data start -->
+                                                tab 2
+                                                <!-- panel 2 data end -->
+                                            </div>
+                                             <!-- panel 2 end -->
+                                             <!-- panel 3 start -->
+                                            <div class="tab-pane" id="tab3" role="tabpanel">
+                                               <!-- panel 3 data start -->
+                                               tab 3
+                                                <!-- panel 3 data end -->
+                                            </div>
+                                             <!-- panel 3 end -->
+
+
+
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                <!-- tool maintenance page end-->
+
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+ <script>
+        //Update Value Process Library
+        var table = document.getElementById('datatable-buttons');
+        
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    //rIndex = this.rowIndex;
+                    console.log(table.rows);
+                    document.getElementById("toolid").value = this.cells[2].innerHTML;
+                    document.getElementById("warningtype").value = this.cells[3].innerHTML;
+                    document.getElementById("setfrequency").value=this.cells[4].innerHTML;
+                    document.getElementById("actualfrequency").value = this.cells[5].innerHTML;
+                    document.getElementById("fdate").value = this.cells[6].innerHTML;
+                    document.getElementById("PMMKEY").value = this.cells[0].innerHTML;
+
+                    $('#addbtn').addClass("disabled");
+            };
+        }
+
+        // Update value Process Master
+
+        var pm_table = document.getElementById('pm_table');
+        for(var i = 1; i < pm_table.rows.length; i++)
+        {
+            pm_table.rows[i].onclick = function()
+            {
+                    document.getElementById("processcode").value = this.cells[3].innerHTML;
+                    document.getElementById("operationcode").value = this.cells[2].innerHTML;
+            };
+        }
+        
+</script> 
+
+<script>
+    function clearInput(){
+        var getValue= document.getElementById("");
+            if (getValue.value !="") {
+                getValue.value = "";
+            }
+    }
+</script>
+
+<script>
+    document.getElementById('divfreq').style="display:none";
+    document.getElementById('divdate').style="display:none";
+    function showHide() {
+        let warning_type = document.getElementById('warningtype')
+
+        if (warning_type.value == "BY_Frequency") {
+            document.getElementById('divfreq').style="display:block";
+            document.getElementById('divdate').style="display:none";
+        } else if (warning_type.value == "BY_Duration") {
+            document.getElementById('divfreq').style="display:none";
+            document.getElementById('divdate').style="display:block";
+        } else {
+            document.getElementById('divfreq').style="display:none";
+            document.getElementById('divdate').style="display:none";
+        }
+    }
+</script>
+
+
+</body>
+
+</html>

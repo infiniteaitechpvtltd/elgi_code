@@ -1,0 +1,622 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+#block_container
+{
+    text-align:center;
+}
+#bloc1, #bloc2
+{
+    display:inline;
+}
+</style>
+
+<style>
+            #container{
+                display: inline-block;
+                width: 320px;
+                height: 240px;
+                margin: 0 auto;
+                position: relative;
+                border: 1px solid grey;
+            }
+
+            #video_stream{
+                position: absolute;
+                z-index: 1;
+            }
+
+            #img_canvas{
+                position: absolute;
+                z-index: 10;
+            }
+
+            #draw_canvas{
+                position: relative;
+                z-index: 20;
+            }
+        </style>
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/top_bar_for_operator.html' %}
+
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+   
+            <div class="container-fluid" style="padding-top: 80px;">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">DMS Quality Device Name - Tab ID</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- alpha page start -->
+
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <!-- Profile card start -->
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-1">
+                                        <img class="img-fluid mx-auto d-block rounded"
+                                            src="{% static 'images/users/300-1.png' %}" alt="Card image">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-10"> <!-- CONTENT COLUMN -->
+                                                <table style="width: 100%; font-size: 1.3em;">
+                                                    <tr>
+                                                        <td class="text-white-50">Emp. Name</td>
+                                                        <td id="lblEmpName">Abhay</td>
+                                                        <td>&nbsp;</td>
+                                                        <td class="text-white-50">Skill Level</td>
+                                                        <td id="lblskill">10</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-white-50">Emp. ID</td>
+                                                        <td id="lblEmpId">3400</td>
+                                                        <td>&nbsp;</td>
+                                                        <td class="text-white-50">&nbsp;</td>
+                                                        <td id="lblStationId">&nbsp;</td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                            </div> <!-- CONTENT COLUMN ENDS -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Profile card end -->
+                    </div>
+
+                    <div class="col-xl-2">
+                        <!-- waste capture card start -->
+                        <div class="card bg-dark border-dark text-light text-sm-center">
+                            <div class="card-body ">
+                                <button class="my-3 pb-3 btn btn-primary" type="button">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                        <!-- waste capture card end -->
+                    </div>
+
+                </div>
+
+                <div style="display: block;" id="child_table" class="card">
+                    <!-- <div class="card-header">
+                         <h4 class="card-title">Default Datatable</h4>
+
+                     </div>-->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatable-buttons" class="table table-bordered dt-responsive  nowrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>PM KEY</th>
+                                        <th>TPL Number</th>
+                                        <th>Fab Number</th>
+                                        <th>Station</th>
+                                        <th>Process Description</th>
+                                        <th>Level 1</th>
+                                        <th>Level 2</th>
+                                        
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>S123456</td>
+                                        <td>S014905</td>
+                                        <td>SS1</td>
+                                        <td>This is test1</td>
+                                        <td>Level11</td>
+                                        <td>Level21</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>S210043945</td>
+                                        <td>S014906</td>
+                                        <td>SS2</td>
+                                        <td>It is test2</td>
+                                        <td>Level12</td>
+                                        <td>Level22</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>UVIS040028</td>
+                                        <td>S014907</td>
+                                        <td>SS3</td>
+                                        <td>test3 is running</td>
+                                        <td>Level13</td>
+                                        <td>Level23</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>4</td>
+                                        <!-- <td>210043945</td> -->
+                                        <td>UVIS040028</td>
+                                        <td>S014908</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>5</td>
+                                        <!-- <td>210043945</td> -->
+                                        <td>UVIS040028</td>
+                                        <td>S014905</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: none;" id="dmsSecondScreen" class="card">
+                    <div  class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">Fab No.:</label>
+                                    <div class="col-sm-9">
+                                        <input name="substationcode" type="text" class="form-control" id="dmsfabvalue">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <button id="dmstab2"  type="button" class="btn btn-primary btn-md w-75 rounded">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <button id="start-camera2" type="button" class="btn btn-primary btn-md w-75 rounded">CAM</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <button id="click-photo" type="button" class="btn btn-primary btn-md w-75 rounded">Click Photo</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="row my-4">
+                            <video id="video" width="320" height="240" autoplay></video>
+                            <canvas id="canvas" width="320" height="240"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="display: none;" id="lastscreen" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="middlebar" class="card bg-dark text-light">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="row text-center">
+                                                    <label class="col-sm-4 col-form-label">Process Desc</label>
+                                                    <div class="col-sm-8">
+                                                        <input name="substationcode" type="text" class="form-control" id="inputProcessDescription" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="row text-center">
+                                                    <label class="col-sm-4 col-form-label">Level 1</label>
+                                                    <div class="col-sm-8">
+                                                        <input name="substationcode" type="text" class="form-control" id="inputLevelOne" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 ">
+                                                <div class="row text-center">
+                                                    <label class="col-sm-4 col-form-label">Level 2</label>
+                                                    <div class="col-sm-8">
+                                                        <input name="substationcode" type="text" class="form-control" id="inputLevelTwo" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div style="display: block;" class="card bg-dark text-light" id="captureportion">
+                                    <div class="card-body">
+                                        <div style="justify-content: space-evenly;" class="row">
+                                            <!-- LEFT PORTION -->
+                                            <div class="col-lg-5 bg-light "> 
+                                                <div class="row text-dark ">
+                                                    <div class="col-md-12">
+                                                        <div class=' gap-4' >
+                                                            <div class='d-flex justify-content-center bg-light px-2'>
+                                                                <div class='mx-3'>
+                                                                    <button id="start_camera" class="btn btn-primary btn-block my-3">Start Camera</button>
+                                                                </div>
+                                                                <div class='mx-3'>
+                                                                    <button id="take_photo" class="btn btn-primary btn-block my-3">Hold</button>
+                                                                </div>
+                                                                <div class='mx-3'>
+                                                                    <button id="save_image" class="btn btn-primary btn-block my-3">Save Image</button>
+                                                                </div>
+                                                                
+                                                                {% comment %} <button class="btn" id="cmdDraw" onClick="drawCanvas()"><i class="material-icons">drive_file_rename_outline</i></button> {% endcomment %}
+                            
+                                                            </div>
+                                                            <div>    
+                                                                <div style="border: 1px solid grey; height: 50%;" id="container" class="w-100 mb-2">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <video id="video_stream" width="280" height="250" autoplay></video>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <canvas id="img_canvas" width="280" height="250"></canvas>
+                                                                            <canvas id="draw_canvas" width="280" height="250"></canvas>
+                                                                            <input type="hidden" value="20" class="radius" name="radius">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- RIGHT PORTION -->  
+                                            
+                                            <div class="col-xl-5 ">
+                                                <form method="POST">
+                                                {% csrf_token %}
+                                                    <div class="row">
+                                                        <label style="font-size: 18px;" for="bypass" class="col-sm-3 col-form-label text-muted">Level 3</label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-select" id="bypass" name="bypass">
+                                                                    <option></option>
+                                                                    <option>Option 1</option>
+                                                                    <option>Option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="row">
+                                                        <label style="font-size: 18px;" for="bypass" class="col-sm-3 col-form-label text-muted">Level 4</label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-select" id="bypass" name="bypass">
+                                                                    <option></option>
+                                                                    <option>Option 1</option>
+                                                                    <option>Option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="row ">
+                                                        <label style="font-size: 18px;" for="bypass" class="col-sm-3 col-form-label text-muted">Level 5</label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-select" id="bypass" name="bypass">
+                                                                    <option></option>
+                                                                    <option>Option 1</option>
+                                                                    <option>Option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                    
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-12">
+                                                            <input name="substationcode" type="text" class="form-control" id="commentfield" placeholder="Write your comment">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-12">
+                                                            <button id="level3Btn" type="submit" class="btn btn-primary btn-md w-100">OK</button>
+                                                        </div>
+                    
+                                                    </div>
+
+                                                    <div class="row mt-2">
+                                                        <input id="PMMKEY" name="PMMKEY">
+                                                        <input id="EMP_NAME" name="Emp Name">
+                                                        <input id="EMPID" name="Emp Id">
+                                                        <input id="IMGURL" name="Image Base64">
+                                                    </div>    
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- Container Fluid End -->
+            
+
+    {% include 'general/footer.html' %}
+</div>
+<!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("table tr").each(function () {
+            $(this).find("td:lt(2)").addClass("disabled");
+        });
+
+        var selectedName = "";
+                
+        $('table tbody tr').click(function() {
+            // Get the selected name
+            var viewdescription = $(this).find('td:eq(4)').text();
+            var inputLevelOne = $(this).find('td:eq(5)').text()
+            var inputLevelTwo = $(this).find('td:eq(6)').text()
+            var tableFabnumber = $(this).find('td:eq(2)').text()
+            console.log(tableFabnumber);
+            var pmmkey = $(this).find('td:eq(0)').text()
+            var empname = $("#lblEmpName").html()
+            var empid = $("#lblEmpId").html()
+            $("#PMMKEY").val(pmmkey)
+            $("#EMP_NAME").val(empname)
+            $("#EMPID").val(empid)
+            // Hide the table
+            $('#child_table').hide();
+            
+            // Show the input field and button
+            $('#dmsSecondScreen').show();
+        
+
+            $('#dmstab2').click(function() {
+                // Get the input field value
+                var inputVal = $('#dmsfabvalue').val();
+                var selectedFabNo = tableFabnumber;
+                
+                // Compare the input field value with the selected name
+                if (inputVal === selectedFabNo) {
+                    $('#dmsSecondScreen').hide();
+                    $("#lastscreen").show();
+                    document.getElementById("inputProcessDescription").value = viewdescription;
+                    document.getElementById("inputLevelOne").value = inputLevelOne;
+                    document.getElementById("inputLevelTwo").value = inputLevelTwo;
+                    console.log(viewdescription);
+                
+                } else {
+                    alert('Fab No. Not Matched.');
+                }
+            });
+
+            $("#camBTN").click(function(){
+                console.log("Cam clicked");
+                $('#dmsSecondScreen').show();
+                // $("#lastscreen").show();
+            });
+        });
+
+
+        let camera_button = document.querySelector("#start_camera");
+        let video = document.querySelector("#video_stream");
+        let take_photo = document.querySelector("#take_photo");
+        let img_canvas = document.querySelector("#img_canvas"); 
+        let live_stream;
+        let mouse_drag = false;
+        let brushWidth = 3;
+        let prevMouseX, prevMouseY, snapshot;
+
+        const draw_canvas = document.getElementById('draw_canvas');
+        const context = draw_canvas.getContext('2d');
+
+        let circles = [];
+
+        draw_canvas.addEventListener('click', function(event) {
+            console.log('click come')
+            const x = event.offsetX;
+            const y = event.offsetY;
+            const radius = 30;
+            const opacity = 0.5;
+
+            context.beginPath();
+            context.arc(x, y, radius, 0, Math.PI * 2);
+            context.globalAlpha = opacity;
+            context.fillStyle = '#ffffff';
+            context.fill();
+            context.strokeStyle = 'red';
+            context.lineWidth = 3;
+            context.stroke();
+
+            console.log('click ffinish')
+            
+            circles.push({x: x, y: y});
+
+            console.log(circles)
+        });
+
+        const saveButton = document.getElementById('save_image');
+        saveButton.addEventListener('click', function() {
+            circles.forEach(circle => {
+                const radius = 30;
+                const opacity = 0.5;
+    
+                context.beginPath();
+                context.arc(circle.x, circle.y, radius, 0, Math.PI * 2);
+                context.globalAlpha = opacity;
+                context.fillStyle = '#ffffff';
+                context.fill();
+                context.strokeStyle = 'red';
+                context.lineWidth = 3;
+                context.stroke();
+            });
+        
+            const newCanvas = document.createElement('canvas');
+            newCanvas.width = draw_canvas.width;
+            newCanvas.height = draw_canvas.height;
+            const newCtx = newCanvas.getContext('2d');
+            
+            newCtx.drawImage(img_canvas, 0, 0);
+            
+            circles.forEach(circle => {
+                const radius = 30;
+                const opacity = 0.5;
+    
+                newCtx.beginPath();
+                newCtx.arc(circle.x, circle.y, radius, 0, Math.PI * 2);
+                newCtx.globalAlpha = opacity;
+                newCtx.fillStyle = '#ffffff';
+                newCtx.fill();
+                newCtx.strokeStyle = 'red';
+                newCtx.lineWidth = 3;
+                newCtx.stroke();
+            });
+    
+            const dataURL = newCanvas.toDataURL();
+            $('#IMGURL').val(dataURL)
+            
+        });
+
+        camera_button.addEventListener('click', async function() {
+            try {
+                let videodiv = document.getElementById("video_stream");
+                videodiv.style.display = "block";
+            }
+            catch(err) {
+                console.log(err);
+            }
+            finally {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                console.log(devices);
+                const options_camera = {
+                    audio: false,
+                    video: {
+                        facingMode: 'environment', // Or 'user'
+                    },
+                };
+                live_stream = await navigator.mediaDevices.getUserMedia(options_camera);
+                video.srcObject = live_stream;
+            }
+
+            //img_canvas.remove();
+            //img_canvas.clearRect(0, 0, canvas.width, canvas.height);
+            //img_canvas.drawImage(, 100, 100);
+        });
+        
+        take_photo.addEventListener('click', function() {
+            //Hide the Camera Live feed. 
+            let videodiv = document.getElementById("video_stream");
+            videodiv.style.display = "none";
+
+            img_canvas.getContext('2d').drawImage(video, 0, 0, img_canvas.width, img_canvas.height);
+            let image_data_url = img_canvas.toDataURL('image/jpeg');
+
+            //Stop the live stream here. 
+            live_stream.getTracks().forEach(function(track) {
+                track.stop();
+            });
+
+        });
+
+    });                 
+</script>
+</html>

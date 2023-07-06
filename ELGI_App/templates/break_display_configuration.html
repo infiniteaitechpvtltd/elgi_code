@@ -1,0 +1,218 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+       <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+     <!-- dropzone css -->
+        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                  <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Break Display Configuration</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Shedule</a></li>
+                                    <li class="breadcrumb-item active">Break Display Configuration</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <!-- break_display_configuration page start-->
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- form start -->
+                            <form method="POST">
+                                {% csrf_token %}
+                            <div class="row">
+
+                                    <!-- left column strat -->
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+
+
+                                                <div class="row mb-4">
+                                                    <label for="break_name" class="col-sm-3 col-form-label">Break Name</label>
+                                                    <div class="col-sm-9">
+                                                      <input type="text" class="form-control" id="break_name" name="break_name" >
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- left column end -->
+                                    <!-- right column start -->
+
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+
+
+                                                <div class="row mb-4">
+                                                    <label for="information" class="col-sm-3 col-form-label">Information</label>
+                                                    <div class="col-sm-9">
+                                                       <input type="text" class="form-control" id="information" name="info">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <label for="image_display" class="col-sm-3 col-form-label">Image Display</label>
+                                                    <div class="col-sm-9">
+                                                        <!--  <div>
+                                                      <form action="#" class="dropzone">-->
+                                                            <div class="fallback">
+                                                                <input name="img_file" type="file" multiple="multiple" id="image_display">
+                                                            </div>
+                                                           <!-- <div class="dz-message needsclick">
+                                                                <div class="mb-3">
+                                                                    <i class="display-4 text-muted bx bx-cloud-upload"></i>
+                                                                </div>
+
+                                                                <h5>Drop files here or click to upload.</h5>
+                                                            </div>
+                                                        </form>
+                                                            </div>-->
+                                                    </div>
+                                                </div>
+
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="add">Add</button>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="update">Update</button>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="del">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- right column end-->
+
+
+                            </div>
+                            </form>
+                            <!-- form end -->
+                            <!-- table start-->
+                                  <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                               <!-- <div class="card-header">
+                                                    <h4 class="card-title">Default Datatable</h4>
+
+                                                </div>-->
+                                                <div class="card-body">
+                                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Break Name</th>
+                                                                <th>Image file</th>
+                                                                <th>Information</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+
+                                                        <tbody>
+                                                        {% for i in break_details_data %}
+                                                            <tr>
+                                                                <td>{{i.name}}</td>
+                                                                <td>{{i.img}}</td>
+                                                                <td>{{i.info}}</td>
+
+
+                                                            </tr>
+                                                        {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                  </div>
+                            <!-- table end-->
+                        </div>
+                    </div>
+                  </div>
+                <!-- break_display_configuration page end -->
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+<!-- dropzone js -->
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+
+</body>
+
+</html>

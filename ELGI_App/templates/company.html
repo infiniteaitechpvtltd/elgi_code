@@ -1,0 +1,551 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                 <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Company</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Configuration</a></li>
+                                    <li class="breadcrumb-item active">Company</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- company page start -->
+               <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>--><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#country" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Country</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#state" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">State</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#city" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                                                    <span class="d-none d-sm-block">City</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#address" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Address</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#company" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Company</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#plant" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Plant</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#line" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Line</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#station" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Station</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#substation" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                                                    <span class="d-none d-sm-block">Sub Station</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark">
+                                                <a class="nav-link " data-bs-toggle="tab" href="#stoperation" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">ST Operation</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content p-3 text-muted">
+                                            <div class="tab-pane" id="stoperation" role="tabpanel">
+                                                <!-- form start -->
+                                                <form method="post">
+                                                     {% csrf_token %}
+                                                  <div class="row">
+
+                                                          <!-- left column strat -->
+                                                          <div class="col-lg-6 ms-lg-auto">
+                                                              <div class="mt-4 mt-lg-0">
+                                                                  <div class="row mb-4">
+                                                                      <label for="sub_station_code" class="col-sm-3 col-form-label">Sub Station Code</label>
+                                                                      <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="sub_station_code" name="sub_station_code">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="row mb-4">
+                                                                      <label for="st_operator_code" class="col-sm-3 col-form-label">ST Operator Code</label>
+                                                                      <div class="col-sm-9">
+                                                                          <input type="text" class="form-control" id="st_operator_code" name="st_operator_code">
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <!-- left column end -->
+                                                          <!-- right column start -->
+
+                                                          <div class="col-lg-6 ms-lg-auto">
+                                                              <div class="mt-4 mt-lg-0">
+                                                                  <div class="row mb-4">
+                                                                      <label for="skill_required" class="col-sm-3 col-form-label">Skill Required</label>
+                                                                      <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="skill_required" name="skill_required">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="row mb-4">
+                                                                      <label for="responsible_for" class="col-sm-3 col-form-label">Responsible For</label>
+                                                                      <div class="col-sm-9">
+                                                                          <input type="text" class="form-control" id="responsible_for" name="responsible_for">
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="row mb-4">
+                                                                      <label for="screen_text" class="col-sm-3 col-form-label">Screen Text</label>
+                                                                      <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="screen_text" name="screen_text">
+                                                                      </div>
+                                                                  </div>
+
+                                                                  <div class="row justify-content-end">
+                                                                      <div class="col-sm-9">
+                                                                          <div>
+                                                                              <button type="submit" class="btn btn-primary w-md" name="submit" value="update">Update</button>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <!-- right column end-->
+
+
+                                                  </div>
+                                                </form>
+                                                <!-- form end -->
+                                                <!-- table start-->
+                                                  <div class="row">
+                                            <div class="col-12">
+                                                <div class="card">
+                                                <!-- <div class="card-header">
+                                                        <h4 class="card-title">Default Datatable</h4>
+
+                                                    </div>-->
+                                                    <div class="card-body">
+                                                        <table id="datatable-buttons" class="table table-bordered dt-responsive  nowrap w-100">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th>Sub Station Code</th>
+                                                                    <th>Operator Code</th>
+                                                                    <th>Skill Required</th>
+                                                                    <th>Reponsible For</th>
+                                                                    <th>Screen text</th>
+                                                                </tr>
+                                                            </thead>
+
+
+                                                            <tbody>
+                                                            {% for i in st_operation_tab%}
+                                                                <tr>
+                                                                    <td>{{forloop.counter}}</td>
+                                                                    <td>{{i.Sub_Station_Code}}</td>
+                                                                    <td>{{i.Operator_Code}}</td>
+                                                                    <td>{{i.Skill_Required}}</td>
+                                                                    <td>{{i.Reponsible_For}}</td>
+                                                                    <td>{{i.Screen_text}}</td>
+                                                                    <td>{{i.Station_Order}}</td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                    </div>
+                                            <div class="tab-pane" id="state" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Country Code</th>
+                                                        <th scope="col">State Code</th>
+                                                        <th scope="col">State Name</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in state_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.Country_Code}}</td>
+                                                        <td>{{i.State_Code}}</td>
+                                                        <td>{{i.State_Name}}</td>
+                                                      </tr>
+                                                      {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <div class="tab-pane" id="city" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">State Code</th>
+                                                        <th scope="col">City Code</th>
+                                                        <th scope="col">City Name</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in city_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.State_Code}}</td>
+                                                        <td>{{i.City_Code}}</td>
+                                                        <td>{{i.City_Name}}</td>
+                                                      </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                            <div class="tab-pane" id="address" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">City Code</th>
+                                                        <th scope="col">Address Code</th>
+                                                        <th scope="col">Address</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in address_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.City_Code}}</td>
+                                                        <td>{{i.Address_Code}}</td>
+                                                        <td>{{i.Address}}</td>
+                                                      </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+
+                                             <div class="tab-pane" id="company" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Address_Code</th>
+                                                        <th scope="col">Company-Code</th>
+                                                        <th scope="col">Company-Name</th>
+                                                        <th scope="col">Latitude</th>
+                                                        <th scope="col">Longitude</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in company_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.Address_Code}}</td>
+                                                        <td>{{i.Company_Code}}</td>
+                                                        <td>{{i.Company_Name}}</td>
+                                                        <td>{{i.Latitude}}</td>
+                                                        <td>{{i.Longitude}}</td>
+                                                      </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+
+                                             <div class="tab-pane" id="plant" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Company-Code</th>
+                                                        <th scope="col">Plant-Code</th>
+                                                        <th scope="col">Plant-Name</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in plant_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.Company_Code}}</td>
+                                                        <td>{{i.Plant_Code}}</td>
+                                                        <td>{{i.Plant_Name}}</td>
+                                                      </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+
+                                             <div class="tab-pane" id="line" role="tabpanel">
+                                                <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">PLant-Code</th>
+                                                        <th scope="col">Line-Code</th>
+                                                        <th scope="col">Line-Name</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in line_tab%}
+                                                      <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.Plant_Code}}</td>
+                                                        <td>{{i.Line_Code}}</td>
+                                                        <td>{{i.Line_Name}}</td>
+                                                      </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                            <div class="tab-pane" id="station" role="tabpanel">
+                                              <form>
+                                                <div class="row my-2">
+                                                  <!-- left column strat -->
+                                                  <div class="col-lg-6 ms-lg-auto">
+                                                      <div class="mt-4 mt-lg-0">
+                                                          <div class="row mb-4">
+                                                              <label for="sub_station_code" class="col-sm-3 col-form-label">Staion By Pass</label>
+                                                              <div class="col-sm-9">
+                                                                <select name="" id="" class="form-control">
+                                                                    <option value="active">Active</option>
+                                                                    <option value="deactive">Deactive</option>
+                                                                </select>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- left column end -->
+                                                  <!-- right column start -->
+                                                  
+                                                  <!-- right column end-->
+                                                  <div class="col-lg-6 ms-lg-auto">
+                                                      <div class="mt-4 mt-lg-0">
+                                                          <div class="row justify-content-end">
+                                                              <div class="col-sm-9">
+                                                                  <div>
+                                                                      <button type="submit" class="btn btn-primary w-md">Update</button>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                              </form>
+
+                                              <table class="table table-bordered dt-responsive  nowrap w-100 my-2">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Line-Code</th>
+                                                    <th scope="col">Station-Code</th>
+                                                    <th scope="col">Station-Name</th>
+                                                    <th scope="col">Station-Purpose</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for i in station_tab%}
+                                                  <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{i.Line_Code}}</td>
+                                                    <td>{{i.Station_Code}}</td>
+                                                    <td>{{i.Station_name}}</td>
+                                                    <td>{{i.Station_Purpose}}</td>
+                                                {% endfor %}
+                                                </tbody>
+                                              </table>
+                                            </div>
+
+                                            <div class="tab-pane" id="substation" role="tabpanel">
+                                              <table class="table table-bordered dt-responsive  nowrap w-100">
+                                                  <thead>
+                                                    <tr>
+                                                      <th scope="col">#</th>
+                                                      <th scope="col">Station-Code</th>
+                                                      <th scope="col">sub-Station-code</th>
+                                                      <th scope="col">Station-Name</th>
+                                                      <th scope="col">Station-Purpose</th>
+                                                      <th scope="col">By-Pass</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                  {% for i in substation_tab%}
+                                                    <tr>
+                                                      <td>{{forloop.counter}}</td>
+                                                      <td>{{i.Station_Code}}</td>
+                                                      <td>{{i.Sub_Station_Code}}</td>
+                                                      <td>{{i.Station_Name}}</td>
+                                                      <td>{{i.Station_Purpose}}</td>
+                                                      <td>{{i.By_pass}}</td>
+                                                    </tr>
+                                                  {% endfor %}
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                            <div class="tab-pane active" id="country" role="tabpanel">
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Country Code</th>
+                                                        <th scope="col">Country Name</th>
+                                                        
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for i in country_data%}
+                                                    <tr>
+                                                        <td>{{forloop.counter}}</td>
+                                                        <td>{{i.Country_Code}}</td>
+                                                        <td>{{i.Country_Name}}</td>
+                                                    </tr>
+                                                   {% endfor %}
+
+                                                    </tbody>
+                                                  </table>
+                                            </div>
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                <!-- company page end -->
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<!-- data fetch script -->
+<script>
+
+  var table = document.getElementById('datatable-buttons');
+
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                         //rIndex = this.rowIndex;
+                         console.log(table.rows);
+                         document.getElementById("sub_station_code").value = this.cells[1].innerHTML;
+                         document.getElementById("st_operator_code").value = this.cells[2].innerHTML;
+                         document.getElementById("skill_required").value = this.cells[3].innerHTML;
+                         document.getElementById("responsible_for").value=this.cells[4].innerHTML;
+                         document.getElementById("screen_text").value = this.cells[5].innerHTML;
+                         $('#addbtn').addClass("disabled");
+                        showHide();
+                    };
+                }
+
+</script>
+
+
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,487 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    {% include 'general/head_css.html' %}
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- heder start-->
+                <div class="row">
+
+                    <!-- Employee card start -->
+                    <div class="col-xl-5">
+                        <div class="card bg-dark border-dark text-light">
+                                 <div class="card-body">
+                                     <div class="row ">
+                                         <div class="col-md-3">
+                                            <img class="img-fluid mx-auto d-block rounded" src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image">
+                                        </div>
+                                         <div class="col-md-9">
+                                             <div class="row">
+                                                 <div class="col-xl-5">
+                                                     <div class="row"><div class="col-xl-12 font-size-14 text-white-50">Emp Name</div></div>
+                                                     <div class="row"><div class="col-xl-12 font-size-14 text-white-50">ID</div></div>
+                                                     <div class="row"><div class="col-xl-12 font-size-14 text-white-50">Skill Level</div></div>
+                                                 </div>
+                                                 <div class="col-xl-4">
+                                                     <div class="row"><div class="col-xl-12 font-size-14">{{employee_details.Emp_Name}}</div></div>
+                                                     <div class="row"><div class="col-xl-12 font-size-14">{{employee_details.Emp_ID}}</div></div>
+                                                     <div class="row"><div class="col-xl-12 font-size-14">{{employee_details.Skill_level}}</div></div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <!--
+                                         <div class="col-md-5">
+                                            <div class="row">
+                                                <div class="col-xl-3">
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50">FAB No</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50">Model</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50">TPL No</div></div>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="row"><div class="col-xl-12 font-size-12">Admin</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12">E-5632</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12">10</div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                             </div>
+                    </div>
+                    <!-- Employee card end -->
+
+                    <!-- fab model tpl card start -->
+                    <div class="col-xl-3">
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <!-- <ul>
+                                         <li><span class="font-size-16 text-white-50">FAB:</span><span> BSISO23564</span></li>
+                                                 <li><span class="font-size-16 text-white-50">Model:</span><span> EG-53-5632</span></li>
+                                                 <li><span class="font-size-16 text-white-50">TPL:</span><span> SL532478</span></li>
+                                             </ul>-->
+                                <div class="row">
+                                    <div class="col-xl-4">
+                                        <div class="row"><div class="col-xl-12 font-size-16 text-white-50">FAB</div></div>
+                                        <div class="row"><div class="col-xl-12 font-size-16 text-white-50">TPL</div></div>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <div class="row"><div class="col-xl-12 font-size-16">{{page_details.order_release_table.FAB_No}}</div></div>
+                                        <div class="row"><div class="col-xl-12 font-size-16">{{page_details.order_release_table.TPL_No}}</div></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fab model tpl card end -->
+
+                    <!-- waste capture card start -->
+                    <div class="col-xl-3">
+                        <div class="card bg-dark border-dark text-light">
+                                <div class="card-body">
+                                    <h6 class="mb-4 text-light font-size-16 text-white-50">Waste Capture</h6>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div>
+                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light font-size-16 " data-bs-toggle="modal" data-bs-target=".bs-example-modal-center">P</button>
+                                                <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Reason for Waste Capture Production</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <textarea id="basicpill-address-input" class="form-control" rows="2"></textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>
+                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light font-size-16" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center1">Q</button>
+                                                <div class="modal fade bs-example-modal-center1" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Reason For Waste Capture Quality</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <textarea id="basicpill-address-input" class="form-control" rows="2"></textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                     <!-- waste capture card end -->
+
+                    <!-- time card start -->
+                    <div class="col-xl-3">
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <!-- cycle time card start -->
+                                <h4 class="mb-4 text-light text-white-40">Cycle Time</h4>
+                                <h3 class="card-text text-white">00:00</h3>
+                                <!-- cycle time card end -->
+                                <!-- actual time card start -->
+                                <h4 class="mb-4 text-light text-white-40">Actual Time</h4>
+                                <h3 class="card-text text-white">00:00</h3>
+                                <!-- actual time card end -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- time card end -->
+
+                    <div class="col-xl-3">
+                        <!-- skip/logout card start -->
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <!-- Process Skip start -->
+                                <div class="row">
+                                    <div>
+                                        <button type="button" class="btn btn-secondary  waves-effect waves-light w-lg" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center2">Process Skip</button>
+                                        <div class="modal fade bs-example-modal-center2" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Reason For Process Skip</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <textarea id="basicpill-address-input" class="form-control" rows="2"></textarea>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    </div>
+                                </div>
+                                <!-- Process Skip end -->
+                                <br>
+                                <!-- Unit Skip start -->
+                                <div class="row">
+                                    <div>
+                                        <button type="button" class="btn btn-secondary  waves-effect waves-light w-lg" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center3">Unit Skip</button>
+                                        <div class="modal fade bs-example-modal-center3" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Reason For Unit Skip</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <textarea id="basicpill-address-input" class="form-control" rows="2"></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    </div>
+                                </div>
+                                <!-- Unit Skip end -->
+                                <br>
+                                <!-- Log Out start -->
+                                <div class="row">
+                                    <div>
+                                        <button type="button" class="btn btn-secondary  waves-effect waves-light w-lg">Log Out</button>
+                                    </div>
+                                </div>
+                                <!-- Log out end -->
+                            </div>
+                         </div>
+                        <!-- skip/logout card end -->
+                    </div>
+
+                </div>
+                <!-- header end -->
+                    <!-- Page content start -->
+                    <div class="row">
+                            {%if CP_AIREND is True%}
+                             <!-- CP-AIREND START -->
+                             <div class="row">
+
+
+
+                                        <!-- process centent right part start -->
+                                        <!-- form 1 start -->
+                                        <div class="col-lg-12">
+
+
+                                            <div class="card">
+                                                <div class="card-body">
+
+                                                       <div class="row">
+                                                           <div class="col-lg-6">
+                                                               Process : AIREND TEST
+                                                           </div>
+                                                           <div class="col-lg-6">
+                                                               Total Process: {{process_seq.Total_Processes}}
+
+                                                           </div>
+
+                                                       </div>
+                                                      <div class="row">
+
+                                                           <div class="col-lg-6">
+                                                               Process Type: CP-AIREND
+                                                           </div>
+                                                           <div class="col-lg-3">
+                                                               Completed Process: 0
+                                                           </div>
+                                                       </div>
+
+
+
+                                                      <div class="card">
+
+                                                            <div class="card-body">
+                                                                <!-- form start -->
+                                                                <form  method="POST">
+                                                                    {%csrf_token%}
+                                                                    <div class="row">
+                                                                            <!-- left column strat -->
+                                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                                <div class="mt-4 mt-lg-0">
+                                                                                        <div class="row mb-4">
+                                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">Part No.</label>
+                                                                                            <div class="col-sm-9">
+                                                                                            <input name="partno" type="text" class="form-control" id="sub_station_code" >
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <div class="row mb-4">
+                                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">REV No.</label>
+                                                                                            <div class="col-sm-9">
+                                                                                            <input name="revno" type="text" class="form-control" id="sub_station_code">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                     <div class="row mb-4">
+                                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label">Serial  No.</label>
+                                                                                            <div class="col-sm-9">
+                                                                                            <input name="serialno" type="text" class="form-control" id="sub_station_code">
+                                                                                            </div>
+                                                                                     </div>
+                                                                                    <div class="row mb-4"></div>
+                                                                                    <div class="row mb-4"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- left column end -->
+                                                                            <!-- right column start -->
+
+                                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                                <div class="mt-4 mt-lg-0">
+                                                                                    <div class="row mb-4"></div>
+                                                                                    <div class="row mb-4"></div>
+                                                                                    <div class="row mb-4"></div>
+                                                                                    <div class="row mb-4"></div>
+                                                                                    <div class="row justify-content-end">
+                                                                                        <div class="col-sm-9">
+                                                                                            <div>
+                                                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name = "cp_airend">Submit</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- right column end-->
+
+
+                                                                    </div>
+                                                                </form>
+                                                                <!-- form end -->
+                                                            </div>
+                                                            <!-- end card body -->
+                                                      </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- end col -->
+                                        <!-- form 1 end -->
+                                        <!-- process centent left part end -->
+
+                             </div>
+                            <!-- CP-AIREND END -->
+                            {%endif%}
+                            {%if CP_COOLER is True%}
+                            <!-- CP-COOLER  start -->
+                             <div class="row">
+                                        <!-- process centent right part start -->
+                                        <!-- form 1 start -->
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                       <div class="row">
+                                                           <div class="col-lg-6">
+                                                               Process : COOLER TEST
+                                                           </div>
+                                                           <div class="col-lg-6">
+                                                               Total Process: {{process_seq.Total_Processes}}
+
+                                                           </div>
+
+                                                       </div>
+                                                      <div class="row">
+
+                                                           <div class="col-lg-6">
+                                                               Process Type: CP-COOLER
+                                                           </div>
+                                                           <div class="col-lg-3">
+                                                               Completed Process: 1
+                                                           </div>
+                                                       </div>
+
+
+
+                                                      <div class="card">
+
+                                                <div class="card-body">
+                                                    <!-- form start -->
+                                                    <form method="POST">
+                                                        {%csrf_token%}
+                                                        <div class="row">
+                                                                <!-- left column strat -->
+                                                                <div class="col-lg-6 ms-lg-auto">
+                                                                    <div class="mt-4 mt-lg-0">
+                                                                            <div class="row mb-4">
+                                                                                <label for="sub_station_code" class="col-sm-3 col-form-label">Part No.</label>
+                                                                                <div class="col-sm-9">
+                                                                                <input name="partno" type="text" class="form-control" id="sub_station_code">
+                                                                                </div>
+                                                                            </div>
+                                                                        <div class="row mb-4">
+                                                                                <label for="sub_station_code" class="col-sm-3 col-form-label">REV No.</label>
+                                                                                <div class="col-sm-9">
+                                                                                <input name="revno" type="text" class="form-control" id="sub_station_code">
+                                                                                </div>
+                                                                            </div>
+                                                                         <div class="row mb-4">
+                                                                                <label for="sub_station_code" class="col-sm-3 col-form-label">Serial  No.</label>
+                                                                                <div class="col-sm-9">
+                                                                                <input name="serialno" type="text" class="form-control" id="sub_station_code">
+                                                                                </div>
+                                                                         </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <!-- left column end -->
+                                                                <!-- right column start -->
+
+                                                                <div class="col-lg-6 ms-lg-auto">
+                                                                    <div class="mt-4 mt-lg-0">
+                                                                            <div class="row justify-content-end">
+                                                                                <div class="col-sm-9">
+                                                                                    <div>
+                                                                                        <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="cp_cooler">Submit</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- right column end-->
+
+
+                                                        </div>
+                                                    </form>
+                                                    <!-- form end -->
+                                                </div>
+                                                <!-- end card body -->
+                                            </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- end col -->
+                                        <!-- form 1 end -->
+                                        <!-- process centent left part end -->
+
+                             </div>
+                            <!-- CP-COOLER  end -->
+                        {%endif%}
+                    </div>
+                <!-- page content left side end -->
+                </div>
+                <!-- page content end -->
+            </div>
+
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+
+
+ <script src="{% static 'js/pages/modal.init.js' %"></script>
+
+
+<script src="{% static 'js/app.js' %}"></script>

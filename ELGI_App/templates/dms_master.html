@@ -1,0 +1,497 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    
+    {% comment %} <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
+    rel="stylesheet"
+    /> {% endcomment %}
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+    
+    <style>
+        .scrollme {
+            overflow-x: auto;
+        }
+        hidden-panel {
+            display: none;
+        }
+        .data_pointer
+        {
+            cursor:pointer;
+
+        }
+        td:hover
+        {
+            color:#ee3420;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+{% comment %} {% load django_browser_reload %} {% endcomment %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                {% include 'general/page_title.html' %}
+                <!-- company page start -->
+                <div class="row">
+
+
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills nav-justified" role="tablist">
+                                    <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#productionloss" role="tab">
+                                            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                            <span class="d-none d-sm-block">Production Loss</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#qualitylossbox" role="tab">
+                                            <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                            <span class="d-none d-sm-block">Quality Loss</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content p-3 text-muted">
+                                    <div class="tab-pane active" id="productionloss" role="tabpanel">
+                                        <!-- form start -->
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+
+                                                <!-- left column strat -->
+                                                <div class="col-lg-6 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0">
+                                                        <div class="row mb-4">
+                                                            <label class="col-sm-3 col-form-label">Level 1</label>
+                                                            <div class="col-sm-9">
+                                                                <input name="Level_1"
+                                                                class="form-control"
+                                                                id="Level_1">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <label for="sub_station_code"
+                                                                class="col-sm-3 col-form-label">Level 2</label>
+                                                                <div class="col-sm-9">
+                                                                    <input name="Level_2"
+                                                                    class="form-control"
+                                                                    id="Level_2">
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label class="col-sm-3 col-form-label">Level 3</label>
+                                                            <div class="col-sm-9">
+                                                                <input name="Level_3"
+                                                                    class="form-control"
+                                                                    id="Level_3">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- left column end -->
+                                                <!-- right column start -->
+
+                                                <div class="col-lg-6 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0 ">
+                                                        <div id="">
+                                                            <div class="row mb-4">
+                                                                <label
+                                                                    class="col-sm-3 col-form-label">Level 4</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" name="Level_4" id="Level_4"
+                                                                             class="form-control">
+                                                                        
+                                                                    </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <label for="skill_required"
+                                                                    class="col-sm-3 col-form-label">Level 5</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="Level_5"
+                                                                        name="Level_5">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <label for="skill_required"
+                                                                    class="col-sm-3 col-form-label">PMMKEY</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control" id="PMMKEY"
+                                                                        name="PMMKEY" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="addbtn" name="submit" value="P_Add">Add</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="updatebtn" name="submit"
+                                                                value="Modify">Modify</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="clearbtn" name="submit"
+                                                                onclick="clearInput()">Clear</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="delbtn" name="submit" value="Delete">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- right column end-->
+                                            </div>
+                                        </form>
+                                        <!-- form end -->
+                                        <!-- table start-->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card">
+
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="datatable-buttons"
+                                                                class="custom_table table table-bordered nonwrap w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>PMMKEY</th>
+                                                                        <th>Level 1</th>
+                                                                        <th>Level 2</th>
+                                                                        <th>Level 3</th>
+                                                                        <th>Level 4</th>
+                                                                        <th>Level 5</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for i in pdms_data%}
+                                                                    <tr>
+                                                                        <td class="data_pointer">{{i.PMMKEY}}</td>
+                                                                        <td class="data_pointer">{{i.Level_1}}</td>
+                                                                        <td class="data_pointer">{{i.Level_2}}</td>
+                                                                        <td class="data_pointer">{{i.Level_3}}</td>
+                                                                        <td class="data_pointer">{{i.Level_4}}</td>
+                                                                        <td class="data_pointer">{{i.Level_5}}</td>
+                                                                    </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="tab-pane" id="qualitylossbox" role="tabpanel">
+                                        <!-- form start -->
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="row">
+
+                                                <!-- left column strat -->
+                                                <div class="col-lg-6 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0">
+                                                        <div class="row mb-4">
+                                                            <label class="col-sm-3 col-form-label">Level 1</label>
+                                                            <div class="col-sm-9">
+                                                                <input name="Level_1" class="form-control" id="Qlevel_1">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <label 
+                                                                class="col-sm-3 col-form-label">Level 2</label>
+                                                            <div class="col-sm-9">
+
+                                                                <input name="Level_2" class="form-control" id="Qlevel_2">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label class="col-sm-3 col-form-label">Level 3</label>
+                                                            <div class="col-sm-9">
+                                                                <input name="Level_3" class="form-control" id="Qlevel_3">
+
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                </div>
+                                                <!-- left column end -->
+                                                <!-- right column start -->
+
+                                                <div class="col-lg-6 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0 ">
+                                                        <div id="">
+                                                            <div class="row mb-4">
+                                                                <label for="sub_station_code"
+                                                                    class="col-sm-3 col-form-label">Level 4</label>
+                                                                <div class="col-sm-9">
+                                                                    <input name="Level_4" class="form-control" id="Qlevel_4">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <label for="skill_required"
+                                                                    class="col-sm-3 col-form-label">Level 5</label>
+                                                                <div class="col-sm-9">
+                                                                    <input name="Level_5" class="form-control" id="Qlevel_5">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row mb-4">
+                                                                <label for="skill_required"
+                                                                    class="col-sm-3 col-form-label">PMMKEY</label>
+                                                                <div class="col-sm-9">
+                                                                    <input name="PMMKEY" class="form-control" id="QPMMKEY" readonly>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="addbtn" name="submit" value="Q_Add">Add</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="updatebtn" name="submit"
+                                                                value="Modify">Modify</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="clearbtn" name="submit"
+                                                                onclick="clearInput()">Clear</button>
+                                                            <button type="submit" class="btn btn-primary w-md"
+                                                                id="delbtn" name="submit" value="Delete">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- right column end-->
+                                            </div>
+                                        </form>
+                                        <!-- form end -->
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card">
+
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="datatables_loss"
+                                                                class="custom_table table table-bordered nonwrap w-100 ">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">PMMKEY</th>
+                                                                        <th scope="col">Level 1</th>
+                                                                        <th scope="col">Level 2</th>
+                                                                        <th scope="col">Level 3</th>
+                                                                        <th scope="col">Level 4</th>
+                                                                        <th scope="col">Level 5</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for i in qdms_data%}
+                                                                    <tr>
+                                                                        <td class="data_pointer">{{i.PMMKEY}}</td>
+                                                                        <td class="data_pointer">{{i.Level_1}}</td>
+                                                                        <td class="data_pointer">{{i.Level_2}}</td>
+                                                                        <td class="data_pointer">{{i.Level_3}}</td>
+                                                                        <td class="data_pointer">{{i.Level_4}}</td>
+                                                                        <td class="data_pointer">{{i.Level_5}}</td>
+                                                                    </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end card-body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+                <!-- company page end -->
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+<script>
+    //Update Value Production loss
+    var table = document.getElementById('datatable-buttons');
+
+    for (var i = 1; i < table.rows.length; i++) {
+        table.rows[i].onclick = function () {
+            //rIndex = this.rowIndex;
+            console.log(table.rows);
+            document.getElementById("Level_1").value = this.cells[1].innerHTML;
+            document.getElementById("Level_2").value = this.cells[2].innerHTML;
+            document.getElementById("Level_3").value = this.cells[3].innerHTML;
+            document.getElementById("Level_4").value = this.cells[4].innerHTML;
+            document.getElementById("Level_5").value = this.cells[5].innerHTML;
+            document.getElementById("PMMKEY").value = this.cells[0].innerHTML;
+            $('#addbtn').addClass("disabled");
+        };
+    }
+    
+    //update quality loss
+     var table1 = document.getElementById('datatables_loss');
+
+    for (var i = 1; i < table1.rows.length; i++) {
+        table1.rows[i].onclick = function () {
+            //rIndex = this.rowIndex;
+            console.log(table1.rows);
+            document.getElementById("Qlevel_1").value = this.cells[1].innerHTML;
+            document.getElementById("Qlevel_2").value = this.cells[2].innerHTML;
+            document.getElementById("Qlevel_3").value = this.cells[3].innerHTML;
+            document.getElementById("Qlevel_4").value = this.cells[4].innerHTML;
+            document.getElementById("Qlevel_5").value = this.cells[5].innerHTML;
+            document.getElementById("QPMMKEY").value = this.cells[0].innerHTML;
+            $('#addbtn').addClass("disabled");
+        };
+    }
+
+    // Update value Process Master
+
+    var pm_table = document.getElementById('pm_table');
+    for (var i = 1; i < pm_table.rows.length; i++) {
+        pm_table.rows[i].onclick = function () {
+            document.getElementById("processcode").value = this.cells[3].innerHTML;
+            document.getElementById("operationcode").value = this.cells[2].innerHTML;
+        };
+    }
+
+    // for delete row/record
+    $(document).on("click", ".delete", function () {
+        $(this).parents("tr").remove();
+        $(".add-new").removeAttr("disabled");
+    });
+</script>
+
+<script>
+    function clearInput() {
+        var getValue = document.getElementById("processcode");
+        if (getValue.value != "") {
+            getValue.value = "";
+        }
+    }
+</script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{% static " js/jquery.js" %}"></script>
+<script>
+    $(document).ready(function () {
+        $('#datatables').DataTable();
+    });
+</script>
+<script>
+
+    $(".row-add").click(function () {
+        var $row = $(this).closest("tr");    // Find the row
+        var $tds = $row.find("td");
+
+        var txt = '';
+
+        for (let x of $tds) {
+            txt += x.textContent + " ";
+        }
+        console.log(txt)
+        var copied = navigator.clipboard.writeText(txt)
+        alert("Copied");
+    })
+
+</script>
+
+</body>
+
+</html>

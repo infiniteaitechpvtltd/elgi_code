@@ -1,0 +1,467 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">TPL Master</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">TPL Master</a></li>
+                                    <li class="breadcrumb-item active">TPL Master</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+               <!-- company page start -->
+               <div class="row">
+
+
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>--><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <!-- Nav tabs  start-->
+                                        {% comment %} <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#modelmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">Model Master</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#tplmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">TPL Master</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#activetpl" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">Active TPL</span>
+                                                </a>
+                                            </li>
+                                        </ul> {% endcomment %}
+                                        <!-- Nav tabs end -->
+                                        <!-- Tab panes start-->
+                                        <div class="tab-content p-3 text-muted">
+                                            <!-- tab model master start -->
+                                            <div class="tab-pane active" id="modelmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                {% comment %} <form>
+                                                <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Line Code</label>
+                                                                        <div class="col-sm-9">
+                                                                          <select name="line-code" id="linecode" class="form-control">
+                                                                                <option value="EL1_P1_L1">EL1_P1_L1</option>
+                                                                                <option value="EL1_P1_L2">EL1_P1_L2</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label" >Group</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select name="line-code" id="processcode" class="form-control">
+                                                                                <option value="F3R03_OUT">EG</option>
+                                                                                <option value="F1R02_OUT">EN</option>
+                                                                                <option value="F3R03">EV</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+                                                                <div class="row mb-4">
+                                                                    <label for="skill_required" class="col-sm-3 col-form-label">Model Description</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="skill_required" readonly>
+                                                                    </div>
+                                                                </div>
+                                    
+                                                                <div class="row justify-content-end">
+                                                                    <div class="col-sm-9">
+                                                                        <div>
+                                                                            <button type="submit" class="btn btn-primary w-md">Modify</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- right column end-->
+
+                                                </div>
+                                                </form> {% endcomment %}
+                                                <!-- form end -->
+                                                <!-- table start-->
+                                                {% comment %} <div class="row">
+                                                <div class="col-12">
+                                                <div class="card">
+                                                    
+                                                    <div class="card-body">
+                                                        <table id="datatable-buttons1"class="table table-bordered dt-responsive  nowrap w-100">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Line Code</th>
+                                                                            <th>Group</th>
+                                                                            <th>Model Description</th>
+                                                                        </tr>
+                                                                    </thead>
+
+
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG 37-8.5</td>
+                                                                            <td>EG 37 kW 60Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>2</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-50</td>
+                                                                            <td>EG 11 kW 50Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>3</td>
+                                                                            <td>EL1_P1_L1 Author</td>
+                                                                            <td>EG11-C-50-M</td>
+                                                                            <td>EG 11 kW 50Hz USA VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>4</td>
+                                                                            <td>EL1_P1_L1 Developer</td>
+                                                                            <td>EG11-C-50-U</td>
+                                                                            <td>EG 11 kW 50Hz Rotair VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>5</td>
+                                                                            <td>EL1_P1_L1td>
+                                                                            <td>EG11-C-60</td>
+                                                                            <td>EG 11 kW 50Hz CV VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>6</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60-M</td>
+                                                                            <td>EG 11 kW 50Hz USA VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>7</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60-U</td>
+                                                                            <td>EG 11 kW 50Hz Rotair VERSION C VERSION</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>8</td>
+                                                                            <td>EL1_P1_L1</td>
+                                                                            <td>EG11-C-60WOM</td>
+                                                                            <td>M</td>
+                                                                        </tr>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                    </div>
+                                                </div>
+                                            </div> {% endcomment %}
+                                            <!-- end col -->
+                                        </div>
+                                    </div>
+                                            <!-- tab model master end-->
+                                            <!-- tab tpl_master start-->
+                                            <div class="tab-pane" id="tplmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Group</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select  id="group" class="form-control" name="Group">
+                                                                                <option value="0">Select</option>
+                                                                                <option value="EG">EG</option>
+                                                                                <option value="EN">EN</option>
+                                                                                <option value="EV">	EV</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">TPL Code
+                                                                         </label>
+                                                                        <div class="col-sm-9">
+                                                                                <input list="tpl_codes" name="TPL_Code" class="form-control" id="tpl_code" onchange=depinput()>
+                                                                                <datalist id="tpl_codes">
+                                                                                    
+                                                                                    {% for key,value in dd_data.items %}
+                                                                                        <option>{{key}}</option>
+                                                                                    {% endfor %}
+                                                                                </datalist>
+                                                                                
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Machine on AGV</label>
+                                                                        <div class="col-sm-9">
+                                                                          <select id="AGV" class="form-control" name="AGV">
+                                                                                <option value="0">Select</option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">TPL Description</label>
+                                                                        <div class="col-sm-9">
+                                                                                
+                                                                                <input type="text" name="TPL_Description" class="form-control" id="TPL_Description">
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">PDI Inspection</label>
+                                                                        <div class="col-sm-9">
+                                                                                <datalist id="PDI_Insp">
+                                                                                    <option>Digital Factory</option>
+                                                                                    <option>Micron Technologies</option>
+                                                                                </datalist>
+                                                                                <input list="PDI_Insp" name="PDI_Insp" class="form-control" id="PDI">
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+<!--                                                                    <div class="row mb-4">-->
+<!--                                                                        <label for="skill_required" class="col-sm-3 col-form-label">TPL Description</label>-->
+<!--                                                                        <div class="col-sm-9">-->
+<!--                                                                          <input type="text" class="form-control" id="TPL_Description" name="TPL_Description" >-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+                                        
+                                                                    <div class="row justify-content-end">
+                                                                        <div class="col-sm-9">
+                                                                            <div>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="Add">Add</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="Modify">Modify</button>
+                                                                                <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- right column end-->
+
+
+                                                </div>
+                                                </form>
+                                                <!-- table start-->
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="card">
+
+                                                            <div class="card-body">
+                                                                <div class="table-responsive">
+                                                                        <!-- <table class="table table-bordered dt-responsive  nowrap w-100">-->
+                                                                        <table id="datatable-buttons" class="custom_table table table-bordered nonwrap w-100">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">TPL_Code</th>
+                                                                            {% comment %} <th scope="col">Model Code</th> {% endcomment %}
+                                                                            <th scope="col">Model Group</th>
+                                                                            <th scope="col">TPl_Description</th>
+                                                                            <th scope="col">Machine_on_AGV</th>
+                                                                            <th scope="col">PDI_Inspection</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        {% for i in tpl_master_data%}
+                                                                            <tr>
+                                                                                <td>{{forloop.counter}}</td>
+                                                                                <td>{{i.TPL_Code}}</td>
+                                                                                {% comment %} <td>{{i.Model_Code}}</td> {% endcomment %}
+                                                                                <td>{{i.Model_Group}}</td>
+                                                                                <td>{{i.TPL_Description}}</td>
+                                                                                <td>{{i.Machines_on_AGV}}</td>
+                                                                                <td>{{i.PDI_Insp}}</td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- table end -->
+                                            </div>
+                                            <!-- tab tpl_master end-->
+                                            <!-- tab active tpl start -->
+                                            
+                                            <!-- tab active tpl end -->
+                                        </div>
+                                        <!-- tab pan end-->
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                <!-- company page end -->
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+
+ <script>
+        //Update Value TPL Master
+        var table = document.getElementById('datatable-buttons');
+        
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    console.log(table.rows);
+                    document.getElementById("tpl_code").value = this.cells[1].innerHTML;
+                    document.getElementById("AGV").value = this.cells[4].innerHTML;
+                    document.getElementById("TPL_Description").value = this.cells[3].innerHTML;
+                    document.getElementById("group").value=this.cells[2].innerHTML;
+                    document.getElementById("PDI").value=this.cells[5].innerHTML;
+                    $('#addbtn').addClass("disabled");
+            };
+        }
+        
+        function depinput(){
+        
+            console.log("depinput");
+            
+            var dropdow = document.getElementById("tpl_code").value;
+            console.log(dropdow);
+            
+            let data1 = {{dd_data|safe}};
+            // data1 = Object({"S013797":"aasd", "S017144":"qwe", "S017145":"qwcc"})
+            //let data1 = Object(data2)
+            console.log(data1);
+            //console.log(typeof data2);
+            var inpud = document.getElementById("TPL_Description");
+            
+            function keyval(obj, key){
+                
+                const foundKey = Object.keys(obj).find(k=>k === key);
+                return obj[foundKey];
+            }
+            
+            inpud.value = keyval(data1, dropdow)
+            
+        }
+</script> 
+
+</body>
+
+</html>

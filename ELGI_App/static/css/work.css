@@ -1,0 +1,243 @@
+/* Smooth scroll behavior */
+:root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: white;
+    height: 100%;
+    padding: 5px;
+    font-family: "Montserrat", "Regular";
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  /*-----------------------------------------------------------
+  header
+  -----------------------------------------------------------*/
+
+  .navbar {
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    background: #000000 0% 0% no-repeat padding-box;
+    box-shadow: 0px 4px 4px #00000033;
+    opacity: 1;
+  }
+
+  .imgTop {
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+  }
+
+  /*-----------------------------------------------------------
+  section - 1
+  -----------------------------------------------------------*/
+
+  .main-row {
+    background: #404040 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 10px #00000029;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    opacity: 1;
+  }
+
+  .thead-name {
+    letter-spacing: 0px;
+    color: #8E8E8E;
+    font-size: 13px;
+    opacity: 1;
+    text-align: left;
+    border-bottom: 1px solid rgb(93, 90, 90);
+    padding-right: 1.5rem;
+  }
+
+  .thead-des {
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    font-size: 12px;
+    border-bottom: 1px solid rgb(93, 90, 90);
+    padding: 5px;
+    font-weight: 800;
+  }
+
+  .second-row {
+    background: #404040;
+    box-shadow: 3px 3px 10px #00000029;
+    border-radius: 5px;
+  }
+
+  .child {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .parent {
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+  }
+
+
+  .thead-des1 {
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  .thead-name1 {
+    color: #E8E8E8;
+    letter-spacing: 0px;
+    font-size: 15px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 800;
+  }
+
+
+  /*------------------------------------------------------
+  Second Section Start
+  -----------------------------------------------------------*/
+
+  .button-section {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 10px #00000029;
+    border-radius: 5px;
+    opacity: 1;
+    align-items: center;
+  }
+
+  .button-section .btn {
+    background-color: black;
+    color: white;
+    padding: 0.5%;
+    width: auto;
+    margin-left: 22px;
+    margin-right: 22px;
+    font-size: 11px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 800;
+  }
+
+
+  /*------------------------------------------------------
+  Third Section Start
+  -----------------------------------------------------------*/
+
+  .section-third-first {
+    background-color: #404040;
+    padding: 0.5%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .section-third-sec {
+    background-color: #404040;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    padding-top: 1.2%;
+    padding-bottom: 1.2%;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .process-header {
+    font-size: 15px;
+    color: white;
+  }
+
+  .process-contain {
+    color: #000000;
+    font-size: 15px;
+    font-weight: bolder;
+  }
+
+  .section-des {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    height: 260px;
+    padding-bottom: 40px;
+  }
+
+  .section-des th {
+    text-align: left;
+    font: normal normal normal 13px/14px Montserrat;
+    letter-spacing: 0px;
+    color: #404040;
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .section-des input {
+    border: 1px solid #B9B9B9;
+    border-radius: 4px;
+    text-align: left;
+    align-items: top;
+    font-size: 13px;
+    box-shadow: 0.8px 0.8px 0.8px 0.5px rgb(163, 161, 161);
+  }
+
+  ::placeholder {
+    color: #000000;
+  }
+
+  :-ms-input-placeholder {
+    color: #000000;
+  }
+
+  ::-ms-input-placeholder {
+    color: #000000;
+  }
+
+  .align-right {
+    text-align: right;
+    border: 0;
+  }
+
+  .submit-btn {
+    background: #E22114 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 6px #00000033;
+    border-radius: 5px;
+    border: none;
+    padding: 6px;
+    color: white;
+    width: 14%;
+    opacity: 1;
+    font-size: 13px;
+    margin-right: 10px;
+    font-weight: 600;
+  }
+
+  .submit-btn-grp {
+    background: #E22114 0% 0% no-repeat padding-box;
+    box-shadow: 3px 3px 6px #00000033;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 6px;
+    width: 40%;
+    font-size: 13px;
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  .table>:not(caption)>*>* {
+    padding: 0rem 0rem;
+    padding-left: 0.6rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+  }

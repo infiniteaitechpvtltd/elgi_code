@@ -1,0 +1,207 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+      <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                 <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Station Bypass</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">test</a></li>
+                                    <li class="breadcrumb-item active">test</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <!-- station_bypass page start -->
+                  <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- form start -->
+                            <form action="stationbypass" method="POST">
+                                {% csrf_token %}
+                                <div class="row">
+
+                                        <!-- left column strat -->
+                                        <div class="col-lg-6 ms-lg-auto">
+                                            <div class="mt-4 mt-lg-0">
+
+
+                                                    <div class="row mb-4">
+                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Station ID</label>
+                                                        <div class="col-sm-9">
+                                                        <input name="station_id" type="text" class="form-control" id="sub_station_code">
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- left column end -->
+                                        <!-- right column start -->
+
+                                        <div class="col-lg-6 ms-lg-auto">
+                                            <div class="mt-4 mt-lg-0">
+                                                    <div class="row mb-4">
+                                                        <label for="bypass" class="col-sm-3 col-form-label">Bypass Status</label>
+                                                        <div class="col-sm-9">
+                                                        <select class="form-select" id="bypass" name="bypass">
+                                                                <option></option>
+                                                                <option>Bypass</option>
+                                                                <option>Live</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-sm-9">
+                                                            <div>
+                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn">Update</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- right column end-->
+
+
+                                </div>
+                            </form>
+                            <!-- form end -->
+                            <!-- table start-->
+                                  <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                               <!-- <div class="card-header">
+                                                    <h4 class="card-title">Default Datatable</h4>
+
+                                                </div>-->
+                                                <div class="card-body">
+                                                    <table id="datatable-buttons" class="table table-bordered dt-responsive  nowrap w-100">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Station ID</th>
+                                                                <th>Screen Text</th>
+                                                                <th>Bypass</th>
+
+                                                            </tr>
+                                                        </thead>
+
+
+                                                        <tbody>
+                                                                {% for i in station_bypass_data%}
+                                                                <tr>
+                                                                    <td>{{i.Station_ID}}</td>
+                                                                    <td>{{i.Screen_text}}</td>
+                                                                    <td>{{i.Bypass}}</td>
+                                                                </tr>
+                                                                {% endfor %}
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                  </div>
+                            <!-- table end-->
+                        </div>
+                    </div>
+                  </div>
+                <!-- station_bypass page end-->
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+<script>
+        //Update Value Process Library
+        console.log("abc");
+        var table = document.getElementById('datatable-buttons');
+        
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    //rIndex = this.rowIndex;
+                    console.log(table.rows);
+                    document.getElementById("sub_station_code").value = this.cells[0].innerHTML;
+                    document.getElementById("bypass").value = this.cells[2].innerHTML;
+                    
+            };
+        }
+</script> 
+
+
+</html>

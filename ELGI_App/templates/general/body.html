@@ -1,0 +1,43 @@
+<body data-topbar="dark">
+
+<!-- <body data-layout="horizontal"> -->
+
+<script>
+  
+    //console.log("hello all pages");
+    function performall(){
+    
+        let restAPI = {
+        
+       
+        substationapi: "http://172.16.32.186:8000/substationapi",
+    };
+    
+    //console.log("performall function call...")
+        $.ajax({
+            
+            //type: 'GET',
+            url: restAPI.substationapi,
+            method: "POST",
+            data: {
+                method:"status_list",
+                station_id: "SS1",
+                FAB_NO: "AUHC373514",
+                TPL_No:"tpl11",
+                Emp_Name:"harsha",
+                Emp_ID:1
+            },
+            success: function(data){
+               // console.log(data);
+            },
+            error: function(error){
+                console.log(error.status);
+            }
+        });
+    };
+    $(document).ready(function(){
+       setInterval(performall,10000)
+       performall();
+    })
+    
+</script>

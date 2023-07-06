@@ -1,0 +1,412 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Alpa Line Sub Station</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">TPL Master</a></li>
+                                    <li class="breadcrumb-item active">Alpa Line Sub Station 1</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- alpha page start -->
+
+                <div class="row" style="--bs-gutter-x: 10px;">
+                    <div class="col-lg-10">
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <div class="row" style="width:%;">
+                                    <div class="col-md-1">
+                                        <img class="img-fluid mx-auto d-block rounded" src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                    <div class="row"><div class="col-xl-12 text-white-50 mb-1">Emp. Name</div></div>
+                                                    <div class="row"><div class="col-xl-12 text-white-50 mb-1">Emp. ID</div></div>
+                                                    <div class="row"><div class="col-xl-12 text-white-50 mb-1">Skill Level</div></div>
+                                                    <div class="row"><div class="col-xl-12 text-white-50 mb-1">Process</div></div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                    <div class="row"><div class="col-xl-12 mb-1">Dinesh S</div></div>
+                                                    <div class="row"><div class="col-xl-12 mb-1">3400</div></div>
+                                                    <div class="row"><div class="col-xl-12 mb-1">10</div></div>
+                                                    <div class="row"><div class="col-xl-12 mb-1">AIREND_TEST</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5" >
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">FAB</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Model</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">TPL</div></div>
+
+                                            </div>
+                                            <div class="col-xl-6">
+                                                    <div class="row"><div class="col-xl-12 font-size-12 mb-1">BSISO38928</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 mb-1">EG 37 - 8.5 - 60</div></div>
+                                                    <div class="row"><div class="col-xl-12 font-size-12 mb-1">S123456</div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+
+                    <div style="text-align: center;" class="col-lg-2">
+                        <div class="card">
+                            <div class="card-body bg-dark rounded">
+                                <div class="text-light">
+                                    <span class="text-md-middle">
+                                        Cycle Time
+                                    <br>
+                                        13:10</span>
+                                        <br>
+                                        <br>
+                                    <span class="text-md-middle">
+                                        Actual Time
+                                    <br>
+                                        05:08</span>
+                                </div>
+                            </div><!-- end card body  -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 card">
+                        <div class=" text-center">
+                            <div class="row bg-dark font-weight-bold text-white py-2">
+                                <div class="col-md-4">Process Type</div>
+                                <div class="col-md-4">Total Process</div>
+                                <div class="col-md-4">Completed Process</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col-md-4">TORQUE</div>
+                                <div class="col-md-4">15</div>
+                                <div class="col-md-4">10</div>
+                            </div>
+
+                            <div class=" text-center">
+                                    <div class="row bg-dark font-weight-bold text-white py-2">
+                                        <div class="col-md-4">Tool ID</div>
+                                        <div class="col-md-4">Tool Type</div>
+                                        <div class="col-md-4">Total Joint</div>
+                                    </div>
+                                    <div class="row py-2">
+                                        <div class="col-md-4">{{data.tool_id}}</div>
+                                        <div class="col-md-4">CLECO</div>
+                                        <div class="col-md-4">2.00</div>
+                                    </div>
+                                </div><!-- end card -->
+                            
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-2">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <span class="card-title">Waste Capture</span>
+                                <div class="d-flex flex-wrap gap-2 mt-1">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">P</button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Q</button>
+                                </div>
+                            </div><!-- end card body  -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                    
+                    <div class="col-lg-2">
+                        <div class="card">
+                            
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button class=" btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Logout</button>
+                                    <button class=" btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Unit Skip</button>
+                                    <button class=" btn btn-primary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Process Skip</button>
+                                </div>
+                                
+                            </div><!-- end card body  -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-8">
+
+                        <div class="row">
+                            
+
+                            <div class="col-lg-12 card py-2 ">
+                                <div class="row text-center">
+                                    <div class="col-md-3 bg-dark font-weight-bold text-white py-2">
+                                        <div class="">Tool Status </div>
+                                    </div>
+                                    <div class="col-md-2 py-2">{{data.Offline}}</div>
+                                    <div class="col-md-2 py-2">{{data.App_Matched}}</div>
+                                    <div class="col-md-2 py-2">{{data.Disabled}}</div>
+                                    <div class="col-md-2 py-2">{{data.Stopped}}</div>
+                                    <div class="col-md-2 py-2">{{data.Pass}}</div>
+
+                                    
+                                </div><!-- end card -->
+                            </div><!-- end card -->
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-2">
+                                                <div class="col-lg-12 card bg-secondary text-light py-2 text-center">
+                                                    Actual Torque
+                                                </div>
+
+                                                <div class="col-lg-12 my-2 text-center fs-1">
+                                                    {{data.actual_torque}}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-5">
+                                                <table id="datatable1" class="table table-bordered dt-responsive  nowrap w-100 text-center align-middle"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">No of Joint</th>
+                                                            <th scope="col">Actual Torque</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr >
+                                                            <td>Bolt 1</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td>Bolt 2</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            
+                                                        </tr>
+                                                        <tr >
+                                                            <td> </td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td> </td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div  class="col-xl-5 text-dark">
+                                                <table id="datatable1" class="table table-bordered dt-responsive  nowrap w-100"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">No of Joint</th>
+                                                        <th scope="col">Actual Torque</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                            &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                            &nbsp;
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                            &nbsp;
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            
+                                                        </tr>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                            &nbsp;
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr >
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                            &nbsp;
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button type="button" class="btn btn-primary btn-LG">SUBMIT</button>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body  -->
+                                </div><!-- end card -->
+                            </div>
+
+                            
+                        </div>
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <img src="{% static 'images/1.jpg' %}" class="card-img-top" alt="...">
+                                </div>
+
+                                
+                                <!-- top offcanvas -->
+                                <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasTopLabel">Offcanvas top</h5>
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body">
+                                        ...
+                                    </div>
+                                </div>
+
+                                <!-- right offcanvas -->
+                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasRightLabel">Offcanvas Right</h5>
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body">
+                                        ...
+                                    </div>
+                                </div>
+
+                                <!-- left offcanvas -->
+                                <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasBottomLabel">Offcanvas Bottom</h5>
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body">
+                                        ...
+                                    </div>
+                                </div>
+                            </div><!-- end card body  -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                    <!-- process centent right part start -->
+                    <!-- form 1 start -->
+                    
+                        
+                    
+                    
+
+                </div>
+
+            </div><!-- end row -->
+        </div>
+        <!--End  container-fluid -->
+    </div>
+        <!-- End Page-content -->
+</div>
+        {% include 'general/footer.html' %}
+    
+    <!-- end main content-->
+
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+</body>
+
+</html>

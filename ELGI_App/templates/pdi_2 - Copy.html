@@ -1,0 +1,410 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<style>
+#block_container
+{
+    text-align:center;
+}
+#bloc1, #bloc2
+{
+    display:inline;
+}
+</style>
+
+<style>
+            #container{
+                display: inline-block;
+                width: 320px;
+                height: 240px;
+                margin: 0 auto;
+                position: relative;
+                border: 1px solid grey;
+            }
+
+            #video_stream{
+                position: absolute;
+                z-index: 1;
+            }
+
+            #img_canvas{
+                position: absolute;
+                z-index: 10;
+            }
+
+            #draw_canvas{
+                position: relative;
+                z-index: 20;
+            }
+
+            #my_camera{
+                width: 320px;
+                height: 240px;
+                border: 1px solid black;
+                }
+        </style>
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/top_bar.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                 <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">PDI Inspection </h4>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card bg-primary border-primary text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Employee Name </h5>
+                                        <h6 class="card-text text-white">Dinesh S</h6>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+        
+                            <div class="col-lg-3">
+                                <div class="card bg-success border-success text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Employee ID </h5>
+                                        <h6 class="card-text text-white">3400</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="card bg-primary border-primary text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Skill Level </h5>
+                                        <h6 class="card-text text-white">10</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="card bg-success border-success text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Description </h5>
+                                        <h6 class="card-text text-white">TESTING</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card bg-success border-success text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">FAB</h5>
+                                        <h6 class="card-text text-white">BSIS038928</h6>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+        
+                            <div class="col-lg-3">
+                                <div class="card bg-primary border-primary text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">TPL </h5>
+                                        <h6 class="card-text text-white">S123456</h6>
+                                    </div>
+                                    {{ s_time }}
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-3">
+                                <div class="card bg-success border-success text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Model </h5>
+                                        <h6 class="card-text text-white">EG 37 - 8.5 - 60</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h5 class="my-2 mb-sm-0 text-black mb-3 font-size-18">Cycle Time</h5>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card bg-dark border-dark text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Set</h5>
+                                        <h6 class="card-text text-white">13:10</h6>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+        
+                            <div class="col-lg-6">
+                                <div class="card bg-dark border-dark text-white-50">
+                                    <div class="card-body">
+                                        <h5 class="mb-3 text-white">Actual </h5>
+                                        <h6 class="card-text text-white"><span id="minutes"></span>:<span id="seconds"></span></h6>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+                                            {% comment %} <img class="my-2" src="{% static 'images/1.jpg' %}" alt="" height="300rem" width="570rem"> {% endcomment %}
+                        </div>
+                        <div class="container-fluid">
+                         {% comment %} <div class="row"> {% endcomment %}
+                            <div class='d-flex gap-4' >
+                                <div>
+                                    <div class="mb-2 rounded" style="background-color:#00ff00;">
+                                        <img class="card-img-top img-fluid" style='height:500px; width:500px' src="{% static 'images/1.jpg' %}" alt="Card image cap">
+                                    </div>
+                                    <button type="button" class="w-100 btn-lg btn-outline-success btn-rounded btn-block" data-bs-toggle="modal">
+                                        Accept
+                                    </button>
+                                </div>
+                                <div>
+                                    
+                                    <div id="my_camera"></div>
+
+
+                                    {% comment %} <button type="button" class="w-100 btn-lg btn-outline-danger btn-rounded btn-block" data-bs-toggle="modal">
+                                        Declined
+                                    </button> {% endcomment %}
+
+                                    <div id="results" class=' mt-4 '></div>
+                                </div>
+                                <div class='bg-dark px-2'>
+                                    {% comment %} <button class='my-2 btn btn-outline-warning btn-block'> HOLD </button> {% endcomment %}
+                                    <div>
+                                    <button id="start_camera" class="btn btn-outline-primary btn-block my-3" >Start Camera</button>
+                                    </div>
+                                    <div>
+                                    <button id="take_photo" class="btn btn-outline-info btn-block my-3" onClick="take_snapshot()">Click Image</button>
+                                    </div>
+                                    {% comment %} <button class="btn" id="cmdDraw" onClick="drawCanvas()"><i class="material-icons">drive_file_rename_outline</i></button> {% endcomment %}
+
+                                </div>
+                            </div>
+                        </div>
+                            
+                                {% comment %} <div class="col-xl-5 col-lg-5 col-md-5 mx-3">
+                                    <div class="row">
+                                        <div class="mb-2 rounded" style="background-color:#00ff00;">
+                                            <img class="card-img-top img-fluid" src="{% static 'images/1.jpg' %}" alt="Card image cap">
+
+                                        </div>
+                                        <button type="button" class="btn-lg btn-outline-success btn-rounded btn-block" data-bs-toggle="modal">
+                                            Accept
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-5 col-md-5 mx-3">
+                                    <div class="circle" >
+                                        <canvas id="myCanvasCircle" width="500" height="500" style='background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png");'>your browser does not support HTML5 canvas tag.</canvas>
+                                    </div>
+                                    <button type="button" class="btn-lg btn-outline-danger btn-rounded btn-block" data-bs-toggle="modal">
+                                        Declined
+                                    </button>
+                                </div>
+                                <div class="col-xl-1 col-lg-1 col-md-1 mx-3 text-center rounded" style="background-color:#3e3e3e;">
+                                    <div class="row mx-1">
+                                        <button class='my-2 btn btn-outline-warning btn-block'> HOLD </button>
+                                    </div>
+                                </div>
+                             {% endcomment %}
+                             
+                           
+                             <div id="my_camera"></div>
+                            {% comment %} <input type=button value="Take Snapshot" onClick="take_snapshot()"> {% endcomment %}
+                            {% comment %} <div id="results" ></div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- company page start -->
+               
+            <!--End  container-fluid -->
+        </div>
+        
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+</div>
+    <!-- end main content-->
+</div>
+
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+        <script src="{%static 'js/webcam.min.js' %}"></script>
+
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+
+
+
+
+{% comment %} 
+<script>
+var sec = 0;
+    function pad ( val ) { return val > 9 ? val : "0" + val; }
+    setInterval( function(){
+        document.getElementById("seconds").innerHTML=pad(++sec%60);
+        document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+    }, 1000);
+</script> {% endcomment %}
+
+
+{% comment %} <script>
+
+    
+$("#webcam").webcam({
+
+	width: 320,
+	height: 240,
+	mode: "callback",
+	swffile: "/jscam_canvas_only.swf", // canvas only doesn't implement a jpeg encoder, so the file is much smaller
+
+	onTick: function(remain) {
+
+		if (0 == remain) {
+			jQuery("#status").text("Cheese!");
+		} else {
+			jQuery("#status").text(remain + " seconds remaining...");
+		}
+	},
+
+	onSave: function(data) {
+
+		var col = data.split(";");
+    // Work with the picture. Picture-data is encoded as an array of arrays... Not really nice, though =/
+	},
+
+	onCapture: function () {
+		webcam.save();
+
+ 	  // Show a flash for example
+	},
+
+	debug: function (type, string) {
+		// Write debug information to console.log() or a div, ...
+	},
+
+	onLoad: function () {
+    // Page load
+		var cams = webcam.getCameraList();
+		for(var i in cams) {
+			$("#cams").append("<li>" + cams[i] + "</li>");
+		}
+	}
+});
+
+
+    $(function () {
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#webcam');
+        $("#btnCapture").click(function () {
+            Webcam.snap(function (data_uri) {
+                $("#imgCapture")[0].src = data_uri;
+                $("#btnUpload").removeAttr("disabled");
+            });
+        });
+        $("#btnUpload").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "CS.aspx/SaveCapturedImage",
+                data: "{data: '" + $("#imgCapture")[0].src + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) { }
+            });
+        });
+    });
+        </script> {% endcomment %}
+
+        <!-- Webcam.min.js -->
+
+        <!-- Configure a few settings and attach camera -->
+        <script language="JavaScript">
+            Webcam.set({
+                width: 320,
+                height: 240,
+                image_format: 'jpeg',
+                jpeg_quality: 90
+            });
+
+            Webcam.attach( '#my_camera' );
+
+            <!-- Code to handle taking the snapshot and displaying it locally -->
+            function take_snapshot() {
+            
+            // take snapshot and get image data
+            Webcam.snap( function(data_uri) {
+                // display results in page
+                document.getElementById('results').innerHTML = 
+                    '<img src="'+data_uri+'"/>';
+                } );
+            }
+        </script>
+
+</html>

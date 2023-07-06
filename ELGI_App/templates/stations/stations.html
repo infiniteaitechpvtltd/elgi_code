@@ -1,0 +1,121 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'stations/no_sidemenu_topbar.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content" style="margin-left:0px;">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Stations</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">test</a></li>
+                                    <li class="breadcrumb-item active">test</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- page content start -->
+
+                <div class="row">
+                    {% for i in station_data %}
+                    <div class="col-lg-3">
+                        <div class="card bg-dark border-dark text-light">
+                            <a href="/stations/{{i.statiion_id}}/" >
+                                <div class="card-body">
+                                    <h5 class="mb-4 text-light">{{i.station_name}}</h5>
+                                    <h5 class="mb-4 text-light">{{i.statiion_id}}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div><!-- end col -->
+                    {% endfor %}
+
+                    </div><!-- end col -->
+
+                </div>
+                <!-- page content end -->
+
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--Testing Error Popup-->
+<!--
+<div id="testingbox" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between m-0">
+                    <h4 class="modal-title">Testing Box Error</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <p id="testerrormessage">Error</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+<!-- apexcharts -->
+<script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
+
+<!-- Plugins js-->
+<script src="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+<!-- dashboard init -->
+<script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#testingbox").modal('show')
+
+    })
+
+</script>
+
+</body>
+
+</html>

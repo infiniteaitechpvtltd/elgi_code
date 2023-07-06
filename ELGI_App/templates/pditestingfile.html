@@ -1,0 +1,1826 @@
+{% load static %}
+{% include 'general/main.html' %}
+
+<head>
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet"
+        type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    {% include 'general/head_css.html' %}
+
+    <style>
+        .scrollme {
+            overflow-x: auto;
+        }
+
+        hidden-panel {
+            display: none;
+        }
+
+        .data_pointer {
+            cursor: pointer;
+
+        }
+
+        td:hover {
+            color: #ee3420;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        .top-img {
+            padding: 5px;
+            height: 120px;
+            width: 120xp;
+        }
+
+        .modal-backdrop.show {
+            display: none;
+        }
+
+        .modal1 {
+            z-index: 1;
+        }
+
+        .modal2 {
+            z-index: 2;
+        }
+
+        .modal3 {
+            z-index: 3;
+        }
+
+        /* MEDIA QUERIES */
+        @media only screen and (max-width: 1138px) {
+
+            /* For Tablets */
+            .top-img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+    {% include 'general/top_bar_for_operator.html' %}
+    <!-- ============================================================== -->
+    <!-- Start Right Content here -->
+    <!-- ============================================================== -->
+    <div class="container-fluid" style="padding-top: 80px;">
+        <div class="row"> <!-- Top Title -->
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0 font-size-18">PDI Inspection</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">PDI Inspection</a></li>
+                            <li class="breadcrumb-item active">PDI Inspection</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- END OF Top Title-->
+
+        <!-- START OF Top Section (Employee And FAB Details) -->
+        <div class="row" style="padding: 10px; height:170px;">
+            <div class="col-md-9"> <!-- LEFT CARD -->
+                <div class="row justify-content-center" style="padding: 5px;"> <!-- INNER CONTENTS -->
+                    <div class="col-md-12 align-self-center card bg-dark border-dark text-light"
+                        style="height: 140px; padding: 5px;"> <!-- CARD -->
+                        <div class="row">
+                            <div class="col-md-2 align-self-center"> <!-- IMAGE COLUMN -->
+                                <img id="imgTop" alt="Top Image" class="img-fluid rounded top-img"
+                                    src="{% static 'images/users/300-1.png' %}">
+                            </div> <!-- IMAGE COLUMN ENDS -->
+                            <div class="col-md-10"> <!-- CONTENT COLUMN -->
+                                <table style="width: 100%; font-size: 1.3em;">
+                                    <tr>
+                                        <td class="text-white-50">Emp. Name</td>
+                                        <td id="lblEmpName">Abhay</td>
+                                        <td>&nbsp;</td>
+                                        <td class="text-white-50">FAB</td>
+                                        <td id="lblFAB">AUHC373514</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-white-50">Emp. ID</td>
+                                        <td id="lblEmpId">3400</td>
+                                        <td>&nbsp;</td>
+                                        <td class="text-white-50">Station ID</td>
+                                        <td id="lblStationId">SS1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-white-50">Skill Level</td>
+                                        <td id="lblSkillLevel">10</td>
+                                        <td>&nbsp;</td>
+                                        <td class="text-white-50">TPL</td>
+                                        <td id="lblTPL">tpl13</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-white-50">Process</td>
+                                        <td id="lblProcessDesc" colspan="4">
+                                            TestingTestingTestingTestingTestingTestingTestingTesting</td>
+                                    </tr>
+                                </table>
+                            </div> <!-- CONTENT COLUMN ENDS -->
+                        </div>
+                    </div> <!-- CARD ENDS -->
+                </div> <!-- INNER CONTENT ENDS -->
+            </div> <!-- LEFT CARD ENDS -->
+            <div class="col-md-3"> <!-- RIGHT CARD -->
+                <div class="row" style="padding: 5px; height: 173px;">
+                    <div class="col-md-12 card bg-dark border-dark text-light"
+                        style="font-size: 1.5em; text-align: center; padding: 5px;">
+                        <div class="text-white-50">Cycle Time</div>
+                        <div id="lblCycleTimeTmr">0:15</div>
+                        <div class="text-white-50">Actual Time</div>
+                        <div id="lblActTimeTmr">0:16</div>
+                    </div>
+                </div>
+            </div> <!-- RIGHT CARD ENDS -->
+        </div> <!-- END OF Top Section (Employee And FAB Details) -->
+
+        <div class="row" hidden> <!--Hidden Common Screen Fields STARTS -->
+            <div class="col-md-12">
+                <div id="lblProcSeqNo"></div>
+                <div id="lblOperatorCode"></div>
+                <div id="lblTorque"></div>
+                <div id="lblToolId"></div>
+                <div id="lblBoltCnt"></div>
+                <div id="lblTalkTime"></div>
+            </div>
+        </div><!--Hidden Common Screen Fields ENDS -->
+
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <div class="row" style="padding: 5px;">
+                    <div class="col-md-12 card flex-row  gap-3 " style="padding: 10px;">
+                        <p class="mt-3">Waste Capture</p>
+                        <button style="width: 160px; height:50px; font-size: 0.9em;"
+                            class="btn-lg btn-dark mt-2">Quality
+                            Loss</button>
+                        <button style="width: 140px; height:50px; font-size: 0.9em;"
+                            class="btn-lg btn-dark mt-2">Production
+                            Loss</button>
+                        <div class="vr"></div>
+                        <button style="width: 140px; height:50px; font-size: 0.9em;" class="btn-lg btn-dark mt-2">Leak
+                            Test</button>
+                        <button style="width: 140px; height:50px; font-size: 0.9em;"
+                            class="btn-lg btn-dark mt-2">Information</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+        <!-- START OF Bottom Section -->
+        <div class="row" style="padding-left: 15px;">
+            <!-- START OF LEFT BOTTOM Section -->
+            <div class="col-md-8" style="padding-top: 5px;">
+                <div class="row" style="padding: 5px;"> <!-- PROCESS TYPE TABLE STARTS -->
+                    <div class="col-md-12 card" style="padding: 5px;">
+                        <div class="row card-title bg-dark rounded text-center text-light">
+                            <div class="col-md-4">Process Type</div>
+                            <div class="col-md-4">Total Process</div>
+                            <div class="col-md-4">Completed Process</div>
+                        </div>
+                        <div class="row text-center">
+                            <div id="lblProcType" class="col-md-4">N/A</div>
+                            <div id="lblTotalProc" class="col-md-4">10</div>
+                            <div id="lblCompProc" class="col-md-4">0</div>
+                        </div>
+                    </div>
+                </div> <!-- PROCESS TYPE TABLE ENDS -->
+
+                <!-- =================================================
+                            === ALL THE OTHER PROCESS ENTRY DIVS STARTS HERE
+                        ================================================= -->
+
+                <div id="divCP_IMAGE_COMPARISION" class="row" style="padding: 5px;"> <!-- CP_IMAGE_COMPARISION STARTS 26-->
+                    <div class="col-md-12 card">
+
+                        <div class="row justify-content-evenly mt-3"> <!-- Image Section Section-->
+                            <div style=" border: 1px solid black; height: 200px; margin-bottom: 10px;" class="col-5 rounded text-center">
+                                <img id="" alt="Top Image" class="img-fluid rounded top-img"
+                                    src="{% static 'images/users/300-1.png' %}" style="height: 200px; width: 300px;">
+                            </div>
+                            <div style=" border: 1px solid black; height: 200px; margin-bottom: 10px;" class="col-5 rounded text-center">
+                                <img id="" alt="Top Image" class="img-fluid rounded top-img"
+                                    src="{% static 'images/users/300-1.png' %}" style="height: 200px; width: 300px;">
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="padding: 15px;">
+                            <div class="col-md-5">
+                                <button id="CP_IMAGE_COMPARISION_BTN" type="button" class="btn btn-primary btn-lg" style="width: 100%;" >Accept</button>
+                            </div>
+                            <div class="col-md-5">
+                                <button id="CP_IMAGE_COMPARISION_BTN" type="button" class="btn btn-primary btn-lg" style="width: 100%;" >Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- CP_IMAGE_COMPARISION SCREEN ENDS -->
+
+                <div id="divCP_IMAGE_CAPTURE2" class="row" style="padding: 5px;"> <!-- CP_IMAGE_CAPTURE2 STARTS 26-->
+                    <div class="col-md-12 card">
+                        <div class="row justify-content-evenly mt-3"> <!-- Image Section Section-->
+                            <div style=" border: 1px solid black; height: 250px;" class="col-5 rounded text-center">
+                                <img id="" alt="Top Image" class="img-fluid rounded top-img"
+                                    src="{% static 'images/users/300-1.png' %}" style="height: 250px; width: 300px;">
+                            </div>
+                            <div class="col-5 rounded text-center">
+                                <div class="row justify-content-center" >
+                                    <div class="col-md-4">
+                                        <button id="CP_IMAGE_CAPTURE_BTN_1" type="button" class="btn btn-primary btn-md" style="width: 100%;">Camera</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button id="CP_IMAGE_CAPTURE_BTN_2" type="button" class="btn btn-primary" style="width: 100%;">Capture</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button id="CP_IMAGE_CAPTURE_BTN_3" type="button" class="btn btn-primary" style="width: 100%;">Save</button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div style=" border: 1px solid black; margin-top: 10px; position: relative;" class="col-md-12 rounded d-flex justify-content-center">
+                                        <video  id="video_stream3" width="250" height="200" autoplay></video>
+                                        <canvas class="mt-1 mb-2" id="img_canvas_2"  width="230" height="190"></canvas>
+                                        <!-- <canvas class="mt-1 " id="draw_canvas2" width="230" height="180"></canvas> -->
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" style="padding: 15px;">
+                            <!-- <div class="col-md-5">
+                                <button id="CP_IMAGE_CAPTURE2_BTN" type="button" class="btn btn-primary btn-lg" style="width: 100%;" >Accept</button>
+                            </div>
+                            <div class="col-md-5">
+                                <button id="CP_IMAGE_COMPARISION_BTN" type="button" class="btn btn-primary btn-lg" style="width: 100%;" >Decline</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div> <!-- CP_IMAGE_CAPTURE2 SCREEN ENDS -->
+
+
+                <!-- =================================================
+                            === ALL THE OTHER PROCESS ENTRY DIVS ENDS HERE
+                        ================================================= -->
+            </div> <!-- END OF LEFT BOTTOM Section -->
+            <!-- START OF RIGHT BOTTOM Section -->
+            <div class="col-md-4">
+                <div class="row" style="padding: 5px; height: 180px;">
+                    <div class="col-md-12 card" style="padding: 10px;">
+                        <div>
+                            <img id="imgBottom" alt="Top Image" class="img-fluid rounded top-img"
+                                src="{% static 'images/users/300-1.png' %}" style="height: 200px; width: 200px;">
+
+                            <!-- <button style="width: 80px; height: 60px;" id="leakstatus" type="button"
+                                class="btn btn-primary font-size-12 mx-4" data-toggle="modal" data-backdrop="static"
+                                data-bs-backdrop="static">Leak status</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 5px;"> <!-- IMAGE SECTION SARTS -->
+
+                    <div class="col-md-12 card flex-row gap-2 justify-content-evenly">
+
+                        <button style="width: 140px; height:50px; font-size: 0.9em;" class="my-1 btn btn-primary btn-lg"
+                            type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                            aria-controls="offcanvasTop" id="processskip">Process Skip</button>
+                        <button style="width: 140px; height:50px; font-size: 0.9em;" class="my-1 btn btn-primary btn-lg"
+                            type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                            aria-controls="offcanvasTop" id="unitskip">Unit Skip</button>
+
+                    </div>
+
+                </div> <!-- IMAGE SECTION ENDS -->
+            </div> <!-- END OF RIGHT BOTTOM Section -->
+        </div> <!-- END OF Bottom Section -->
+    </div> <!-- END OF Right Contents -->
+</div>
+<!-- END layout-wrapper -->
+
+
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+<!-- Screen change API -->
+<script>
+    var restAPI = {
+        substationapi: "http://172.16.32.186:8000/pdi_inspection_api/",
+    };
+   var PROCESS_TYPE = "CP_AIREND"; //DEFAULT PROCESS TYPE. Coming from Django during Page Load.
+    //var PROCESS_TYPE = "CP_BELT_DETAILS";
+    var nextSeq = ""; //Next Sequence Screen to be displayed.
+
+    var BarCode = ""; //"PRT001!REV001!SR123456"; // Barcode that gest scanned from the scanner.
+    const splitChar = "!"; //The Split Character for the BarCode String
+    var BarCodeArray = []; //Empty Array
+    var actTimer;
+    var actTimeMin = 0;
+    var actTimeSec = 0;
+
+    var timeArr = [];
+
+    function getTimeDifference(cycleTime, actualTime) {
+        console.log("differenced get")
+        let diff = (actualTime - cycleTime) / 1000; // time difference in seconds
+        const isNegative = diff < 0; // check if time difference is negative
+        if (isNegative) {
+            diff = Math.abs(diff);
+        }
+        const minutes = Math.floor(diff / 60).toString().padStart(2, "0");
+        const seconds = (diff % 60).toFixed(0).toString().padStart(2, "0");
+        return {
+            minutes: isNegative ? `-${minutes}` : minutes,
+            seconds: seconds,
+        };
+    }
+    /*======================================
+    /// SET SCREEN DATA STARTS ....
+    ======================================*/
+    function setCP_IMAGE_COMPARISION_Data(retVal) {
+        //console.log(retVal);
+        //$("#imgTop").attr('src', retVal.Process_Photo_Path);
+
+        $("#lblFAB").text(retVal.FAB_NO);
+        $("#lblTPL").text(retVal.TPL_No);
+        $("#lblOperatorCode").text(retVal.Operator_Code);
+        $("#lblProcessDesc").text(retVal.Process_Desc);
+
+        $("#lblCycleTimeTmr").text(retVal.Cycle_Time);
+        $("#lblActTimeTmr").text(retVal.Actual_Time);
+
+        $("#lblProcType").text(retVal.CL_Type_Code);
+        $("#lblTotalProc").text(retVal.Total_Processes);
+        $("#lblCompProc").text(retVal.Completed_Process);
+
+        $("#imgBottom").attr('src', retVal.Process_Photo_Path);
+
+        //Common Fields.
+        $("#lblProcSeqNo").text(retVal.Order_No);
+        $("#lblTorque").text(retVal.Torque);
+        $("#lblToolId").text(retVal.Tool_ID);
+        $("#lblBoltCnt").text(retVal.Bolt_Count);
+        $("#lblTalkTime").text(retVal.Takt_Time);
+
+        ActTimerRestart(retVal.Actual_Time); //Start the Timer.
+    }
+
+    function setCP_IMAGE_CAPTURE_Data(retVal) {
+        //console.log(retVal);
+        //$("#imgTop").attr('src', retVal.Process_Photo_Path);
+
+        $("#lblFAB").text(retVal.FAB_NO);
+        $("#lblTPL").text(retVal.TPL_No);
+        $("#lblOperatorCode").text(retVal.Operator_Code);
+        $("#lblProcessDesc").text(retVal.Process_Desc);
+
+        $("#lblCycleTimeTmr").text(retVal.Cycle_Time);
+        $("#lblActTimeTmr").text(retVal.Actual_Time);
+
+        $("#lblProcType").text(retVal.CL_Type_Code);
+        $("#lblTotalProc").text(retVal.Total_Processes);
+        $("#lblCompProc").text(retVal.Completed_Process);
+
+        $("#imgBottom").attr('src', retVal.Process_Photo_Path);
+
+        //Common Fields.
+        $("#lblProcSeqNo").text(retVal.Order_No);
+        $("#lblTorque").text(retVal.Torque);
+        $("#lblToolId").text(retVal.Tool_ID);
+        $("#lblBoltCnt").text(retVal.Bolt_Count);
+        $("#lblTalkTime").text(retVal.Takt_Time);
+
+        ActTimerRestart(retVal.Actual_Time); //Start the Timer.
+    }
+
+    function setProc_Comp_Data(retVal) {
+        //console.log(retVal);
+        //$("#imgTop").attr('src', retVal.Process_Photo_Path);
+
+        $("#lblFAB").text(retVal.FAB_NO);
+        $("#lblTPL").text(retVal.TPL_No);
+        $("#lblOperatorCode").text(retVal.Operator_Code);
+        $("#lblProcessDesc").text(retVal.Process_Desc);
+
+        $("#lblCycleTimeTmr").text(retVal.Cycle_Time);
+        $("#lblActTimeTmr").text(retVal.Actual_Time);
+
+        $("#lblProcType").text(retVal.CL_Type_Code);
+        $("#lblTotalProc").text(retVal.Total_Processes);
+        $("#lblCompProc").text(retVal.Completed_Process);
+
+        $("#imgBottom").attr('src', retVal.Process_Photo_Path);
+
+        //Common Fields.
+        $("#lblProcSeqNo").text(retVal.Order_No);
+        $("#lblTorque").text(retVal.Torque);
+        $("#lblToolId").text(retVal.Tool_ID);
+        $("#lblBoltCnt").text(retVal.Bolt_Count);
+        $("#lblTalkTime").text(retVal.Takt_Time);
+
+        ActTimerRestart(retVal.Actual_Time); //Start the Timer.
+    }
+
+    /*======================================
+    /// SET SCREEN DATA ENDS
+    ======================================*/
+    /*======================================
+    /// SCREEN VALIDATION STARTS ....
+    ======================================*/
+    function CP_CHECK_LIST_Submit() {
+        //Let's Call the Function to check if the CP_AIREND is working fine.
+        var apiSendData = new Object();
+        apiSendData.FAB_NO = $("#lblFAB").text();
+        apiSendData.TPL_No = $("#lblTPL").text();
+        apiSendData.Emp_Name = $("#lblEmpName").text();
+        apiSendData.Emp_ID = $("#lblEmpId").text();
+        apiSendData.Order_No = $("#lblProcSeqNo").text();
+        apiSendData.CL_Type_Code = $("#lblProcType").text();
+        apiSendData.Actual_Time = actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0');
+        apiSendData.method = "process_submit";
+        apiSendData.station_id = $("#lblStationId").text();
+        apiSendData.process_data = JSON.stringify({
+            status: "Accept",
+        });
+
+
+
+        //console.log(apiSendData);
+        //console.log(restAPI.substationapi);
+
+        $.ajax(restAPI.substationapi, {
+            dataType: 'json',
+            type: 'POST',
+            data: apiSendData,
+
+            success: function (retVal, status, xhr) {
+                //console.log("Success");
+                //console.log(retVal);
+
+                if (!IfUndefinedOrNull(retVal.process_seq)) { //If we have valid response with Process sequence coming in.
+                    //console.log(retVal.process_seq.Pro_Type_Code);
+                    //Show the Div based on the value received from Django Backend
+                    if (retVal.process_seq === "seq_complete") {
+                        PROCESS_TYPE = retVal.process_seq;
+                    } else {
+                        PROCESS_TYPE = retVal.process_seq.CL_Type_Codee;
+                    }
+                    hideAllScreens(); //Hide All the screens before showing next screen.
+                    showScreenByProcessType(PROCESS_TYPE, retVal.process_seq);
+                } else {
+                    if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                        if (retVal.process_validation === 'Fail') {
+                            //Show the dialog box.
+                            showStaticModal("Process Fail", retVal.Message);
+                        }
+                    } else {
+                        console.log("Issue calling API");
+                    }
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log("Error making initial API Call!");
+            }
+        });
+
+    }
+
+    function CP_IMAGE_CAPTURE_Submit() {
+        //Let's Call the Function to check if the CP_BELT_DETAILS is working fine.
+
+        var apiSendData = new Object();
+        apiSendData.FAB_NO = $("#lblFAB").text();
+        apiSendData.TPL_No = $("#lblTPL").text();
+        apiSendData.Emp_Name = $("#lblEmpName").text();
+        apiSendData.Emp_ID = $("#lblEmpId").text();
+        apiSendData.Order_No = $("#lblProcSeqNo").text();
+        apiSendData.CL_Type_Code = $("#lblProcType").text();
+        apiSendData.Actual_Time = actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0');
+        apiSendData.method = "process_submit";
+        apiSendData.station_id = $("#lblStationId").text();
+        apiSendData.process_data = JSON.stringify({
+            img_url: "base64",
+        });
+
+        console.log(apiSendData);
+        //console.log(restAPI.substationapi);
+
+        $.ajax(restAPI.substationapi, {
+            dataType: 'json',
+            type: 'POST',
+            data: apiSendData,
+
+            success: function (retVal, status, xhr) {
+                console.log("Success");
+                console.log(retVal);
+
+                if (!IfUndefinedOrNull(retVal.process_seq)) { //If we have valid response with Process sequence coming in.
+                    //console.log(retVal.process_seq.Pro_Type_Code);
+                    //Show the Div based on the value received from Django Backend
+                    if (retVal.process_seq === "seq_complete") {
+                        PROCESS_TYPE = retVal.process_seq;
+                    } else {
+                        PROCESS_TYPE = retVal.process_seq.Pro_Type_Code;
+                    }
+                    hideAllScreens(); //Hide All the screens before showing next screen.
+                    showScreenByProcessType(PROCESS_TYPE, retVal.process_seq);
+                } else {
+                    if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                        if (retVal.process_validation === 'Fail') {
+                            //Show the dialog box.
+                            showStaticModal("Process Fail", retVal.Message);
+                        }
+                    } else {
+                        console.log("Issue calling API");
+                    }
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log("Error making initial API Call!");
+            }
+        });
+
+    }
+
+
+
+    /*======================================
+    /// SCREEN VALIDATION ENDS
+    ======================================*/
+
+    //To Check Undefined OR Null.
+    function IfUndefinedOrNull(varName) {
+        if (typeof varName === 'undefined' || varName === null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Timer Start/Re-Start
+    function ActTimerRestart(actTimeMmSs) {
+        //console.log("Inside Act Timer Restart" + actTimeMmSs);
+
+        //Set Start-Time.
+        try {
+            timeArr = actTimeMmSs.split(":"); //Assuming Time will come in MM:SS format.
+
+        }
+        catch (err) {
+            console.log("Error")
+        }
+        actTimeMin = parseInt(timeArr[0]);
+        actTimeSec = parseInt(timeArr[1]);
+
+        //Clear the Interval we may have from earlier timer.
+        clearInterval(actTimer);
+
+        //We want to re-start the timer here.
+        actTimer = setInterval(function () {
+            //console.log("HI");
+            $("#lblActTimeTmr").text(actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0')); //Display the Timer here.
+            // $("#lblActTimeTmr").text("1:09");
+            if (parseInt(actTimeSec) >= 59) {
+                actTimeSec = 0;
+                actTimeMin = parseInt(actTimeMin) + 1;
+            }
+
+            actTimeSec = actTimeSec + 1; //Increase seconds
+            //console.log(actTimeMin.toString() + ":" + actTimeSec.toString());
+
+            //Check if the Actual Time is higher than Cycle Time.
+            var lblCycleTime = $("#lblCycleTimeTmr").text();
+            var cycleTime = [];
+            cycleTime = lblCycleTime.split(":");
+            var cycleTimeMin = parseInt(cycleTime[0]);
+            var cycleTimeSec = parseInt(cycleTime[1]);
+            var isActTimeHigher = false;
+            if (actTimeMin > cycleTimeMin) {
+                isActTimeHigher = true;
+            } else {
+                if ((actTimeMin == cycleTimeMin) && (actTimeSec > cycleTimeSec)) {
+                    isActTimeHigher = true;
+                }
+            }
+            if (isActTimeHigher) {
+                // $("#lblActTimeTmr").css("color:red")
+                // alert("Targeted")
+                $("#lblActTimeTmr").css("color", "red");
+            }
+
+            subTaktTmrSecs = 0; //Reset Submit Timer.
+            // Only for the Submit Screen.
+            if (PROCESS_TYPE === 'SUBMIT') {
+                subTaktTmrSecs = subTaktTmrSecs + 1; //Increase the Timer.
+                //console.log("Submit Time Seconds: " + subTaktTmrSecs.toString());
+                //console.log("Takt Time (Half) Seconds: " + parseInt(parseInt($("#lblTalkTime").text())/2).toString());
+                if (parseInt(subTaktTmrSecs) >= (parseInt(parseInt($("#lblTalkTime").text()) / 2))) {
+                    console.log("Submit Time Showing...", subTaktTmrSecs.toString());
+                    //Show submit button.
+                    $("#divSUBMIT").show();
+                }
+            }
+        }, 1000); //Run Every Second.
+    }
+
+    function ActTimerRestartDms(actTimeMmSss) {
+        //console.log("Inside Act Timer Restart" + actTimeMmSs);
+
+        //Set Start-Time.
+        timeArr = actTimeMmSss.split(":"); //Assuming Time will come in MM:SS format.
+        actTimeMin = parseInt(timeArr[0]);
+        actTimeSec = parseInt(timeArr[1]);
+
+        //Clear the Interval we may have from earlier timer.
+        // clearInterval(actTimers);
+
+        //We want to re-start the timer here.
+        actTimers = setInterval(function () {
+            if (parseInt(actTimeSec) >= 60) {
+                actTimeSec = 0;
+                actTimeMin = parseInt(actTimeMin) + 1;
+            }
+
+            actTimeSec = actTimeSec + 1; //Increase seconds
+            //console.log(actTimeMin.toString() + ":" + actTimeSec.toString());
+            //$("#lblActTimeTmr").text(actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0'));
+
+            $("#dmstimer").text(actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0'));
+
+
+        }, 1000); //Run Every Second.
+    }
+
+    //Show Or Hide Screen
+    function showScreen(screenId, show) {
+        console.log("Made screen visible");
+        if (show) {
+            $(screenId).show();
+        } else {
+            $(screenId).hide();
+        }
+    }
+
+
+    function hideAllScreens() {
+        //Hide All the Screens.
+        showScreen("#divCP_IMAGE_COMPARISION", false); // Screen 1
+        showScreen("#divCP_IMAGE_CAPTURE2", false); // Screen 1
+    }
+
+
+    function showScreenByProcessType(processType, retVal) {
+        console.log("Showing Screen by Process Type, Process Type: ", processType);
+        //Show the Div based on the value received from Django Backend
+        switch (processType) {
+            case "Check_List":
+                setCP_IMAGE_COMPARISION_Data(retVal);
+                showScreen("#divCP_IMAGE_COMPARISION", true);
+                break;
+            case "Image_Capture":
+                setCP_IMAGE_CAPTURE_Data(retVal);
+                showScreen("#divCP_IMAGE_CAPTURE2", true);
+                break;
+            case "seq_complete":
+                setProc_Comp_Data(retVal)
+               $('#donemodal').modal({ backdrop: 'static', keyboard: false });
+                $('#donemodal').modal('show');
+
+                var actualTimeBtnClick = $("#lblActTimeTmr").html();
+                var cycleTimeKeyPress = $("#lblCycleTimeTmr").html();
+
+                var d1 = actualTimeBtnClick.split(":");
+                var d2 = cycleTimeKeyPress.split(":");
+
+                d1 = d1[0] + d1[1];
+                d2 = d2[0] + d2[1];
+
+
+                if (parseInt(d1) > parseInt(d2)) {
+                    //alert(d1)
+                    //alert(d2)
+
+                    clearInterval(actTimer);
+                    $("#cycle-time").html(cycleTimeKeyPress);
+                    $("#actualtime").html(actualTimeBtnClick);
+
+
+                    var actualMainTimerParts = actualTimeBtnClick.split(":");
+                    var cycleMainTimerParts = cycleTimeKeyPress.split(":");
+
+                    var actualMainTimeInMs = (parseInt(actualMainTimerParts[0] * 60) + parseInt(actualMainTimerParts[1])) * 1000;
+                    var cycleMainTimeInMs = (parseInt(cycleMainTimerParts[0] * 60) + parseInt(cycleMainTimerParts[1])) * 1000;
+
+
+                    const timeDifference = getTimeDifference(cycleMainTimeInMs, actualMainTimeInMs);
+                    const formattedDiffTime = `${timeDifference.minutes}:${timeDifference.seconds.toString().padStart(2, '0')}`;
+                    $("#time-diff").html(formattedDiffTime);
+
+                    $("#pLossFabNo").html($("#lblFAB").text());
+                    $("#pLossTplNo").html($("#lblTPL").text());
+                    $("#pLossEmpName").html($("#lblEmpName").text());
+                    $("#pLossEmpId").html($("#lblEmpId").text());
+
+                    $("#pbox").modal("show");
+
+
+
+
+                } else {
+                    $("#pbox").modal("hide");
+                    $("#ploss_cancel_btn").show();
+                    //alert('ploss popup hide');
+                    location.reload(true)
+
+                }
+
+                $('#ploss_submit_btn').click(function(){
+                    location.reload(true)
+                })
+
+
+
+
+
+                if ($("#popup_ok").click(function () {
+                    $("#donemodal").modal('hide');
+
+                }))
+                    break;
+            default:
+                showScreen("#divCP_IMAGE_COMPARISION", true);
+        }
+    }
+
+    function showStaticModal(modalTitle, modalMessage) {
+        $("#commonmodal").modal({ backdrop: 'static', keyboard: false });
+        $("#comModalTitle").text(modalTitle);
+        $("#comModalBody").text(modalMessage);
+        $("#commonmodal").modal('show');
+    }
+
+    function closeModal(modalId) {
+        $(modalId).modal('toggle');
+    }
+
+
+    // All the settings when document gets loaded for the first time.
+    $(document).ready(function () {
+
+        hideAllScreens();
+        //var myTorqueInterval = setInterval(everyTimeTorque, 1000);
+        // $("#newOnload").modal('show')
+
+        //Here, we call the initial screen load REST API.
+        var apiSendData = new Object();
+        apiSendData.method = "process_seq"; //Hard-Coded for the first call.
+        apiSendData.Tpl_No = $("#lblTPL").text();
+        apiSendData.Fab_No = $("#lblFAB").text();
+        apiSendData.station_id = $("#lblStationId").text();
+
+        //console.log(apiSendData);
+        //console.log(restAPI.substationapi);
+
+        $.ajax(restAPI.substationapi, {
+            dataType: 'json',
+            type: 'POST',
+            data: apiSendData,
+
+            success: function (retVal, status, xhr) {
+                console.log("API Success");
+                //console.log(retVal.process_seq);
+
+                if (!IfUndefinedOrNull(retVal.process_seq)) { //If we have valid response with Process sequence coming in.
+                    //console.log(retVal.process_seq.Pro_Type_Code);
+                    //Show the Div based on the value received from Django Backend
+                    if (retVal.process_seq === "seq_complete") {
+                        PROCESS_TYPE = retVal.process_seq;
+                    } else {
+                        PROCESS_TYPE = retVal.process_seq.Pro_Type_Code;
+                        console.log(PROCESS_TYPE);
+                    }
+                    showScreenByProcessType(PROCESS_TYPE, retVal.process_seq);
+                } else {
+                    if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                        if (retVal.process_validation === 'Fail') {
+                            //Show the dialog box.
+                            showStaticModal("Process Fail", retVal.Message);
+                        }
+                    } else {
+                        console.log("Issue calling API");
+                    }
+                }
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log("Error making initial API Call!");
+            }
+        });
+
+
+        // P button Click Functionality
+
+        $("#btnP").click(function () {
+            $('#pbox').modal('show');
+            //alert('hello');
+            clearInterval(actTimer);
+
+            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+            var cycleTimeKeyPress = $("#lblCycleTimeTmr").html();
+
+            $("#cycle-time").html(cycleTimeKeyPress);
+            $("#actualtime").html(actualTimeBtnClick);
+
+            // var ct = $("#cycle-time").html(data.process_seq.Cycle_Time);
+
+            var actualMainTimerParts = actualTimeBtnClick.split(":");
+            var cycleMainTimerParts = cycleTimeKeyPress.split(":");
+
+            var actualMainTimeInMs = (parseInt(actualMainTimerParts[0] * 60) + parseInt(actualMainTimerParts[1])) * 1000;
+            var cycleMainTimeInMs = (parseInt(cycleMainTimerParts[0] * 60) + parseInt(cycleMainTimerParts[1])) * 1000;
+
+
+            const timeDifference = getTimeDifference(cycleMainTimeInMs, actualMainTimeInMs);
+            const formattedDiffTime = `${timeDifference.minutes}:${timeDifference.seconds.toString().padStart(2, '0')}`;
+            $("#time-diff").html(formattedDiffTime);
+
+            $("#pLossFabNo").html($("#lblFAB").text());
+            $("#pLossTplNo").html($("#lblTPL").text());
+            $("#pLossEmpName").html($("#lblEmpName").text());
+            $("#pLossEmpId").html($("#lblEmpId").text());
+
+        });
+
+        // P cancel button Click Functionality
+
+        $("#ploss_cancel_btn").click(function () {
+            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+            ActTimerRestart(actualTimeBtnClick);
+        });
+
+        /**********Waste Capture Productivity script code start*************/
+
+        $('#ploss_submit_btn').click(function () {
+            // $('#pbox').modal('hide');
+            $("#ploss_submit_btn").html("Submitted");
+
+            var apiSendData = new Object();
+
+            var method = "p_loss";
+            var station_id = $("#lblStationId").text();
+            var fab_no = $("#lblFAB").text();
+            var tpl_no = $("#lblTPL").text();
+            var emp_name = $("#lblEmpName").text();
+            var emp_id = $("#lblEmpId").text();
+
+            var time_diff = $("#time-diff").text();
+            var model_group = $("#pLossModelGrp").text();
+            var level1 = $("#bypassp1 :selected").text();
+            var level2 = $("#bypassp2 :selected").text();
+
+            apiSendData.method = method;
+            apiSendData.station_id = station_id;
+            apiSendData.FAB_NO = fab_no;
+            apiSendData.TPL_No = tpl_no;
+            apiSendData.Emp_Name = emp_name;
+            apiSendData.Emp_ID = emp_id;
+            apiSendData.Model_Group = model_group;
+            apiSendData.Difference = time_diff;
+            apiSendData.Level1 = level1;
+            apiSendData.Level2 = level2;
+            //console.log(apiSendData);
+            //return false;
+            $.ajax({
+                type: "POST",
+                url: "http://20.212.149.30:8000/substationapi",
+                data: apiSendData,// now data come in this function
+                dataType: "json",
+                success: function (retVal, status, xhr) {
+                    console.log(retVal);
+                    /*console.log("Success");
+                    console.log(retVal);*/
+
+                    if (!IfUndefinedOrNull(retVal.method)) { //If we have valid response with Process sequence coming in.
+                        //console.log(retVal.process_seq.Pro_Type_Code);
+                        //Show the Div based on the value received from Django Backend
+                        if (retVal.method === "p_loss") {
+
+                            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+                            ActTimerRestart(actualTimeBtnClick);
+
+                            $('#pbox').modal('hide');
+                        } else {
+
+                            $('#pbox').modal('show');
+
+                        }
+
+                    } else {
+
+                        $('#pbox').modal('show');
+
+                        if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                            if (retVal.process_validation === 'Fail') {
+                                //Show the dialog box.
+                                showStaticModal("Process Fail", retVal.Message);
+                            }
+                        } else {
+                            //console.log("Issue calling API");
+                        }
+                    }
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    //console.log(jqXHR);
+                    alert('fail' + status.code);
+                }
+            });
+
+        });
+
+
+
+        /**********Waste Capture Productivity script code end*************/
+
+
+        // Q button Click Functionality
+
+        $("#btnQ").click(function () {
+            $('#qbox').modal('show');
+            //alert('hello');
+            clearInterval(actTimer);
+
+            $("#qLossEmpName").html($("#lblEmpName").text())
+            $("#qLossEmpId").html($("#lblEmpId").text())
+            $("#qLossProcessName").html($("#lblProcessDesc").text())
+            $("#qLossFabNo").html($("#lblFAB").text())
+            $("#qLossTplNo").html($("#lblTPL").text())
+
+
+
+
+
+
+            //input field
+            $("#pro_dec").val($("#lblProcessDesc").text())
+            $("#emp_qbox_name").val($("#lblEmpName").text())
+            $("#emp_qbox_id").val($("#lblEmpId").text())
+            $("#emp_qbox_fab").val($("#lblFAB").text())
+            $("#emp_qbox_tpl").val($("#lblTPL").text())
+
+        });
+
+        // Q cancel button Click Functionality
+
+        $("#qloss_cancel_btn").click(function () {
+            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+            ActTimerRestart(actualTimeBtnClick);
+        });
+
+        /**********Waste Capture Q script code start*************/
+
+        $('#qloss_submit_btn').click(function () {
+            // $('#pbox').modal('hide');
+            $("#qloss_submit_btn").html("Submitted");
+
+            var apiSendData = new Object();
+
+            var method = "q_loss";
+            var station_id = $("#lblStationId").text();
+            var fab_no = $("#lblFAB").text();
+            var tpl_no = $("#lblTPL").text();
+            var emp_name = $("#lblEmpName").text();
+            var emp_id = $("#lblEmpId").text();
+
+            var model_group = $("#pLossModelGrp").text();
+            var level1 = $("#bypassq1 :selected").text();
+            var level2 = $("#bypassq2 :selected").text();
+
+            apiSendData.method = method;
+            apiSendData.station_id = station_id;
+            apiSendData.FAB_NO = fab_no;
+            apiSendData.TPL_No = tpl_no;
+            apiSendData.Emp_Name = emp_name;
+            apiSendData.Emp_ID = emp_id;
+            apiSendData.Model_Group = model_group;
+
+            apiSendData.process_data = JSON.stringify({
+                type: 'create',
+                Level1: level1,
+                Level2: level2,
+            });
+
+            //console.log(apiSendData);
+            //return false;
+            $.ajax({
+                type: "POST",
+                url: "http://20.212.149.30:8000/substationapi",
+                data: apiSendData,// now data come in this function
+                dataType: "json",
+                success: function (retVal, status, xhr) {
+                    console.log(retVal);
+                    /*console.log("Success");
+                    console.log(retVal);*/
+
+                    if (!IfUndefinedOrNull(retVal.method)) { //If we have valid response with Process sequence coming in.
+                        //console.log(retVal.process_seq.Pro_Type_Code);
+                        //Show the Div based on the value received from Django Backend
+                        if (retVal.status === "submitted") {
+
+                            var actualTimeBtnClick = $("#dmstimer").html();
+                            ActTimerRestartDms(actualTimeBtnClick);
+
+                            // $('#qbox').modal('show');
+                            $('#qloss_cancel_btn').hide();
+                            $('#dmsIdNo').text(retVal.DMS_ID);
+
+                            /****Q Loss Continuous call API when we get "complete" as the response Code start****/
+
+                            const myQlossInterval = setInterval(everySecondQloss, 1000);
+
+                            function everySecondQloss() {
+
+                                var form = new FormData();
+                                form.append("method", "q_loss");
+                                form.append("station_id", $("#lblStationId").text());
+                                form.append("FAB_NO", $("#lblFAB").text());
+                                form.append("TPL_No", $("#lblTPL").text());
+                                form.append("Emp_Name", $("#lblEmpName").text());
+                                form.append("Emp_ID", $("#lblEmpId").text());
+                                form.append("Model_Group", $("#pLossModelGrp").text());
+                                form.append("DMS_ID", retVal.DMS_ID);
+
+                                var settings = {
+                                    "url": "http://20.212.149.30:8000/qlossapi",
+                                    "method": "POST",
+                                    "timeout": 0,
+                                    "processData": false,
+                                    "mimeType": "multipart/form-data",
+                                    "contentType": false,
+                                    "data": form
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                    //console.log('torque1 API per second call');
+                                    console.log(response);
+                                    var res = JSON.parse(response);
+                                    //alert(res.connection_status);
+
+                                    /*****Pop closes only when you get “complete” as the response.****/
+
+                                    //alert(res.status);
+                                    if (res.status == 'completed') {
+
+                                        dms_id_api();
+                                        alert("res.staus = completed")
+                                        $('#qbox').modal('hide');
+                                        clearInterval(myQlossInterval);
+
+                                        clearInterval(actTimers);
+
+                                        $('#dmstimer').html('00:00');
+
+                                        $('#bypassq1').prop('selectedIndex', 0);
+                                        $('#bypassq2').prop('selectedIndex', 0);
+                                        $('#dmsIdNo').text('');
+                                        $('#qloss_submit_btn').html('Submit');
+                                        $('#qloss_cancel_btn').show();
+
+                                        console.log('Waste Capture Q API Call Stop.');
+                                    }
+
+                                });
+
+                            }
+
+                            /****Q Loss Continuous call API when we get "complete" as the response Code end****/
+
+
+                        } else {
+
+                            $('#qbox').modal('show');
+
+                        }
+
+                    } else {
+
+                        // $('#qbox').modal('show');
+
+                        if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                            if (retVal.process_validation === 'Fail') {
+                                //Show the dialog box.
+                                showStaticModal("Process Fail", retVal.Message);
+                            }
+                        } else {
+                            //console.log("Issue calling API");
+                        }
+                    }
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    //console.log(jqXHR);
+                    alert('fail' + status.code);
+                }
+            });
+
+
+
+        });
+
+        /**********Waste Capture Q script code end*************/
+
+
+        /****Waste Capture Q DMS ID API Code start****/
+
+
+        /**********Waste Capture Q script code end*************/
+
+        //AutoSubmit Functionality Start ==============================
+        $("#txtCpAirend_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpAirend_PartNo").val().length);
+            console.log($("#txtCpAirend_RevNo").val().length);
+            if ($("#txtCpAirend_PartNo").val().length >= 5 && ($("#txtCpAirend_RevNo").val().length) && ($("#txtCpAirend_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_AIREND_Submit()
+            }
+
+        });
+
+        $("#txtCpBeltDet_RevNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpBeltDet_PartNo").val().length);
+            console.log($("#txtCpBeltDet_RevNo").val().length);
+            if ($("#txtCpBeltDet_PartNo").val().length >= 5 && ($("#txtCpBeltDet_RevNo").val().length)) {
+                console.log("Inside if loop");
+                //$("#CP_BELT_DETAILS_BTN").click();
+                CP_BELT_DETAILS_Submit();
+            }
+        });
+
+        $("#txtCpControlPanel_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+
+            if ($("#txtCpControlPanel_PartNo").val().length >= 5 && ($("#txtCpControlPanel_RevNo").val().length) && ($("#txtCpControlPanel_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_CONTROL_PANEL_Submit()
+            }
+        });
+
+        $("#txtCpCooler_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpCooler_PartNo").val().length);
+            console.log($("#txtCpCooler_RevNo").val().length);
+            if ($("#txtCpCooler_PartNo").val().length >= 5 && ($("#txtCpCooler_RevNo").val().length) && ($("#txtCpCooler_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_COOLER_Submit()
+            }
+        });
+
+        $("#txtCpDrivePully_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpDrivePully_PartNo").val().length);
+            console.log($("#txtCpDrivePully_RevNo").val().length);
+            if ($("#txtCpDrivePully_PartNo").val().length >= 5 && ($("#txtCpDrivePully_RevNo").val().length) && ($("#txtCpDrivePully_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_DRIVE_PULLEY_Submit()
+            }
+        });
+
+        $("#txtCpDrivenPully_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpDrivenPully_PartNo").val().length);
+            console.log($("#txtCpDrivenPully_RevNo").val().length);
+            if ($("#txtCpDrivenPully_PartNo").val().length >= 5 && ($("#txtCpDrivenPully_RevNo").val().length) && ($("#txtCpDrivenPully_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_DRIVEN_PULLEY_Submit()
+            }
+        });
+
+        $("#txtCpDryer_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpDryer_PartNo").val().length);
+            console.log($("#txtCpDryer_RevNo").val().length);
+            if ($("#txtCpDryer_PartNo").val().length >= 5 && ($("#txtCpDryer_RevNo").val().length) && ($("#txtCpDryer_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_DRYER_Submit()
+            }
+        });
+
+        $("#txtCpFanMotor_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpFanMotor_PartNo").val().length);
+            console.log($("#txtCpFanMotor_RevNo").val().length);
+            if ($("#txtCpFanMotor_PartNo").val().length >= 5 && ($("#txtCpFanMotor_RevNo").val().length) && ($("#txtCpFanMotor_SrNo").val().length) && ($("#txtCpFanMotor_KWType").val().length)) {
+                console.log("Inside if loop");
+                CP_FAN_MOTOR_Submit()
+            }
+        });
+
+        $("#txtCpMotor_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpMotor_PartNo").val().length);
+            console.log($("#txtCpMotor_RevNo").val().length);
+            if ($("#txtCpMotor_PartNo").val().length >= 5 && ($("#txtCpMotor_RevNo").val().length) && ($("#txtCpMotor_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_MOTOR_Submit()
+            }
+        });
+
+        $("#txtCpNeuron_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpNeuron_PartNo").val().length);
+            console.log($("#txtCpNeuron_RevNo").val().length);
+            if ($("#txtCpNeuron_PartNo").val().length >= 5 && ($("#txtCpNeuron_RevNo").val().length) && ($("#txtCpNeuron_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_NEURON_Submit()
+            }
+        });
+
+        $("#txtCpTank_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpTank_PartNo").val().length);
+            console.log($("#txtCpTank_RevNo").val().length);
+            if ($("#txtCpTank_PartNo").val().length >= 5 && ($("#txtCpTank_RevNo").val().length) && ($("#txtCpTank_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_TANK_Submit()
+            }
+        });
+
+        $("#txtCpVfd_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpVfd_PartNo").val().length);
+            console.log($("#txtCpVfd_RevNo").val().length);
+            if ($("#txtCpVfd_PartNo").val().length >= 5 && ($("#txtCpVfd_RevNo").val().length) && ($("#txtCpVfd_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_VFD_Submit()
+            }
+        });
+
+
+        $("#txtCpAirendCheck_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpAirendCheck_PartNo").val().length);
+            console.log($("#txtCpAirendCheck_RevNo").val().length);
+            if ($("#txtCpAirendCheck_PartNo").val().length >= 5 && ($("#txtCpAirendCheck_RevNo").val().length) && ($("#txtCpAirendCheck_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_AIREND_CHECK_Submit()
+            }
+        });
+
+        $("#txtCpBeltTension_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            console.log($("#txtCpBeltTension_PartNo").val().length);
+            console.log($("#txtCpBeltTension_RevNo").val().length);
+            if ($("#txtCpBeltTension_PartNo").val().length >= 5 && ($("#txtCpBeltTension_RevNo").val().length) && ($("#txtCpBeltTension_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_BELT_TENSION_Submit()
+            }
+        });
+
+        $("#txtCpCanpoy_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            // console.log($("#txtCpBeltTension_PartNo").val().length);
+            // console.log($("#txtCpBeltTension_RevNo").val().length);
+            if ($("#txtCpCanpoy_PartNo").val().length >= 5 && ($("#txtCpCanpoy_RevNo").val().length) && ($("#txtCpCanpoy_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_CANPOY_Submit()
+            }
+        });
+        $("#txtCpCoolerCheck_SrNo").keyup(function () {
+            console.log("Text Changing...");
+            // console.log($("#txtCpBeltTension_PartNo").val().length);
+            // console.log($("#txtCpBeltTension_RevNo").val().length);
+            if ($("#txtCpCoolerCheck_PartNo").val().length >= 5 && ($("#txtCpCoolerCheck_RevNo").val().length) && ($("#txtCpCoolerCheck_SrNo").val().length)) {
+                console.log("Inside if loop");
+                CP_COOLER_CHECK_Submit()
+            }
+        });
+        $("#txtCpDryerCheck_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            // console.log($("#txtCpBeltTension_PartNo").val().length);
+            // console.log($("#txtCpBeltTension_RevNo").val().length);
+            setBarCodeValues()
+            if ($("#txtCpDryerCheck_PartNo").val().length >= 5 && ($("#txtCpDryerCheck_RevNo").val().length) && ($("#txtCpDryerCheck_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_DRYER_CKECK_Submit()
+            }
+        });
+        $("#txtCpTankCheck_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            // console.log($("#txtCpBeltTension_PartNo").val().length);
+            // console.log($("#txtCpBeltTension_RevNo").val().length);
+            if ($("#txtCpTankCheck_PartNo").val().length >= 5 && ($("#txtCpTankCheck_RevNo").val().length) && ($("#txtCpTankCheck_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_TANK_CHECK_Submit()
+            }
+        });
+        $("#txtCpVfdCheck_SerialNo").keyup(function () {
+            console.log("Text Changing...");
+            // console.log($("#txtCpBeltTension_PartNo").val().length);
+            // console.log($("#txtCpBeltTension_RevNo").val().length);
+            if ($("#txtCpVfdCheck_PartNo").val().length >= 5 && ($("#txtCpVfdCheck_RevNo").val().length) && ($("#txtCpVfdCheck_SerialNo").val().length)) {
+                console.log("Inside if loop");
+                CP_VFD_CHECK_Submit()
+            }
+        });
+
+
+        /****Waste Capture Q DMS ID API Code start****/
+
+        // when we get "completed" as the response from Q Loss API.
+
+        function dms_id_api() {
+
+            var form = new FormData();
+
+            form.append("method", "q_loss");
+            form.append("station_id", $("#lblStationId").text());
+            form.append("FAB_NO", $("#lblFAB").text());
+            form.append("TPL_No", $("#lblTPL").text());
+            form.append("Emp_Name", $("#lblEmpName").text());
+            form.append("Emp_ID", $("#lblEmpId").text());
+            form.append("Model_Group", $("#pLossModelGrp").text());
+
+            form.append("process_data", "{\"type\":\"update\",\"DMS_ID\":\"$('#dmsIdNo').text()\",\"Time\":\"$('#dmstimer').html()\"}");
+
+            var settings = {
+                "url": "http://20.212.149.30:8000/substationapi",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+
+
+            });
+
+        }
+
+        /****Waste Capture Q DMS ID API Code end****/
+
+
+    });
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+        /**********Unit Process script code start*************/
+
+        $("#unitskip").click(function () {
+            $("#unitSKipPopup").modal('show')
+        })
+
+        $("#processskip").click(function () {
+            $("#processSKipPopup").modal('show')
+
+        })
+
+        $("#unitskipedsubmit").click(function () {
+
+
+
+            var apiSendData = new Object();
+
+            var method = "unit_skip";
+            var station_id = $("#lblStationId").text();
+            var fab_no = $("#lblFAB").text();
+            var tpl_no = $("#lblTPL").text();
+            var emp_name = $("#lblEmpName").text();
+            var emp_id = $("#lblEmpId").text();
+            var process_seq_no = $("#lblProcSeqNo").text();
+            var pro_type_code = $("#lblProcType").text();
+            // var actual_time = $("#lblActTimeTmr").text();
+            var actual_time = actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0');
+            //alert(actual_time);
+            var process_data = "";
+
+            apiSendData.method = method;
+            apiSendData.station_id = station_id;
+            apiSendData.FAB_NO = fab_no;
+            apiSendData.TPL_No = tpl_no;
+            apiSendData.Emp_Name = emp_name;
+            apiSendData.Emp_ID = emp_id;
+            apiSendData.Process_Seq_No = process_seq_no;
+            apiSendData.Pro_Type_Code = pro_type_code;
+            apiSendData.Actual_Time = actual_time;
+            apiSendData.process_data = process_data;
+            $.ajax({
+                type: "POST",
+                url: restAPI.substationapi,
+                data: apiSendData,// now data come in this function
+                dataType: "json",
+                success: function (retVal, status, xhr) {
+                    console.log(retVal);
+                    console.log("Success");
+                    console.log(retVal);
+
+                    if (!IfUndefinedOrNull(retVal.process_seq)) { //If we have valid response with Process sequence coming in.
+                        //console.log(retVal.process_seq.Pro_Type_Code);
+                        //Show the Div based on the value received from Django Backend
+                        if (retVal.process_seq === "seq_complete") {
+                            PROCESS_TYPE = retVal.process_seq;
+
+                            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+                            var cycleTimeKeyPress = $("#lblCycleTimeTmr").html();
+
+                            if (actualTimeBtnClick > cycleTimeKeyPress) {
+
+                                clearInterval(actTimer);
+
+                                $("#cycle-time").html(cycleTimeKeyPress);
+                                $("#actualtime").html(actualTimeBtnClick);
+
+                                // var ct = $("#cycle-time").html(data.process_seq.Cycle_Time);
+
+                                var actualMainTimerParts = actualTimeBtnClick.split(":");
+                                var cycleMainTimerParts = cycleTimeKeyPress.split(":");
+
+                                var actualMainTimeInMs = (parseInt(actualMainTimerParts[0] * 60) + parseInt(actualMainTimerParts[1])) * 1000;
+                                var cycleMainTimeInMs = (parseInt(cycleMainTimerParts[0] * 60) + parseInt(cycleMainTimerParts[1])) * 1000;
+
+
+                                const timeDifference = getTimeDifference(cycleMainTimeInMs, actualMainTimeInMs);
+                                const formattedDiffTime = `${timeDifference.minutes}:${timeDifference.seconds.toString().padStart(2, '0')}`;
+                                $("#time-diff").html(formattedDiffTime);
+
+                                $("#pLossFabNo").html($("#lblFAB").text());
+                                $("#pLossTplNo").html($("#lblTPL").text());
+                                $("#pLossEmpName").html($("#lblEmpName").text());
+                                $("#pLossEmpId").html($("#lblEmpId").text());
+
+                                $("#pbox").modal("show");
+                                $("#ploss_cancel_btn").hide();
+
+                            } else {
+                                $("#pbox").modal("hide");
+                                $("#ploss_cancel_btn").show();
+                            }
+
+                        } else {
+                            PROCESS_TYPE = retVal.process_seq.Pro_Type_Code;
+                        }
+
+                        //console.log(retVal.Actual_Time);
+                        hideAllScreens(); //Hide All the screens before showing next screen.
+                        showScreenByProcessType(PROCESS_TYPE, retVal.process_seq);
+
+                    } else {
+                        if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                            if (retVal.process_validation === 'Fail') {
+                                //Show the dialog box.
+                                showStaticModal("Process Fail", retVal.Message);
+                            }
+                        } else {
+                            //console.log("Issue calling API");
+                        }
+                    }
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    //console.log(jqXHR);
+                    alert('fail' + status.code);
+                }
+            });
+        });
+
+        /**********Unit Skip Script Code End*************/
+
+        /********** Process Skip script code start*************/
+
+        $("#processskipedsubmit").click(function () {
+
+
+            var apiSendData = new Object();
+
+            var method = "process_skip";
+            var station_id = $("#lblStationId").text();
+            var fab_no = $("#lblFAB").text();
+            var tpl_no = $("#lblTPL").text();
+            var emp_name = $("#lblEmpName").text();
+            var emp_id = $("#lblEmpId").text();
+            var process_seq_no = $("#lblProcSeqNo").text();
+            var pro_type_code = $("#lblProcType").text();
+
+            // var actual_time = $("#lblActTimeTmr").text();
+            var actual_time = actTimeMin.toString().padStart(2, '0') + ":" + actTimeSec.toString().padStart(2, '0');
+            //alert(actual_time);
+            var process_data = "";
+            apiSendData.method = method;
+            apiSendData.station_id = station_id;
+            apiSendData.FAB_NO = fab_no;
+            apiSendData.TPL_No = tpl_no;
+            apiSendData.Emp_Name = emp_name;
+            apiSendData.Emp_ID = emp_id;
+            apiSendData.Process_Seq_No = process_seq_no;
+            apiSendData.Pro_Type_Code = pro_type_code;
+            apiSendData.Actual_Time = actual_time;
+            apiSendData.process_data = process_data;
+            $.ajax({
+                type: "POST",
+                url: restAPI.substationapi,
+                data: apiSendData,// now data come in this function
+                dataType: "json",
+                success: function (retVal, status, xhr) {
+                    /*console.log(retVal);
+                    console.log("Success");
+                    console.log(retVal);*/
+
+                    if (!IfUndefinedOrNull(retVal.process_seq)) { //If we have valid response with Process sequence coming in.
+                        //console.log(retVal.process_seq.Pro_Type_Code);
+                        //Show the Div based on the value received from Django Backend
+                        if (retVal.process_seq === "seq_complete") {
+                            PROCESS_TYPE = retVal.process_seq;
+
+                            var actualTimeBtnClick = $("#lblActTimeTmr").html();
+                            var cycleTimeKeyPress = $("#lblCycleTimeTmr").html();
+
+                            if (actualTimeBtnClick > cycleTimeKeyPress) {
+                                clearInterval(actTimer);
+                                $("#cycle-time").html(cycleTimeKeyPress);
+                                $("#actualtime").html(actualTimeBtnClick);
+
+                                // var ct = $("#cycle-time").html(data.process_seq.Cycle_Time);
+
+                                var actualMainTimerParts = actualTimeBtnClick.split(":");
+                                var cycleMainTimerParts = cycleTimeKeyPress.split(":");
+
+                                var actualMainTimeInMs = (parseInt(actualMainTimerParts[0] * 60) + parseInt(actualMainTimerParts[1])) * 1000;
+                                var cycleMainTimeInMs = (parseInt(cycleMainTimerParts[0] * 60) + parseInt(cycleMainTimerParts[1])) * 1000;
+
+
+                                const timeDifference = getTimeDifference(cycleMainTimeInMs, actualMainTimeInMs);
+                                const formattedDiffTime = `${timeDifference.minutes}:${timeDifference.seconds.toString().padStart(2, '0')}`;
+                                $("#time-diff").html(formattedDiffTime);
+
+                                $("#pLossFabNo").html($("#lblFAB").text());
+                                $("#pLossTplNo").html($("#lblTPL").text());
+                                $("#pLossEmpName").html($("#lblEmpName").text());
+                                $("#pLossEmpId").html($("#lblEmpId").text());
+
+                                $("#pbox").modal("show");
+                                $("#ploss_cancel_btn").hide();
+
+                            } else {
+                                $("#pbox").modal("hide");
+                                $("#ploss_cancel_btn").show();
+                            }
+
+                        } else {
+                            PROCESS_TYPE = retVal.process_seq.Pro_Type_Code;
+                        }
+
+                        //console.log(retVal.Actual_Time);
+                        hideAllScreens(); //Hide All the screens before showing next screen.
+                        showScreenByProcessType(PROCESS_TYPE, retVal.process_seq);
+
+                    } else {
+                        if (!IfUndefinedOrNull(retVal.process_validation)) { //We have a validation failure
+                            if (retVal.process_validation === 'Fail') {
+                                //Show the dialog box.
+                                showStaticModal("Process Fail", retVal.Message);
+                            }
+                        } else {
+                            //console.log("Issue calling API");
+                        }
+                    }
+                },
+                error: function (jqXHR, status) {
+                    // error handler
+                    //console.log(jqXHR);
+                    alert('fail' + status.code);
+                }
+            });
+
+        });
+
+        /**********Process Skip Script Code End*************/
+
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+    };
+    function OpenBootstrapPopup() {
+        // $("#newOnload").modal("show");
+
+        // $("#tess").click(function(){
+        //     $("#newOnload").modal("hide");
+        // })
+
+        if ($("#tess").click) {
+            $("#newOnload").modal("hide");
+        } else {
+            $("#newOnload").modal("show");
+        }
+
+
+
+        // if ( aria-hidden == "true" ){
+        //     $("#newOnload").modal("show");
+        // } else{
+        //     $("#newOnload").modal("hide");
+        // }
+
+    }
+</script>
+
+<script src="{%static 'libs/qr-scanning/js/qr.js' %}"></script>
+
+<script>
+    let camera_button = document.querySelector("#CP_IMAGE_CAPTURE_BTN_1");
+    let scan_button = document.querySelector("#CP_SCANE_BTN");
+    let video = document.querySelector("#video_stream3");
+    let take_photo = document.querySelector("#CP_IMAGE_CAPTURE_BTN2");
+    let take_photo2 = document.querySelector("#CP_IMAGE_CAPTURE_BTN_2");
+    let img_canvas = document.querySelector("#img_canvas");
+    let img_canvas2 = document.querySelector("#img_canvas_2");
+    let live_stream;
+    let mouse_drag = false;
+    let brushWidth = 3;
+    let prevMouseX, prevMouseY, snapshot;
+
+
+
+    const saveButton = document.getElementById('CP_IMAGE_CAPTURE_BTN_2');
+    saveButton.addEventListener('click', function() {
+        // circles.forEach(circle => {
+        //     const radius = 30;
+        //     const opacity = 0.5;
+
+        //     context.beginPath();
+        //     context.arc(circle.x, circle.y, radius, 0, Math.PI * 2);
+        //     context.globalAlpha = opacity;
+        //     context.fillStyle = '#ffffff';
+        //     context.fill();
+        //     context.strokeStyle = 'red';
+        //     context.lineWidth = 3;
+        //     context.stroke();
+        // });
+
+        const newCanvas = document.getElementById('canvas');
+        newCanvas.width = draw_canvas.width;
+        newCanvas.height = draw_canvas.height;
+        const newCtx = newCanvas.getContext('2d');
+
+        newCtx.drawImage(img_canvas, 0, 0);
+
+        // circles.forEach(circle => {
+        //     const radius = 30;
+        //     const opacity = 0.5;
+
+        //     newCtx.beginPath();
+        //     newCtx.arc(circle.x, circle.y, radius, 0, Math.PI * 2);
+        //     newCtx.globalAlpha = opacity;
+        //     newCtx.fillStyle = '#ffffff';
+        //     newCtx.fill();
+        //     newCtx.strokeStyle = 'red';
+        //     newCtx.lineWidth = 3;
+        //     newCtx.stroke();
+        // });
+
+        const dataURL = newCanvas.toDataURL();
+        $('#IMGURL').val(dataURL)
+
+    });
+
+    // camera_button.addEventListener('click', async function() {
+    //     try {
+    //         let videodiv = document.getElementById("video_stream");
+    //         videodiv.style.display = "block";
+    //     }
+    //     catch(err) {
+    //         console.log(err);
+    //     }
+    //     finally {
+    //         const devices = await navigator.mediaDevices.enumerateDevices();
+    //         console.log(devices);
+    //         const options_camera = {
+    //             audio: false,
+    //             video: {
+    //                 facingMode: 'environment', // Or 'user'
+    //             },
+    //         };
+    //         live_stream = await navigator.mediaDevices.getUserMedia(options_camera);
+    //         video.srcObject = live_stream;
+    //     }
+
+    //     //img_canvas.remove();
+    //     //img_canvas.clearRect(0, 0, canvas.width, canvas.height);
+    //     //img_canvas.drawImage(, 100, 100);
+    // });
+
+    camera_button.addEventListener('click', async function() {
+            try {
+                let videodiv = document.getElementById("video_stream");
+                videodiv.style.display = "block";
+            }
+            catch(err) {
+                console.log(err);
+            }
+            finally {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                console.log(devices);
+                const options_camera = {
+                    audio: false,
+                    video: {
+                        facingMode: 'environment', // Or 'user'
+                    },
+                };
+                live_stream = await navigator.mediaDevices.getUserMedia(options_camera);
+                video.srcObject = live_stream;
+            }
+
+            //img_canvas.remove();
+            //img_canvas.clearRect(0, 0, canvas.width, canvas.height);
+            //img_canvas.drawImage(, 100, 100);
+        });
+
+
+    // scan_button.addEventListener('click', async function() {
+
+    //     try {
+    //         let videodiv2 = document.getElementById("video_stream2");
+    //         videodiv2.style.display = "block";
+    //     }
+    //     catch(err) {
+    //         console.log(err);
+    //     }
+    //     finally {
+
+    //         const devices = await navigator.mediaDevices.enumerateDevices();
+    //         console.log(devices);
+    //         const options_camera = {
+    //             audio: false,
+    //             video: {
+    //                 facingMode: 'environment', // Or 'user'
+    //             },
+    //         };
+    //         live_stream = await navigator.mediaDevices.getUserMedia(options_camera);
+    //         video2.srcObject = live_stream;
+    //     }
+
+    // });
+
+</script>
+
+</body>
+
+</html>

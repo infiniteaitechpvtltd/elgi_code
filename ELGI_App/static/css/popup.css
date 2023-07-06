@@ -1,0 +1,46 @@
+ .fullscreen-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(90, 90, 90, 0.5);
+  z-index: 9999;
+}
+ #confirm
+ {
+            display: none;
+            background-color: #fff;
+
+            color: #000000;
+            font-size:16px;
+
+            position: fixed;
+            width: 400px;
+            height: 230px;
+            left: 50%;
+            top: 30%;
+            margin-left: -100px;
+            padding: 30px 10px 15px;
+            box-sizing: border-box;
+            box-shadow: 0 0.25rem 0.75rem rgb(18 38 63 / 8%);
+            text-align: center;
+            z-index: 1000;
+            border-radius: 12px;
+
+        }
+
+        #confirm button {
+            background-color: #ee3124;
+            display: inline-block;
+            border-color:#228033;
+            padding: 5px;
+            text-align: center;
+            width: 60px;
+            cursor: pointer;
+        }
+
+        #confirm .message {
+            text-align: center;
+        }

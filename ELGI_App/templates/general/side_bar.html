@@ -1,0 +1,173 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu" style="background-color:#FFF">
+
+    <div data-simplebar class="h-100">
+
+        <!--- Sidebar start -->
+        <div id="sidebar-menu">
+             <ul class="metismenu list-unstyled" id="side-menu">
+
+                        <li>
+                            <a href="{%  url 'dashboard' %}">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-dashboard">Dashboard</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-ecommerce">Master Configration</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{%  url 'company' %}" key="t-products">Company Information</a></li>
+                                <li><a href="{%  url 'tplmaster' %}" >TPL Master</a></li>
+<!--                                <li><a href="{%  url 'toolmaster' %}">Tool Master</a></li>-->
+                                <li><a href="{%  url 'processmaster' %}">Process Master</a></li>
+                                <li><a href="{%  url 'Employee' %}">Employee</a></li>
+                                <li><a href="{%  url 'dms_master' %}">DMS Master</a></li>
+                                <li><a href="{%  url 'packing' %}">Packing</a></li>
+                                <li><a href="{%  url 'drivecouplingmaster' %}">Drive Coupling Master</a></li>
+                                <li><a href="{%  url 'pdi_master' %}">PDI Master</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-email">LN API Tables</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{%  url 'childpartdetails' %}" >Child Part Details</a></li>
+                                <li><a href="{%  url 'order_release' %}" >Order Release</a></li>
+                                <li><a href="{%  url 'order_release_error_table' %}" >Order Release Error Table</a></li>
+                            </ul>
+                        </li>
+
+                 <!--
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-contacts">Child Part</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{%  url 'order_release' %}" data-key="t-user-grid">Child Part Drop Down</a></li>
+                            </ul>
+                        </li>
+-->
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-tasks">Schedule</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{% url 'breakdisplayconfiguration' %}" key="t-task-list">Break Display Configuration</a></li>
+                                <li><a href="{% url 'holidays' %}" key="t-task-list">Holiday</a></li>
+                                <li><a href="{% url 'messages' %}" key="t-task-list">Message</a></li>
+                                <li><a href="{%  url 'messageconfiguration' %}">Message Configurator</a></li>
+                                <li><a href="{%  url 'shift_and_break' %}" key="t-create-task">Shift &  Break</a></li>
+                            </ul>
+                        </li>
+                         <li>
+                            <a href="{%  url 'station_bypass' %}">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-dashboard">Station Bypass</span>
+                            </a>
+                         </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-toolmaster">Tool Master</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{% url 'toolmaintenance' %}">Tool Maintenance</a></li>
+                                <li><a href="{%  url 'tool_traceability' %}">Tool Traceability</a></li>
+
+                            </ul>
+                        </li>
+
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-multi-level">Test Booth</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{%  url 'testbooth_master' %}" data-key="t-level-1-1">Test Booth Master</a></li>
+                                <li><a href="{%  url 'testbooth_library' %}" data-key="t-level-1-1">Test Booth Library</a></li>
+                                <!--
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2">Test Certificates</a>
+                                    <ul class="sub-menu" aria-expanded="true">
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-1">F2 ALPHA EG11,EG15,EG18,EG22</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-2">F3ALP-EG22P,EG26,EG30,EG37,EG45</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-1">F4 EG75</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-2">F4ALPHA-EG45P,EG55</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-1">EN53,73 V3 EN2 to EN15</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-2">EN102 V2 EN15X to EN30 </a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-1">EN159 EN30X to EN45</a></li>
+                                        <li><a href="{%  url 'order_release' %}" data-key="t-level-2-2">EN159SBD</a></li>
+                                    </ul>
+                                </li>
+                                -->
+                            </ul>
+                        </li>
+
+                        <!--
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-Operatorscreen">Operator Screen</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{%  url 'order_release' %}">List Of FAB Number</a></li>
+                                <li><a href="{%  url 'order_release' %}">Scan Fab Number</a></li>
+                                <li><a href="{%  url 'order_release' %}">Start Test</a></li>
+
+                            </ul>
+                        </li>
+                        -->
+                       
+                         <li>
+                            <a href="http://172.16.32.186/anyglass/pubdisplay/Reports.gdfxp" target="_blank">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-Operatorscreen">Reports</span>
+                            </a>
+                        </li>
+
+
+<!--
+                    <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-Operatorscreen">PDI Screen</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pdi">PDI Information</a></li>
+                                <li><a href="pdi_2">PDI 2</a></li>
+                                <li><a href="pdi_3">PDI 3</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="trello"></i>
+                                <span data-key="t-Operatorscreen">Process</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="process">Process info</a></li>
+                                <li><a href="process_p">Process</a></li>
+                                <li><a href="station_order_release">Alpha Line</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                   -->
+        </div>
+        <!-- Sidebar end-->
+    </div>
+</div>
+<!-- Left Sidebar End -->

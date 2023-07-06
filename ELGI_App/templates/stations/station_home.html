@@ -1,0 +1,291 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+
+    {% include 'general/head_css.html' %}
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- heder start-->
+                <div class="row">
+                    <div class="col-md-10">
+                            <!-- Profile card start -->
+                             <div class="card bg-dark border-dark text-light">
+                                 <div class="card-body">
+                                    <div class="row ">
+                                        <div class="col-md-1">
+                                            <img class="img-fluid mx-auto d-block rounded" src="{{employee_details_list.Photo_Path}}" alt="Card image">
+                                        </div>
+                                        <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Emp. Name</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Emp. ID</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Skill Level</div></div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">{{employee_details_list.Emp_Name}}</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">{{employee_details_list.Emp_ID}}</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">{{employee_details_list.Skill_Level}}</div></div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                            <!-- Profile card end -->
+                    </div>
+
+                    <div class="col-xl-2">
+                        <!-- waste capture card start -->
+                        <div class="card bg-dark border-dark text-light text-sm-center">
+                            <div class="card-body ">
+                                <button class="my-3 btn btn-primary" type="button">
+                                        Logout
+                                </button>
+                            </div>
+                        </div>
+                        <!-- waste capture card end -->
+                    </div>
+
+                </div>
+                <!-- header end -->
+
+
+                <!-- Page content start -->
+                <div class="row">
+                    <!-- page content left side start -->
+                    <div class="col-xl-12">
+                        <!-- Order Release Table start-->
+                             <div class="row">
+                                        <!-- process centent right part start -->
+                                        <!-- form 1 start -->
+                                        <div class="col-lg-12">
+                                            <div style="display: block;" class="card">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <h5>Order Release Table</h5>
+                                                      <!-- table start -->
+                                                        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100"  >
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>TPL _No</th>
+                                                                    <th>FAB_No</th>
+                                                                    <th>TPL_Description</th>
+                                                                    <th>Status</th>
+
+                                                                </tr>
+                                                                </thead>
+
+                                                                <tbody >
+                                                                {%for i in order_release_table%}
+                                                                <!--
+                                                                    <tr>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5" onclick="openPopup('{{i.TPL_No}}', '{{i.FAB_No}}')">{{i.TPL_No}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">{{i.FAB_No}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">{{i.TPL_Description}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">{{i.Status}}</td>
+                                                                    </tr> -->
+                                                                    <tr>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5" onclick="openPopup('{{i.TPL_No}}', '{{i.FAB_No}}')">{{i.TPL_No}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5" onclick="openPopup('{{i.TPL_No}}', '{{i.FAB_No}}')">{{i.FAB_No}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5" onclick="openPopup('{{i.TPL_No}}', '{{i.FAB_No}}')">{{i.TPL_Description}}</td>
+                                                                        <td id="example" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5" onclick="openPopup('{{i.TPL_No}}', '{{i.FAB_No}}')">{{i.Status}}</td>
+                                                                    </tr>
+                                                                {%endfor%}
+
+
+                                                                </tbody>
+                                                        </table>
+                                                        <div id="myModal" class="modal fade bs-example-modal-center5" tabindex="-1"
+                                                            role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Selected Order Details</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p style=" text-align: start;"
+                                                                            class="text-light bg-dark px-2">Fab No.:
+                                                                        </p>
+                                                                        <p style="text-align: center;"><span
+                                                                                id="selectedData"></span> </p>
+                                                                        <p style=" text-align: start;"
+                                                                            class="text-light bg-dark px-2">TPL No.:
+                                                                        </p>
+                                                                        <p style="text-align: center;"><span
+                                                                                id="selectedData2"></span></p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a href="" id="linkbtn">
+                                                                            <button type="submit"  class="btn btn-success w-md" style="background-color:green;" name="order_release">Ok</button>
+                                                                        </a>
+
+                                                                        <button id="popup_close" type="submit"
+                                                                            class="btn btn-primary w-md">Cancel</button>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->``
+                                                    </div>
+                                                      <!-- table end -->
+                                                </div>
+                                            </div>
+
+                                        <!-- end col -->
+                                        <!-- form 1 end -->
+                                        <!-- process centent left part end -->
+
+                             </div>
+
+                    </div>
+                    <!-- page content left side end -->
+
+                    <!-- page content right side start -->
+
+                    <!-- page content right side end -->
+                </div>
+                <!-- page content end -->
+
+            </div>
+
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        {% include 'general/footer.html' %}
+    </div>
+</div>
+
+<!--Testing Error Popup-->
+<!--
+<div id="testingbox" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between m-0">
+                    <h4 class="modal-title">Testing Box Error</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <p id="testerrormessage">Error</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+<script>
+
+    function openPopup(tplNo, fabNo) {
+        // alert("Open the Popup Here! TPL No: " + tplNo + ", FAB No: " + fabNo);
+
+        $("#selectedData2").html(tplNo);
+        $("#selectedData").html(fabNo);
+
+        const a = document.querySelector('#linkbtn');
+        a.href = document.URL + tplNo + '/' + fabNo;
+
+        //$("#myModal").modal('toggle');
+    }
+
+    $(document).ready(function () {
+
+        // $("#testingbox").modal('show');
+
+        /*
+        $("table tr").each(function () {
+            $(this).find("td:lt(2)").addClass("disabled");
+        });
+
+        $("table tr").click(function () {
+            var firstCellValue = $(this).find("td:eq(0)").text(); // FAB No.
+            var secondCellValue = $(this).find("td:eq(1)").text(); // TPL No.
+
+            $("#selectedData2").html(firstCellValue);
+            $("#selectedData").html(secondCellValue);
+
+            tplNo = document.getElementById("selectedData2").innerText;
+            fabNo = document.getElementById("selectedData").innerText;
+            const a = document.querySelector('#linkbtn');
+            //console.log(a);
+            //console.log(document.URL);
+
+            a.href = document.URL + tplNo+'/'+fabNo;
+            console.log(a.href)
+
+        });*/
+
+        $("#popup_close").click(function () {
+            $("#myModal").modal('hide');
+        });
+        $("#popup_OK").click(function () {
+            var abc = document.getElementById("selectedData2").innerText;
+
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
+

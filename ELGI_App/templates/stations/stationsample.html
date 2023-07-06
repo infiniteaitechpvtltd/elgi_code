@@ -1,0 +1,881 @@
+{% load static %}
+{% include 'general/main.html' %}
+
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet"
+        type="text/css" />
+
+
+
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+    {% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Alpha Line-Sub Station 1</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Alpha Line-Sub Station
+                                            1</a></li>
+                                    <li class="breadcrumb-item active">Alpha Line-Sub Station 1</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- alpha page start -->
+
+
+
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="card bg-dark border-dark text-light">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-2">
+                                        <img style="height: 100%;" class="img-fluid mx-auto d-block rounded"
+                                            src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">Emp. Name
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">Emp. ID</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">Skill Level
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div  class="col-xl-12 font-size-15 text-white-50 ">Process</div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">Dinesh S</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">3400</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">10</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div id="processname" class="col-xl-12 font-size-15 mb-1">AIREND_TEST</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">FAB</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">Model</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 text-white-50 mb-1">TPL</div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">BSISO38928</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">EG 37 - 8.5 - 60</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12 font-size-15 mb-1">S123456</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+
+                    <div style="text-align: center;" class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body bg-dark rounded">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="text-muted mb-0">
+                                            Cycle Time</h4>
+                                        <h3 class="text-light mb-0 mt-2">
+                                            13:12</h4>
+                                    </div>
+                                </div>
+                                <div>&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="text-muted mb-0 mt-2 ">
+                                            Actual Time</h4>
+                                        <h3 class=" text-light mb-0 mt-2">
+                                            05:08</h3>
+                                    </div>
+                                </div>
+                            </div><!-- end card body  -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card mb-2">
+                                    <div class="card-title bg-dark rounded text-center text-light">
+                                        <div class="row">
+                                            <div class="col-md-4">Process Type</div>
+                                            <div class="col-md-4">Total Process</div>
+                                            <div class="col-md-4">Completed Process</div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row text-center bg-dark">
+                                    </div>
+                                    <div class="row text-center">
+                                        <div id="processtype" class="col-md-4">CP_AIREND</div>
+                                        <div class="col-md-4">15</div>
+                                        <div class="col-md-4">10</div>
+                                    </div>
+                                </div><!-- end card -->
+                            </div>
+                            <div id="fst" style="display: block;" class="col-lg-12">
+                                <div style="height: 100%;" class="card">
+                                    <div class="card-body">
+                                        <div id="box" class="row">
+                                            <div class="col-xl-6">
+
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">Part
+                                                        No.</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">REV
+                                                        No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">Serial No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <button  id="sbutton" type="button"
+                                                        class="btn btn-primary btn-sm">SUBMIT</button>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-xl-6 text-dark">
+                                                <table id="datatable1"
+                                                    class="table table-bordered dt-responsive  nowrap w-100"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body  -->
+                                </div><!-- end card -->
+                            </div>
+
+                            <!-- CP_BELT_DETALS PORTION STARTED FROM HERE -->
+
+
+                            <div id="CP_BELT_DETALS" style="display: none;"  class="col-lg-12">
+                                <div style="height: 100%;" class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">Part
+                                                        No.</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">REV
+                                                        No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Batch No. 1</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Batch No. 2</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Batch No. 3</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <button ID="CP_BELT_DETAILS_btn"  type="button"
+                                                        class="btn btn-primary btn-sm">SUBMIT</button>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                            <div class="col-xl-6 text-dark">
+                                                <table id="datatable1"
+                                                    class="table table-bordered dt-responsive  nowrap w-100"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Belt Length</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Span Length</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Belt Mass</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Belt Tension</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Belt Make</td>
+                                                            <td>
+                                                               <input type="text">
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body  -->
+                                </div><!-- end card -->
+                            </div>
+
+
+                            <!-- CP_BELT_DETALS PORTION ENDED FROM HERE -->
+
+                            <!-- CP_CONTROL_PANEL START FROM HERE -->
+
+                            <div id="CP_CONTROL_PANEL" style="display: none;"  class="col-lg-12">
+                                <div style="height: 100%;" class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">Part
+                                                        No.</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">REV
+                                                        No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Serial No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Model </label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="CPMTRPOL_PANEL_TEST">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Batch No. 3</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div> -->
+                                                <div class="row">
+                                                    <button id="CP_CONTROL_PANEL_BUTTON"  type="button"
+                                                        class="btn btn-primary btn-sm">SUBMIT</button>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                            <div class="col-xl-6 text-dark">
+                                                <table id="datatable1"
+                                                    class="table table-bordered dt-responsive  nowrap w-100"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body  -->
+                                </div><!-- end card -->
+                            </div>
+
+
+                            <!-- CP_CONTROL_PANEL END FROM HERE -->
+
+
+                            <!-- CP_COOLER START FROM HERE -->
+
+
+                            <div id="CP_COOLER" style="display: none;"  class="col-lg-12">
+                                <div style="height: 100%;" class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">Part
+                                                        No.</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label">REV
+                                                        No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Serial No</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="row mb-4">
+                                                    <label for="sub_station_code" class="col-sm-3 col-form-label"> Batch No. 3</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="substationcode" type="text" class="form-control"
+                                                            id="sub_station_code">
+                                                    </div>
+                                                </div> -->
+                                                <div class="row">
+                                                    <button id="COOLER_TEST_BTN"  type="button"
+                                                        class="btn btn-primary btn-sm">SUBMIT</button>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                            <div class="col-xl-6 text-dark">
+                                                <table id="datatable1"
+                                                    class="table table-bordered dt-responsive  nowrap w-100"
+                                                    data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td>
+                                                                &nbsp;
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card body  -->
+                                </div><!-- end card -->
+                            </div>
+                            <!-- CP_CONTROL_PANEL END FROM HERE -->
+
+                        </div>
+
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="row  mb-0">
+                            <div class="col-lg-6">
+                                <div class="row text-center mb-0">
+                                    <div class="card col-lg-12">
+                                        <div class=" ">
+                                            <div class="card-body   ">
+                                                <h5 class="text-dark">Waster Capture</h5>
+                                                <div class="d-flex flex-wrap gap-2 justify-content-evenly">
+                                                    <button class="btn btn-primary" type="button"
+                                                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                                                        aria-controls="offcanvasTop">P</button>
+                                                    <button class="btn btn-primary" type="button"
+                                                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                                                        aria-controls="offcanvasTop">Q</button>
+                                                </div>
+                                            </div><!-- end card body  -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row ">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                                    <button style="width: 100px;" class="my-1 btn btn-primary btn-sm"
+                                                        type="button" data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasTop"
+                                                        aria-controls="offcanvasTop">Logout</button>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                                    <button style="width: 100px;" class="my-1 btn btn-primary btn-sm"
+                                                        type="button" data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasTop"
+                                                        aria-controls="offcanvasTop">Process Skip</button>
+                                                </div>
+                                                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                                                    <button style="width: 100px;" class="my-1 btn btn-primary btn-sm"
+                                                        type="button" data-bs-toggle="offcanvas"
+                                                        data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">UNIT
+                                                        SKIP</button>
+                                                </div>
+                                            </div><!-- end card body  -->
+                                        </div><!-- end card -->
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <!-- <div style="height: 50%;" class="card">
+                                    <div style="height: 100%; padding: 5px;" class="card-image">
+                                        <img style="height: 100%;" class="card-img-top img-fluid" src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image cap">
+
+                                    </div>
+                                </div> -->
+                                <div id="imm" style="height: 100%;" style="border: 1px solid red">
+                                    <img style="height: 40%;" class="card-img-top img-fluid"
+                                        src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image cap">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end row -->
+            <!-- alpha page end -->
+
+
+        </div>
+        <!--End  container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    {% include 'general/footer.html' %}
+</div>
+<!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between m-0">
+            <h4 class="modal-title">Selected Order Details</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- <div class="modal-body">
+            <p style="background-color: gray; text-align: start;" class="text-light">Fab No. </p>
+            <p style="text-align: center;"><span id="selectedData"></span> </p>
+            <p style="background-color: gray; text-align: start;" class="text-light">TPL No.</p>
+            <p style="text-align: center;"><span id="selectedData2"></span></p>
+        </div> -->
+        <div class="modal-footer">
+          <button type="button" id="popup_ok" class="btn btn-default" data-dismiss="modal">Okay</button>
+          <button  id="popup_close" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+
+
+
+    <!-- Required datatable js -->
+    <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Buttons examples -->
+    <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+    <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+    <!-- Responsive examples -->
+    <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+    <!-- Datatable init js -->
+    <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+
+
+    <script src="{% static 'js/pages/modal.init.js' %}"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+     $("#sbutton").click(function(){
+       console.log("clicked");
+    //    $("#mybox1").css("display","block");
+    //    $("#fst").css("display","none");
+       $("#myModal").modal("show");
+    //    $("#imm").css("display","none");
+
+
+   });
+});
+
+    $(document).ready(function(){
+     $("#CP_BELT_DETAILS_btn").click(function(){
+       console.log("CP_CONTROL_PANEL");
+       $("#CP_BELT_DETALS").css("display","none");
+       $("#CP_CONTROL_PANEL").css("display","block");
+       $("#processtype").html("CP_CONTROL_PANEL");
+        $("#processname").html("CP_CONTROL_TEST");
+   });
+});
+
+
+$(document).ready(function(){
+     $("#CP_CONTROL_PANEL_BUTTON").click(function(){
+       console.log("COOLER_TEST_BTN");
+       $("#CP_CONTROL_PANEL_BUTTON").css("display","none");
+       $("#CP_COOLER").css("display","block");
+       $("#processtype").html("COOLER_TEST");
+        $("#processname").html("CP_COOLER");
+   });
+});
+
+$(document).ready(function(){
+     $("#CP_CONTROL_PANEL").click(function(){
+       console.log("COOLER_TEST_BTN");
+       $("#CP_COOLER").css("display","none");
+       $("#CP_DRIVE_PULLEY").css("display","block");
+       $("#processtype").html("COOLER_TEST");
+        $("#processname").html("CP_COOLER");
+   });
+});
+
+
+$(document).ready(function(){
+     $("#FAN_MOTOR_TEST_BTN").click(function(){
+       console.log("COOLER_TEST_BTN");
+       $("#CP_COOLER").css("display","none");
+       $("#dpt").css("display","block");
+       $("#processtype").html("DRIVER_PULLEY_TEST");
+        $("#processname").html("DRIVER_PULLEY_TEST");
+   });
+});
+
+
+
+$(document).ready(function(){
+     $("#DRIVEN_PULLEY_TEST_BTN").click(function(){
+       console.log("COOLER_TEST_BTN");
+       $("#CP_COOLER").css("display","none");
+       $("#dpt").css("display","block");
+       $("#processtype").html("DRIVER_PULLEY_TEST");
+        $("#processname").html("DRIVER_PULLEY_TEST");
+   });
+});
+
+
+
+$(document).ready(function(){
+    $("#popup_ok").click(function(){
+        $("#fst").css("display","none");
+        $("#myModal").modal('hide');
+        $("#CP_BELT_DETALS").css("display","block");
+        $("#processtype").html("CP_BELT_DETAILS");
+        $("#processname").html("CP_BELT_DETAILS");
+
+
+
+    });
+});
+$(document).ready(function(){
+    $("#popup_close").click(function(){
+    $("#myModal").modal('hide');
+    });
+});
+
+
+
+</script>
+
+<!-- <script>
+
+    function display()
+    {
+        $("#myModal").addClass("in");
+        $("#myModal").css("display","block");
+
+
+    }
+
+</script> -->
+
+
+
+<!-- <script>
+$(document).ready(function(){
+    $("#popup_ok").click(function(){
+    console.log("clicked");
+    $("#myModal").model('hide');
+    $("#mybox1").css("display","block");
+});
+});
+
+
+$(document).ready(function(){
+     $("#sbutton").click(function(){
+       console.log("clicked");
+       $("#myModal").modal("show");
+   });
+});
+
+$(document).ready(function(){
+    $("#popup_close").click(function(){
+    $("#myModal").modal('hide');
+    });
+});
+ </script> -->
+
+
+</body>
+
+</html>

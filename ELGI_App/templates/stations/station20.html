@@ -1,0 +1,303 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+
+    {% include 'general/head_css.html' %}
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- heder start-->
+                <div class="row">
+                    <div class="col-md-10">
+                            <!-- Profile card start -->
+                             <div class="card bg-dark border-dark text-light">
+                                 <div class="card-body">
+                                    <div class="row ">
+                                        <div class="col-md-1">
+                                            <img class="img-fluid mx-auto d-block rounded" src="{% static 'images/users/avatar-6.jpg' %}" alt="Card image">
+                                        </div>
+                                        <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Emp. Name</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Emp. ID</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 text-white-50 mb-1">Skill Level</div></div>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">USER20</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">ST20</div></div>
+                                                            <div class="row"><div class="col-xl-12 font-size-12 mb-1">4</div></div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                            <!-- Profile card end -->
+                    </div>
+
+                    <div class="col-xl-2">
+                        <!-- waste capture card start -->
+                        <div class="card bg-dark border-dark text-light text-sm-center">
+                            <div class="card-body ">
+                                <button class="my-3 btn btn-primary" type="button">
+                                        Logout
+                                </button>
+                            </div>
+                        </div>
+                        <!-- waste capture card end -->
+                    </div>
+
+                </div>
+                <!-- header end -->
+
+                <div class="row">
+
+                    <div class="col-xl-12">
+                        <!-- waste capture card start -->
+                        <div class="card text-light list-inline ">
+                            <div class="card-body ">
+                                <button class="my-2 btn btn-primary" type="button">
+                                        Child Part Details
+                                </button>
+                                <button class="my-2 btn btn-primary" type="button">
+                                        Status
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Page content start -->
+                <div class="row">
+                    <!-- page content left side start -->
+                    <div class="col-xl-12">
+                        <!-- Order Release Table start-->
+                             <div class="row">
+                                        <!-- process centent right part start -->
+                                        <!-- form 1 start -->
+                                        <div class="col-lg-12">
+
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                      <div>
+                                                      <!-- table start -->
+                                                        <table id="datatable1" class="table table-bordered dt-responsive  nowrap w-100"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-center5">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>TPL _No</th>
+                                                                <th>FAB_No</th>
+                                                                <th>Release_Date</th>
+                                                                <th>TPL_Description</th>
+
+                                                            </tr>
+                                                        </thead>
+
+
+                                                        <tbody>
+
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+                                                                <tr >
+                                                                    <td>SO13864</td>
+                                                                    <td>BIGSO44706</td>
+                                                                    <td>6/18/2020 11:16am</td>
+                                                                    <td>EG22-C-50</td>
+                                                                </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="modal fade bs-example-modal-center5" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Selected Order Details</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p style=" text-align: start;" class="text-dark">Fab No.: SO13864  TPL No.: BIGSO44706</p>
+                                                                        <p style=" text-align: start;" class="text-dark">Model Desc.: EN 5.5-9.5 400V/50</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary w-md">Release</button>
+
+                                                                        <button type="submit" class="btn btn-primary w-md">Cancel</button>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+                                                        </div>
+                                                      <!-- table end -->
+                                                    <br>
+                                                    <br>
+                                                     <!-- Error table start -->
+                                                      <!-- Error table end -->
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- end col -->
+                                        <!-- form 1 end -->
+                                        <!-- process centent left part end -->
+
+                             </div>
+
+                    </div>
+                    <!-- page content left side end -->
+
+                    <!-- page content right side start -->
+
+                    <!-- page content right side end -->
+                </div>
+                <!-- page content end -->
+
+            </div>
+
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        {% include 'general/footer.html' %}
+    </div>
+
+    {% comment %} <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-between m-0">
+                            <h4 class="modal-title">Selected Order Details</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="background-color: gray; text-align: start;" class="text-light">Fab No. </p>
+                            <p style="text-align: center;"><span id="selectedData"></span> </p>
+                            <p style="background-color: gray; text-align: start;" class="text-light">TPL No.</p>
+                            <p style="text-align: center;"><span id="selectedData2"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+                          <button onclick="hide()" id="popup_close" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                      </div>
+
+                    </div>
+                </div> {% endcomment %}
+
+    {% comment %} <div class="popup" id="popup">
+        <p>Selected Data: <span id="selectedData"></span></p>
+        <p>Selected Data: <span id="selectedData2"></span></p>
+        <button id="closeBtn">Close</button>
+    </div> {% endcomment %}
+    <!-- end main content-->
+</div>
+
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+
+
+<script src="{% static 'js/pages/modal.init.js' %}"></script>
+
+{% comment %}<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>-->
+
+ <script src="{% static 'newjs/jquery.min(1.7.1).js' %}" type="text/javascript"></script>
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>-->
+
+<script src="{% static 'newjs/jquery.min(3.6.1).js' %}"></script>
+
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--> {% endcomment %}
+
+<script src="{% static 'newjs/bootstrap.min(3.4.1).js' %}"></script>
+
+
+<script src="{% static 'js/app.js' %}"></script>
+
+
+
+
+</body>
+</html>

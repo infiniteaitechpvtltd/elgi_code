@@ -1,0 +1,691 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<!--    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">-->
+    <link href="{% static 'newjs/bootstrap-toggle.min.css' %}" rel="stylesheet">
+
+    
+    
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>-->
+    <link href="{% static 'newjs/mdb.min.css' %}" rel="stylesheet"/>
+    
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+
+    
+    <style>
+        .scrollme {
+            overflow-x: auto;
+        }
+        hidden-panel {
+            display: none;
+        }
+        .data_pointer
+        {
+            cursor:pointer;
+
+        }
+        td:hover
+        {
+            color:#ee3420;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+     <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                {% include 'general/page_title.html' %}
+                <!-- company page start -->
+               <div class="row">
+
+
+                            <div class="col-xl-12">
+                                <div class="card">
+                                      <!-- <div class="card-header">
+                                     <h4 class="card-title">Justify Tabs</h4>
+                                        <p class="card-title-desc"></p>
+                                    </div>--><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#modelmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">Process Library</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item waves-effect waves-light border border-dark rounded">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#tplmaster" role="tab">
+                                                    <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">Process Master</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content p-3 text-muted">
+                                            <div class="tab-pane active" id="modelmaster" role="tabpanel">
+                                                <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+
+                                                            <!-- left column strat -->
+                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                <div class="mt-4 mt-lg-0">
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Process Code</label>
+                                                                            <div class="col-sm-9" >
+                                                                                <input list="browsers" name="Process_Code" id="processcode" class="form-control">
+                                                                                    <datalist id="browsers">
+                                                                                        <option value="102_IV_ASSY">
+                                                                                        <option value="159_IV_ASSY">
+                                                                                        <option value="159_IV_TIGHT">
+                                                                                        <option value="Airend_PART_DATA">
+                                                                                        <option value="AL_CP_MOTOR">
+                                                                                        <option value="AL_CANOPY_DISASSY">
+                                                                                        <option value="AL_CP_AIREND_CHECK">
+                                                                                        <option value="AL_CP_CNTPL">
+                                                                                        <option value="AL_DC PIPE_DMY_PLUG">
+                                                                                        <option value="AL_NEURON_III_ASSY">
+                                                                                        <option value="AL_NEU_III_CONN_ASSY">
+                                                                                        <option value="AL_NAMEPLATE_RIVET">
+                                                                                        <option value="AL_MOTOR_AIREND_LOADING">
+                                                                                        <option value="ALPHA_LEAK">
+                                                                                        <option value="AL_VENT_COVER_ASSY">
+                                                                                        <option value="AL_PACKAGE_NAMEPLATE_ASSY">
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label" >Process Type</label>
+                                                                            <div class="col-sm-9">
+                                                                                
+                                                                                <input list="processtype" name="Process_Type" class="form-control" onChange=showHide() id="processtypeinput">
+                                                                                    <datalist id="processtype">
+                                                                                        {% for i in process_type_data%}
+                                                                                        <option>{{i}}</option>>
+                                                                                        {% endfor %}
+                                                                                    </datalist>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Guide Pic Path</label>
+                                                                            <div class="col-sm-9">
+                                                                                <div class="input-group">
+                                                                                    <div class="custom-file">
+                                                                                        <input type="file" name="Guide_Pic_Path" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" onchange="readURL(this)">
+                                                                                    </div>
+                                                                                     <div class="col-sm-9" >
+                                                                                        <label class="col-form-label">Please Copy the URL -  " \\172.16.32.186\img2\Process_Picture " and press Enter</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Process Description</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="processdesc" name="Process_Description">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                            <label class="col-sm-3 col-form-label">Cycle Time</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="text" class="form-control" id="cycletime" name="Cycle_Time">
+                                                                            </div>
+                                                                        </div>
+                                                                       
+
+                                                                </div>
+                                                            </div>
+                                                            <!-- left column end -->
+                                                            <!-- right column start -->
+                                                            <!-- dependent dropdowns -->
+                                                            <div class="col-lg-6 ms-lg-auto">
+                                                                <div class="mt-4 mt-lg-0 " style="display:inline-block">
+                                                                    <div id="divtool">
+                                                                            <div class="row mb-4">
+                                                                                <label for="sub_station_code" class="col-sm-3 col-form-label">Tool ID</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input list="toolid" class="form-control" id="toolidinput" name="Tool_ID">
+                                                                                        <datalist id="toolid">
+                                                                                            {% for i in tool_id_data %}
+                                                                                            <option>{{i}}</option>>
+                                                                                            {% endfor %}
+                                                                                        </datalist>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-4">
+                                                                                <label for="skill_required" class="col-sm-3 col-form-label">Torque</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="torque1" name="Torque">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-4">
+                                                                                <label for="sub_station_code" class="col-sm-3 col-form-label" >Bolt Count</label>
+                                                                                <div class="col-sm-9">
+                                                                                <input list="boltcount" class="form-control" id="boltcountinput" name="Bolt_Count">
+                                                                                    <datalist id="boltcount">
+                                                                                        <option value="1">
+                                                                                        <option value="2">
+                                                                                        <option value="3">
+                                                                                        <option value="4">
+                                                                                        <option value="5">
+                                                                                        <option value="6">
+                                                                                        <option value="7">
+                                                                                        <option value="8">
+                                                                                        <option value="9">
+                                                                                        <option value="10">
+                                                                                    </datalist>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-4 mt-lg-0" >
+                                                                    <style>
+                                                                        #divtool1{
+                                                                          max-width:500px;
+                                                                          height:150px;
+                                                                        }
+                                                                    </style>
+                                                                    <img src="" class="border" id="divtool1">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row justify-content-end">
+                                                                <div class="col-sm-9">
+                                                                    <div>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="Add">Add</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="Modify">Modify</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                        <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="Delete">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- right column end-->
+                                                    </div>
+
+                                                </form>
+                                                
+                                                <!-- form end -->
+                                                <!-- table start-->
+                                                <div class="row">
+                                                <div class="col-12">
+                                                <div class="card">
+                                                    
+                                                    <div class="card-body">
+                                                        <div class="table-responsive">
+                                                            <table id="datatable-buttons" class="custom_table table table-bordered nonwrap w-100">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Line Code</th>
+                                                                        <th>Pro_Type_Code</th>
+                                                                        <th>Process_Desc</th>
+                                                                        <th>Tool_ID</th>
+                                                                        <th>Proces_Code</th>
+                                                                        <th>Bolt_Count</th>
+                                                                        <th>Proces_Photo_Path</th>
+                                                                        <th>Take_Time</th>
+                                                                        <th>Torque</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        {% for i in process_library_data%}
+                                                                        <tr>
+                                                                            <td class="data_pointer">{{i.Line_Code}}</td>
+                                                                            <td class="data_pointer">{{i.Pro_Type_Code}}</td>
+                                                                            <td class="data_pointer">{{i.Process_Desc}}</td>
+                                                                            <td class="data_pointer">{{i.Tool_ID}}</td>
+                                                                            <td class="data_pointer">{{i.Process_Code}}</td>
+                                                                            <td class="data_pointer">{{i.Bolt_Count}}</td>
+                                                                            <td class="data_pointer">{{i.Process_Photo_Path}}</td>
+                                                                            <td class="data_pointer">{{i.Takt_Time}}</td>
+                                                                            <td class="data_pointer">{{i.Torque}}</td>
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+
+
+                                        </div>
+                                    </div>
+                                            <div class="tab-pane" id="tplmaster" role="tabpanel">
+                                            <!-- form start -->
+                                                <form method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+
+                                                        <!-- left column strat -->
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+                                                                    <div class="row mb-4">
+                                                                        <label for="skill_required" class="col-sm-3 col-form-label">PMMKEY</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" id="skill_required" name="pmmkey" readonly="readonly">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                            <label for="sub_station_code" class="col-sm-3 col-form-label" >Group</label>
+                                                                            <div class="col-sm-9">
+                                                                                <datalist id="group">
+                                                                                    <option>EG</option>>
+                                                                                    <option>EV</option>>
+                                                                                    <option>EN</option>>
+                                                                                </datalist>
+                                                                                <input list="group" name="group" class="form-control" id="groupinput">
+                                                                            </div>
+                                                                    </div>
+
+                                                                    <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">TPL Code</label>
+                                                                        <div class="col-sm-9">
+                                                                            <datalist id="tpl_code">
+                                                                                {% for i in tpl_code_data %}
+                                                                                    <option>{{i}}</option>
+                                                                                {% endfor %}
+                                                                            </datalist>
+                                                                            <input list="tpl_code" name="tpl_code" class="form-control" id="tplcodeinput">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    
+                                                                    <div id="processfield" class="row mb-4 hidden">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Process Code</label>
+                                                                        <div class="col-sm-9">
+                                                                                <datalist id="process_code">
+                                                                                    {% for i in process_code_data %}
+                                                                                        <option>{{i}}</option>
+                                                                                    {% endfor %}
+                                                                                </datalist>
+                                                                                <input list="process_code" name="process_code" class="form-control" id="process_code_input">
+
+                                                                        </div>
+                                                                    </div>
+                                                                   <div id="activefield" class="row mb-4 hidden">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label" >Active TPL Code</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" id="skill_required" name="Active_TPL_Code">
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="row mb-4">
+                                                                        <label class=" col-sm-3 form-check-label" for="flexSwitchCheckChecked">Process Code</label>
+                                                                        
+                                                                        
+                                                                        <div class="col-sm-9">
+                                                                            <div class="form-check">
+                                                                                <script>
+                                                                                    function myFunction(){
+
+                                                                                            $( '#processfield').css({
+                                                                                                'display': 'flex'
+                                                                                            });
+                                                                                            $( '#activefield').css({
+                                                                                                'display': 'none'
+                                                                                            });
+                                                                                            $('#activeptlmn').css({
+                                                                                                'display' : 'none'
+                                                                                            });
+                                                                                            $( '#Active_TPL').css({
+                                                                                                'display': 'block'
+                                                                                            });
+                                                                                            
+
+                                                                                    }
+                                                                        
+
+                                                                                </script>
+                                                                                <input onclick="myFunction()" id="processbutton" class="form-check-input test" type="radio" name="radio_selection" value="process_code" id="flexRadioDefault1">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row mb-4">
+                                                                        
+                                                                        <label class=" col-sm-3 form-check-label" for="flexSwitchCheckChecked">Active TPL</Code></label>
+                                                                        <div class="col-sm-9">
+                                                                            <div class="form-check">
+                                                                                <script>
+                                                                                    function myFunction2(){
+
+                                                                                            $('#processfield').css({
+                                                                                                'display': 'none'
+                                                                                            });
+                                                                                            $( '#activefield').css({
+                                                                                                'display': 'flex'
+                                                                                            });
+                                                                                            $( '#Active_TPL').css({
+                                                                                                'display': 'none'
+                                                                                            });
+                                                                                            $('#activeptlmn').css({
+                                                                                                'display' : 'block'
+                                                                                            });
+                                                                                            document.getElementById("flexRadioDefault1").value = 0;
+
+
+                                                                                    }
+                                                                        
+                                                                                </script>
+                                                                                <input onclick="myFunction2()" id="activebutton" class="form-check-input test2" type="radio" name="radio_selection" value="active_tpl_code" id="flexRadioDefault2" >
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- left column end -->
+                                                        <!-- right column start -->
+
+                                                        <div class="col-lg-6 ms-lg-auto">
+                                                            <div class="mt-4 mt-lg-0">
+
+                                                                <div class="row mb-4">
+                                                                        <label for="sub_station_code" class="col-sm-3 col-form-label">Operator Code</label>
+                                                                        <div class="col-sm-9">
+                                                                                <datalist id="operator_code">
+                                                                                    {% for i in operator_code_data %}
+                                                                                        <option>{{i}}</option>
+                                                                                    {% endfor %}
+                                                                                </datalist>
+                                                                                <input list="operator_code" name="operator_code" class="form-control" id="operator_code_input">
+
+                                                                        </div>
+                                                                </div>
+
+                                                                <div class="row mb-4">
+                                                                    <label for="skill_required" class="col-sm-3 col-form-label">Sequence No</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control" id="skill_required" name="sequence_no">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- right column end-->
+
+
+                                                    </div>
+                                                    
+                                                    <div class="row justify-content-end">
+                                                        <div class="col-sm-9 mb-3">
+                                                            <div>
+                                                                <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="PM_Add">Add</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="PM_Modify">Modify</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button>
+                                                                <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="PM_Delete">Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <div class="row">
+
+                                                   
+                                                    {% comment %} <div id="activeptlmn" class="tab-pane hidden"  role="tabpanel">  {% endcomment %}
+
+                                                        <!-- table start-->
+                                                      {% comment %} <div class="row" > {% endcomment %}
+                                                          {% comment %} <div class="col-12"> {% endcomment %}
+                                                              {% comment %} <div class="card"> {% endcomment %}
+                                        
+                                                                  {% comment %} <div  class="card-body"> {% endcomment %}
+                                                                      <div id="activeptlmn" class="table table-bordered nonwrap w-100 table-responsive hidden">
+                                                                            <table id="example" class="custom_table table table-bordered dt-responsive nonwrap w-100 ">
+                                                                              <thead>
+                                                                        
+                                                                                <tr>
+                                                                                    <th scope="col">#</th>
+                                                                                    <th scope="col">TPL_Code</th>
+                                                                                    <th scope="col">Description</th>
+                                                                                    <th scope="col">No. Of Process</th>
+                                                                                    <th scope="col">Operation Code</th>
+                                                                                    <th scope="col">Total Process</th>
+                                                                                    <th></th>
+                                                                                    {% comment %} <th></th>
+                                                                                    <th></th> {% endcomment %}
+        
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for i in active_tpls_data%}
+                                                                                    <tr>
+                                                                                        <td></td>
+                                                                                        <td><a href="{%  url 'activetpllist' i.TPL_Code i.Operation_Code %}" class="btn btn-link waves-effect" title="click">{{i.TPL_Code}}</a></td>
+                                                                                        <td>{{i.TPL_Description}}</td>
+                                                                                        <td>{{i.No_of_Processes}}</td>
+                                                                                        <td>{{i.Operation_Code}}</td>
+                                                                                        <td>{{i.Total_Process}}</td>
+                                                                                        {% comment %} <td><a href="" title="Edit"> <i data-feather="edit" class="feather feather-edit"></i></a></td> {% endcomment %}
+                                                                                        <td><button class="btn btn-none row-add"><i data-feather="copy" class="feather feather-copy"></i></button></td>
+                                                                                        {% comment %} <td><i data-feather="delete" class="feather feather-delete"></i></td> {% endcomment %}
+                                                                                    </tr>
+                                                                                {% endfor %}
+
+                                                                              </tbody>
+                                                                          </table>
+                                                                        </div>
+                                                                        
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div> 
+                                                      <!-- table end -->
+                                                  
+                                                    </div>   
+                                            </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+
+
+
+                           
+
+                        </div><!-- end row -->
+                <!-- company page end -->
+
+
+            </div>
+            <!--End  container-fluid -->
+            
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+        <!-- Required datatable js -->
+        <script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+        <!-- Buttons examples -->
+        <script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+        <!-- Responsive examples -->
+        <script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{%static 'js/pages/datatables.init.js' %}"></script>
+        <script src="{%static 'js/app.js' %}"></script>
+        
+        <script>
+                
+                document.getElementById('divtool').style="display:none";
+                function showHide() {
+                   
+   
+                        console.log("hik");
+
+                    let currentProcess = document.getElementById('processtypeinput')
+
+                    if (currentProcess.value == "TORQUE") {
+                        document.getElementById('divtool').style="display:block";
+                    } else {
+                        document.getElementById('divtool').style="display:none";
+                    }
+                }
+                //Update Value Process Library
+                
+                var table = document.getElementById('datatable-buttons');
+                var box = document.getElementById('divtool');
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                        
+                        document.getElementById("processtypeinput").value = this.cells[1].innerHTML;
+                        document.getElementById("processdesc").value = this.cells[2].innerHTML;
+                        document.getElementById("processcode").value = this.cells[4].innerHTML;
+                       // var box2 ="https://i.postimg.cc/bwspyF5g/Screenshot-1.png"
+                         var box2 = "static/images/IMG/Process_Picture/"  + this.cells[6].innerHTML;
+                        document.getElementById("cycletime").value=this.cells[7].innerHTML;
+                        document.getElementById("toolidinput").value=this.cells[3].innerHTML;
+                        document.getElementById("torque1").value=this.cells[8].innerHTML;
+                        document.getElementById("boltcountinput").value=this.cells[5].innerHTML;
+
+                        showHide();
+                        $('#divtool1').attr('src', box2);
+                        document.getElementById('divtool1').style="display:block";
+                        $('#addbtn').addClass("disabled");      
+                    };
+                }
+
+
+        </script> 
+
+        <script>
+            function clearInput(){
+                var getValue= document.getElementById("processcode");
+                    if (getValue.value !="") {
+                        getValue.value = "";
+                    }
+            }
+        </script>
+<!--        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>-->
+        <script src="{% static 'newjs/bootstrap-toggle.min.js' %}"></script>
+<!--        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+        <script src="{% static 'newjs/popper.min.js' %}"></script>
+<!--        <script src="{% static 'newjs/bootstrap.min.js' %}" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+        <script src="{% static 'newjs/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script>
+            $(document).ready( function () {
+                $('#datatables').DataTable();
+            } );
+        </script>
+        <script>
+
+            $(".row-add").click(function() {
+                var $row = $(this).closest("tr");    // Find the row
+                var $tds = $row.find("td");
+    
+                var txt = '';
+    
+                for (let x of $tds) {
+                    txt += x.textContent + " ";
+                  }
+                  console.log(txt)
+                  var copied = navigator.clipboard.writeText(txt)
+                  console.log(txt.split(" ")[1]);
+                  document.getElementById("tplcode").value = txt.split(" ")[1].trim()
+                })
+    
+    </script>
+
+    <script>
+
+        $(document).ready(function() {
+            var table = $('#example').DataTable( {
+                lengthChange: false,
+                buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+            } );
+
+            table.buttons().container()
+                .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+        } );
+        
+
+        
+
+        $('#activeptlmn').css({
+            'display' : 'none'
+        });
+    </script>
+    
+    <script>
+        function readURL(input) {
+             if (input.files && input.files[0]) {
+               var reader = new FileReader();
+
+               reader.onload = function (e) {
+                   $('#divtool1')
+                       .attr('src', e.target.result);
+               };
+
+               reader.readAsDataURL(input.files[0]);
+           }
+       }
+</script>
+       
+</body>
+
+</html>
+
+

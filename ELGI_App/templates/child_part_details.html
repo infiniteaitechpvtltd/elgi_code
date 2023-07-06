@@ -1,0 +1,182 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                 <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Child Part Details</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">LN API Tables</a></li>
+                                    <li class="breadcrumb-item active">Child Part Details</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!-- child_part_detail page start -->
+                  <!-- table start-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                               <!-- <div class="card-header">
+                                    <h4 class="card-title">Default Datatable</h4>
+
+                                </div>-->
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Fab Number</th>
+                                                <th>Child Part Code</th>
+                                                <th>TPL Number</th>
+                                                <th>Part No.</th>
+                                                <th>Part No. Rev</th>
+                                                <th>Spec_1 Description</th>
+                                                <th>Spec_1 Value</th>
+                                                <th>Spec_2 Description</th>
+                                                <th>Spec_2 Value</th>
+                                                <th>Spec_3 Description</th>
+                                                <th>Spec_3 Value</th>
+                                                <th>Spec_4 Description</th>
+                                                <th>Spec_4 Value</th>
+                                                <th>Spec_5 Description</th>
+                                                <th>Spec_5 Value</th>
+                                                <th>Spec_6 Description</th>
+                                                <th>Spec_6 Value</th>
+                                                <th>Spec_7 Description</th>
+                                                <th>Spec_7 Value</th>
+                                                <th>Spec_8 Description</th>
+                                                <th>Spec_8 Value</th>
+                                                <th>Spec_9 Description</th>
+                                                <th>Spec_9 Value</th>
+                                                <th>Spec_10 Description</th>
+                                                <th>Spec_10 Value</th>
+                                                <th>Spec_11 Description</th>
+                                                <th>Spec_11 Value</th>
+                                                <th>Spec_12 Description</th>
+                                                <th>Spec_12 Value</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                        {% for i in child_part_detail_data%}
+                                            <tr>
+                                                <td>{{i.Fab_Number}}</td>
+                                                <td>{{i.Child_Part_Code}}</td>
+                                                <td>{{i.TPL_Number}}</td>
+                                                <td>{{i.Part_No}}</td>
+                                                <td>{{i.Part_No_Rev}}</td>
+                                                <td>{{i.Spec_1_Description}}</td>
+                                                <td>{{i.Spec_1_Value}}</td>
+                                                <td>{{i.Spec_2_Description}}</td>
+                                                <td>{{i.Spec_2_Value}}</td>
+                                                <td>{{i.Spec_3_Description}}</td>
+                                                <td>{{i.Spec_3_Value}}</td>
+                                                <td>{{i.Spec_4_Description}}</td>
+                                                <td>{{i.Spec_4_Value}}</td>
+                                                <td>{{i.Spec_5_Description}}</td>
+                                                <td>{{i.Spec_5_Value}}</td>
+                                                <td>{{i.Spec_6_Description}}</td>
+                                                <td>{{i.Spec_6_Value}}</td>
+                                                <td>{{i.Spec_7_Description}}</td>
+                                                <td>{{i.Spec_7_Value}}</td>
+                                                <td>{{i.Spec_8_Description}}</td>
+                                                <td>{{i.Spec_8_Value}}</td>
+                                                <td>{{i.Spec_9_Description}}</td>
+                                                <td>{{i.Spec_9_Value}}</td>
+                                                <td>{{i.Spec_10_Description}}</td>
+                                                <td>{{i.Spec_10_Value}}</td>
+                                                <td>{{i.Spec_11_Description}}</td>
+                                                <td>{{i.Spec_11_Value}}</td>
+                                                <td>{{i.Spec_12_Description}}</td>
+                                                <td>{{i.Spec_12_Value}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                  <!-- table end-->
+                <!-- child_part_detail page end-->
+
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+</html>

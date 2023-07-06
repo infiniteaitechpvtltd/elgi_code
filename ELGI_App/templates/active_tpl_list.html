@@ -1,0 +1,267 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+
+
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+
+     <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+
+    {% include 'general/head_css.html' %}
+
+</head>
+{% include 'general/body.html' %}
+<!-- Begin page -->
+<div id="layout-wrapper">
+{% include 'general/menu.html' %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+
+                 <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0 font-size-18">Active TPL Processes List</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <ol class="breadcrumb m-0">
+
+                                    <li class="breadcrumb-item"><a href="tplmaster">TPL Master</a></li>
+                                    <li class="breadcrumb-item active">Active TPL List</li>
+                                    </ol>
+
+                                </ol><br>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- end page title -->
+                <!-- child_part_detail page start -->
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- form start -->
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <!-- left column strat -->
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+
+                                                <div class="row mb-4">
+                                                    <label for="information" class="col-sm-3 col-form-label">PMKEY</label>
+                                                    <div class="col-sm-9">
+                                                       <input type="text" class="form-control" id="pmkey" name="pmkey">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <label for="information" class="col-sm-3 col-form-label">TPL Number</label>
+                                                    <div class="col-sm-9">
+                                                       <input type="text" class="form-control" id="tpl_no" name="TPL" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-4">
+                                                    <label for="information" class="col-sm-3 col-form-label">Process Code</label>
+                                                    <div class="col-sm-9">
+                                                       <input type="text" class="form-control" id="process_code" name="process">
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- left column end -->
+                                    <!-- right column start -->
+
+                                    <div class="col-lg-6 ms-lg-auto">
+                                        <div class="mt-4 mt-lg-0">
+
+
+
+
+
+
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+
+                                                        <div class="row mb-4">
+                                                            <label for="information" class="col-sm-3 col-form-label">Station No</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="station_no" name="station">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="information" class="col-sm-3 col-form-label">Sequence No</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="seq_no" name="sequence">
+                                                            </div>
+                                                        </div>
+
+<!--                                                        <div class="row mb-4">-->
+<!--                                                            <label for="information" class="col-sm-3 col-form-label">Line Code</label>-->
+<!--                                                            <div class="col-sm-9">-->
+<!--                                                               <input type="text" class="form-control" id="information" name="line">-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="update">update</button>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="delete">Delete</button>
+                                                            <button type="submit" class="btn btn-primary w-md" name="submit" value="save">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- right column end-->
+                                </div>
+                            </form>
+                            <!-- form end -->
+                              <!-- table start-->
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                           <!-- <div class="card-header">
+                                                <h4 class="card-title">Default Datatable</h4>
+
+                                            </div>-->
+                                            <div class="card-body">
+                                                <table id="datatable-buttons" class="table table-bordered dt-responsive  nowrap w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Group</th>
+                                                            <th>TPL Code</th>
+                                                            <th>Process Code</th>
+                                                            <th>Station No</th>
+                                                            <th>Sequence No</th>
+                                                            <th>Line No</th>
+                                                            <th>PMKEY</th>
+
+
+                                                        </tr>
+                                                    </thead>
+
+
+                                                    <tbody>
+                                                        {% for i in processes_list_data%}
+                                                        <tr>
+                                                            <td>{{i.Model_Group}}</td>
+                                                            <td>{{i.TPL_No}}</td>
+                                                            <td>{{i.Process_Code}}</td>
+                                                            <td>{{i.Operation_Code}}</td>
+                                                            <td>{{i.Sequence_No}}</td>
+                                                            <td>{{i.Line_Code}}</td>
+                                                            <td>{{i.PMKEY}}</td>
+                                                            <td><i data-feather="delete" class="feather feather-delete"></i></td>
+
+                                                        </tr>
+                                                        {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+
+                              <!-- table end-->
+                            </div>
+<!--                            <div class="row justify-content-start ms-2 mb-4">-->
+<!--                                <div class="col-sm-9">-->
+<!--                                    <div>-->
+<!--                                        {% comment %} <button type="submit" class="btn btn-primary w-md" id="addbtn" name="submit" value="Add">Add</button> {% endcomment %}-->
+<!--                                        <button type="submit" class="btn btn-primary w-md" id="updatebtn" name="submit" value="Modify">Edit</button>-->
+<!--                                        {% comment %} <button type="submit" class="btn btn-primary w-md" id="clearbtn" name="submit" onclick="clearInput()">Clear</button> {% endcomment %}-->
+<!--                                        <button type="submit" class="btn btn-primary w-md" id="delbtn" name="submit" value="Delete">Delete</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                    </div>
+                  </div>
+                <!-- child_part_detail page end-->
+
+            </div>
+            <!--End  container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        {% include 'general/footer.html' %}
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+
+
+<script>
+        //Update Value Active TPL List
+        var table = document.getElementById('datatable-buttons');
+
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                    console.log(table.rows);
+                    document.getElementById("pmkey").value = this.cells[6].innerHTML;
+                    document.getElementById("tpl_no").value = this.cells[1].innerHTML;
+                    document.getElementById("process_code").value = this.cells[2].innerHTML;
+                    document.getElementById("station_no").value = this.cells[3].innerHTML;
+                    document.getElementById("seq_no").value=this.cells[4].innerHTML;
+
+            };
+        }
+</script>
+
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+<script src="{%static 'js/app.js' %}"></script>
+
+</body>
+
+</html>

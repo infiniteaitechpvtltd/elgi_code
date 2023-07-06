@@ -1,0 +1,95 @@
+{% load static %}
+{% include 'general/main.html' %}
+<head>
+    {% include 'general/title_meta.html' %}
+    <!-- plugin css -->
+    <link href="{% static 'libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'newjs/bootstrap-toggle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'newjs/mdb.min.css' %}" rel="stylesheet"/>
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    {% include 'general/head_css.html' %}
+    <style>
+    .scrollme {
+                overflow-x: auto;
+            }
+            hidden-panel {
+                display: none;
+            }
+            .data_pointer
+            {
+                cursor:pointer;
+
+            }
+            td:hover
+            {
+                color:#ee3420;
+            }
+            .hidden {
+                display: none;
+            }
+
+
+            .top-img {
+                padding: 5px;
+                height: 120px;
+                width: 120xp;
+            }
+
+            .modal-backdrop.show{
+                display: none;
+            }
+
+            /* MEDIA QUERIES */
+            @media only screen and (max-width: 1138px) {
+                /* For Tablets */
+                .top-img {
+                    width: 100%;
+                }
+            }
+
+        </style>
+    </head>
+
+    {% include 'general/body.html' %}
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            {% include 'general/top_bar_for_operator.html' %}
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <h3> You have noaccess to view this page</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END layout-wrapper -->
+
+{% include 'general/right_side_bar.html' %}
+{% include 'general/vendor_script.html' %}
+<!-- Required datatable js -->
+<script src="{%static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<!-- Buttons examples -->
+<script src="{%static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{%static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{%static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{%static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{%static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script src="{%static 'js/pages/datatables.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+</html>
